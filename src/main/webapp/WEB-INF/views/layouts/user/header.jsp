@@ -60,9 +60,34 @@
 										</ul></li>
 									<li><a href="doi-tac">Đối tác</a></li>
 									<li><a href="tin-tuc">Tin tức cộng đồng</a></li>
-									<li><a href="login/">Đăng nhập <i class="ti-angle-down"></i></a>
-										
-									<li><a href="">Đăng xuất</a></li>
+									<li><a href="">Đăng nhập<i class="ti-angle-down"></i></a>
+
+										<ul class="submenu">
+											<li><a href="${pageContext.request.contextPath}/login">Đăng
+													nhập </a></li>
+											<!-- Check for logout -->
+
+											<li><form:form
+														action="${pageContext.request.contextPath}/logout"
+														method="POST">
+														<input type="submit" value="Đăng xuất" />
+
+												</form:form>
+											</li>
+											<li>
+												<security:authorize access="hasRole('ADMIN')">
+
+													<!-- Add a link to point to /systems ... this is for the admins -->
+
+													<p>
+														<a href="${pageContext.request.contextPath}/admin/">Về
+															trang ADMIN</a>
+													</p>
+
+												</security:authorize></li>
+
+										</ul>
+									</li>
 								</ul>
 							</nav>
 						</div>

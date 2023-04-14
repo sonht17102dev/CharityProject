@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/user/taglib.jsp"%>
-    
+    <%--
+  
 <div class="main-container">
 		<div class="main-content">
 			<div class="row">
@@ -29,7 +30,7 @@
 
 										<div class="space-6"></div>
 
-										<form>
+										<form:form action="${pageContext.request.contextPath}/authenticateTheUser" method="POST">
 											<fieldset>
 												<label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
@@ -50,16 +51,16 @@
 														class="ace" /> <span class="lbl"> Remember Me</span>
 													</label>
 
-													<button type="button"
-														class="width-35 pull-right btn btn-sm btn-primary">
+													<input type="submit"
+														class="width-35 pull-right btn btn-sm btn-primary" 
+														value="Login">
 														<i class="ace-icon fa fa-key"></i> <span
 															class="bigger-110">Login</span>
-													</button>
 												</div>
 
 												<div class="space-4"></div>
 											</fieldset>
-										</form>
+										</form:form>
 
 										<div class="social-or-login center">
 											<span class="bigger-110">Or Login Using</span>
@@ -225,4 +226,88 @@
 			<!-- /.row -->
 		</div>
 		<!-- /.main-content -->
+	</div>
+	--%>
+	<div>
+		
+		<div id="loginbox" style="margin-top: 50px;"
+			class="mainbox col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
+			
+			<div class="panel panel-info">
+
+				<div class="panel-heading">
+					<div class="panel-title">Sign In</div>
+				</div>
+
+				<div style="padding-top: 30px" class="panel-body">
+
+					<!-- Login Form -->
+					<form action="${pageContext.request.contextPath}/authenticateTheUser" 
+						  method="POST" class="form-horizontal">
+
+					    <!-- Place for messages: error, alert etc ... -->
+					    <div class="form-group">
+					        <div class="col-xs-15">
+					            <div>
+								
+									<!-- Check for login error -->
+								
+									<c:if test="${param.error != null}">
+										
+										<div class="alert alert-danger col-xs-offset-1 col-xs-10">
+											Invalid username and password.
+											<br>
+										</div>
+		
+									</c:if>
+										
+									<!-- Check for logout -->
+
+									<c:if test="${param.logout != null}">
+										            
+										<div class="alert alert-success col-xs-offset-1 col-xs-10">
+											You have been logged out.
+										</div>
+								    
+									</c:if>
+									
+					            </div>
+					        </div>
+					    </div>
+
+						<!-- User name -->
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
+							
+							<input type="text" name="username" placeholder="username" class="form-control">
+						</div>
+
+						<!-- Password -->
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span> 
+							
+							<input type="password" name="password" placeholder="password" class="form-control" >
+						</div>
+
+						<!-- Login/Submit Button -->
+						<div style="margin-top: 10px" class="form-group">						
+							<div class="col-sm-6 controls">
+								<button type="submit" class="btn btn-success">Login</button>
+							</div>
+						</div>
+
+						<!-- I'm manually adding tokens ... Bro! -->
+
+						<input type="hidden"
+							   name="${_csrf.parameterName}"
+							   value="${_csrf.token}" />
+						
+					</form>
+
+				</div>
+
+			</div>
+
+		</div>
+
 	</div>

@@ -47,9 +47,17 @@
 
 						<li class="divider"></li>
 
-						<li><a href="#"> <i class="ace-icon fa fa-power-off"></i>
-								Logout
-						</a></li>
+						<li> 
+						<!-- Add a logout button -->
+						<form:form action="${pageContext.request.contextPath}/logout" 
+								   method="POST">
+						
+								<i class="ace-icon fa fa-power-off"></i>
+							<input type="submit" value="Logout" />
+						
+						</form:form>
+								
+						</li>
 					</ul></li>
 			</ul>
 		</div>

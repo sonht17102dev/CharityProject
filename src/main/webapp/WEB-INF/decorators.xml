@@ -7,6 +7,6 @@
 		<pattern>/admin/*</pattern>
 	</decorator>
 	<decorator page="login.jsp" name="login">
-		<pattern>/login/*</pattern>
+		<pattern>/login*</pattern>
 	</decorator>
 </decorators>
