@@ -5,8 +5,8 @@
 	<version>1.0</version>
 	<packaging>war</packaging>
 	<properties>
-		<spring-version>5.0.2.RELEASE</spring-version>
-		<springsecurity.version>5.0.0.RELEASE</springsecurity.version>
+		<spring-version>4.2.5.RELEASE</spring-version>
+		<springsecurity.version>4.0.4.RELEASE</springsecurity.version>
 	</properties>
 	<build>
 		<plugins>
@@ -33,25 +33,25 @@
 		</dependency>
 		<!-- Spring Security -->
 		<!-- spring-security-web and spring-security-config -->
-		
+
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-web</artifactId>
-		    <version>${springsecurity.version}</version>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${springsecurity.version}</version>
 		</dependency>
-		
+
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-config</artifactId>
-		    <version>${springsecurity.version}</version>
-		</dependency>	
-		
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${springsecurity.version}</version>
+		</dependency>
+
 		<!-- Add Spring Security Taglibs support -->
 		<dependency>
-		    <groupId>org.springframework.security</groupId>
-		    <artifactId>spring-security-taglibs</artifactId>
-		    <version>${springsecurity.version}</version>
-		</dependency>	
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${springsecurity.version}</version>
+		</dependency>
 		<!-- spring-jdbc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -64,7 +64,12 @@
 			<artifactId>mssql-jdbc</artifactId>
 			<version>10.2.0.jre11</version>
 		</dependency>
-
+		<!-- connection pool -->
+		<dependency>
+			<groupId>com.mchange</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.5.2</version>
+		</dependency>
 		<!-- commons-logging 1.1.1-->
 		<dependency>
 			<groupId>commons-logging</groupId>

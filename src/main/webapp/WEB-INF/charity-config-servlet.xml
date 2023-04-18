@@ -19,24 +19,8 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	  
-	<bean
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-		id="dataSource">
-		<property
-			value="com.microsoft.sqlserver.jdbc.SQLServerDriver"
-			name="driverClassName" />
-		<property
-			value="jdbc:sqlserver://localhost:1433;databaseName=Project_Charity14;encrypt=true;trustServerCertificate=true;"
-			name="url" />
-		<property value="sa" name="username" />
-		<property value="123" name="password" />
+	
 
-	</bean>
-
-	<bean class="org.springframework.jdbc.core.JdbcTemplate"
-		id="jDBCTemplate">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
 
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 	
