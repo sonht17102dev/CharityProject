@@ -26,14 +26,5 @@ public class HomeController extends BaseController {
 		return _mvShare;
 	}
 
-	@RequestMapping(value = "/login")
-	public String login() {
-		return "login/loginMain";
-	}
-
-	// add request mapping for /access-denied
-	@RequestMapping(value = "/access-denied")
-	public String showAccessDenied() {
-		return "login/access-denied";
-	}
+	
 }

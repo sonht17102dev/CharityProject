@@ -24,6 +24,9 @@
 <script
 	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"
 	type="text/javascript"></script>
+<script
+	src="<c:url value="/resources/admin/assets/js/jquery.twbsPagination.js"/>"></script>
+
 <!-- text fonts -->
 <link rel="stylesheet"
 	href="<c:url value="/resources/admin/assets/fonts/fonts.googleapis.com.css"/>" />
@@ -43,8 +46,6 @@
 	src="<c:url value="/resources/admin/assets/js/ace-extra.min.js"/>"></script>
 <!-- tool ckeditor -->
 <script src="<c:url value="/resources/admin/ckeditor/ckeditor.js"/>"></script>
-<script
-	src="<c:url value="/resources/admin/assets/js/jquery.twbsPagination.js"/>"></script>
 <style>
 label.error {
 	color: red !important;

@@ -56,7 +56,7 @@ public class ManageAccountController extends BaseController{
 		_mvShareAdmin.setViewName("admin/account/editAccount");
 		return _mvShareAdmin;
 	}
-	@RequestMapping(value= "admin/cap-nhat-tai-khoan", method = RequestMethod.POST)
+	@RequestMapping(value= "cap-nhat-tai-khoan", method = RequestMethod.POST)
 	public String doEditAccount(HttpServletRequest request) {
 		String roleS = request.getParameter("account_role");
 		int role = Integer.parseInt(roleS);

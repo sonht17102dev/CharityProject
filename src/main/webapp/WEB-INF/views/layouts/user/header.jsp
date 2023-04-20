@@ -10,10 +10,9 @@
 					<div class="col-xl-6 col-md-12 col-lg-8">
 						<div class="short_contact_list">
 							<ul>
-								<li><a href="#"> <i class="fa fa-phone"></i> +1 (454)
-										556-5656
+								<li><a href="#"> <i class="fa fa-phone"></i> 078.766.8828
 								</a></li>
-								<li><a href="#"> <i class="fa fa-envelope"></i>Yourmail@gmail.com
+								<li><a href="#"> <i class="fa fa-envelope"></i>sonfx17102@funix.edu.vn
 								</a></li>
 							</ul>
 						</div>
@@ -63,8 +62,13 @@
 									<li><a href="">Đăng nhập<i class="ti-angle-down"></i></a>
 
 										<ul class="submenu">
-											<li><a href="${pageContext.request.contextPath}/login">Đăng
-													nhập </a></li>
+											<li>
+											<form:form
+												action="${pageContext.request.contextPath}/login"
+												method="GET">
+												<input type="submit" value="Đăng nhập" />
+
+											</form:form>
 											<!-- Check for logout -->
 
 											<li><form:form

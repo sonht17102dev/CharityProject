@@ -20,7 +20,7 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<h1 class='${message != null ? " " : "hidden"}' style="color:red;">${message}</h1>
-					<form id="formSubmit" action="cap-nhat-tai-khoan" method="post">
+					<form id="formSubmit" action="${pageContext.request.contextPath}/admin/cap-nhat-tai-khoan" method="post">
 						<div class="form-group">
 							<label class="col-sm-3 control-label no-padding-right">Chức danh</label>
 							<div class="col-sm-9">

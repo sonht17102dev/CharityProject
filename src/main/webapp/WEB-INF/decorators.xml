@@ -9,4 +9,7 @@
 	<decorator page="login.jsp" name="login">
 		<pattern>/login*</pattern>
 	</decorator>
+	<decorator page="register.jsp" name="register">
+		<pattern>/register*</pattern>
+	</decorator>
 </decorators>
