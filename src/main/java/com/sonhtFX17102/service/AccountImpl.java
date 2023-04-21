@@ -59,5 +59,10 @@ public class AccountImpl implements IAccountService{
 		// TODO Auto-generated method stub
 		accountDAO.deleteAccountById(id);
 	}
+	@Override
+	public void updateStatus(String account_mail) {
+		// TODO Auto-generated method stub
+		accountDAO.updateStatus(account_mail);
+	}
 
 }

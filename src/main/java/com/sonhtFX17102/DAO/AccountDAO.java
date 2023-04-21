@@ -90,4 +90,11 @@ public class AccountDAO extends BaseDao {
 				+ "where account_id = " + id +";";
 		_jdbcTemplate.update(sql);
 	}
+	
+	public void updateStatus(String account_mail) {
+		String sql = "update account "
+				+ "set account_status = 'offline' "
+				+ "where account_mail = '"+ account_mail +"';";
+		_jdbcTemplate.update(sql);
+	}
 }

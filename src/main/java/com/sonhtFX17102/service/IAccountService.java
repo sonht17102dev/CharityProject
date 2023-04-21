@@ -19,4 +19,5 @@ public interface IAccountService {
 	public void updateRole(int id, String role);
 	public List<Account> getAccountEnabled(int enabled);
 	public void deleteAccountById(int id);
+	public void updateStatus(String account_mail);
 }

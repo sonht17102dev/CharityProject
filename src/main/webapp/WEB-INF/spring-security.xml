@@ -31,7 +31,8 @@
 			authentication-failure-url="/login?error=true"
 			username-parameter="username" password-parameter="password" />
 
-		<logout logout-url="/logout" logout-success-url="/trang-chu"
+		<logout logout-url="/logout" 
+		success-handler-ref="customLogoutSuccessHandler"
 			delete-cookies="JSESSIONID" invalidate-session="true" />
 		
 	</http>
@@ -45,9 +46,7 @@
 				"select account_mail, account_password , ENABLED  from account where account_mail = ?"
 				authorities-by-username-query=
 				"Select account_mail, concat('ROLE_',account_role) 
-				account_role from account where account_mail = ? ;
-				
-				update account set account_status = 'online' ;" />
+				account_role from account where account_mail = ? ;"/>
 			
 		</authentication-provider>
 
@@ -56,5 +55,6 @@
 		class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
 	<beans:bean id="authenticationSuccessHandler"
         class="com.sonhtFX17102.security.AuthenticationSuccessHandlerImpl" />
-        
+	<beans:bean id="customLogoutSuccessHandler"
+        class="com.sonhtFX17102.security.CustomLogoutSuccessHandlerImpl" />
 </beans:beans>
