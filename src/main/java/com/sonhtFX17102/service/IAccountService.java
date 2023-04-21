@@ -11,11 +11,12 @@ public interface IAccountService {
 	public int getCountAllAccount();
 	public List<Account> getPagingPage(int index);
 	public Account checkAccountByMailExist(String mail);
-	public void insertAccount(int account_role, String account_mail, String account_name, String account_phone,
+	public void insertAccount(String account_role, String account_mail, String account_name, String account_phone,
 			long total_donated, String account_password, String account_status) ;
 	public Account getAccountByID(int id);
-	public void updateAccount(int account_id, int account_role, String account_mail, String account_name,
+	public void updateAccount(int account_id, String account_role, String account_mail, String account_name,
 			String account_phone, long total_donated, String account_password, String account_status);
-	public void updateRole(int id, int role);
-	public List<Account> getAccountBanned(String status);
+	public void updateRole(int id, String role);
+	public List<Account> getAccountEnabled(int enabled);
+	public void deleteAccountById(int id);
 }

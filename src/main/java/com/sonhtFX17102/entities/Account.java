@@ -2,7 +2,7 @@ package com.sonhtFX17102.entities;
 
 public class Account {
 	private int account_id;
-	private int account_role;
+	private String account_role;
 	private String account_mail;
 	private String account_name;
 	private String account_phone;
@@ -15,7 +15,7 @@ public class Account {
 	}
 	
 	
-	public Account(int account_id, int account_role, String account_mail, String account_name, String account_phone,
+	public Account(int account_id, String account_role, String account_mail, String account_name, String account_phone,
 			long total_donated, String account_password, String account_status) {
 		super();
 		this.account_id = account_id;
@@ -39,7 +39,7 @@ public class Account {
 	}
 
 
-	public Account(int account_role, String account_mail, String account_name, String account_phone, long total_donated,
+	public Account(String account_role, String account_mail, String account_name, String account_phone, long total_donated,
 			String account_password, String account_status) {
 		super();
 		this.account_role = account_role;
@@ -58,12 +58,24 @@ public class Account {
 	public void setAccount_id(int account_id) {
 		this.account_id = account_id;
 	}
-	public int getAccount_role() {
+	@Override
+	public String toString() {
+		return "Account [account_id=" + account_id + ", account_role=" + account_role + ", account_mail=" + account_mail
+				+ ", account_name=" + account_name + ", account_phone=" + account_phone + ", total_donated="
+				+ total_donated + ", account_password=" + account_password + ", account_status=" + account_status + "]";
+	}
+
+
+	public String getAccount_role() {
 		return account_role;
 	}
-	public void setAccount_role(int account_role) {
+
+
+	public void setAccount_role(String account_role) {
 		this.account_role = account_role;
 	}
+
+
 	public String getAccount_mail() {
 		return account_mail;
 	}
@@ -93,12 +105,6 @@ public class Account {
 	}
 	public void setAccount_password(String account_password) {
 		this.account_password = account_password;
-	}
-	@Override
-	public String toString() {
-		return "Account [account_id=" + account_id + ", account_role=" + account_role + ", account_mail=" + account_mail
-				+ ", account_name=" + account_name + ", account_phone=" + account_phone + ", total_donated="
-				+ total_donated + ", account_password=" + account_password + ", account_status=" + account_status + "]";
 	}
 	
 	

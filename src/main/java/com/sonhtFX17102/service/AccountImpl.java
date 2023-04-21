@@ -33,26 +33,31 @@ public class AccountImpl implements IAccountService{
 		return accountDAO.getAccountByID(id);
 	}
 	@Override
-	public void updateRole(int id, int role) {
+	public void updateRole(int id, String role) {
 		// TODO Auto-generated method stub
 		accountDAO.updateRole(id, role);
 	}
 	@Override
-	public void updateAccount(int account_id, int account_role, String account_mail, String account_name,
+	public void updateAccount(int account_id, String account_role, String account_mail, String account_name,
 			String account_phone, long total_donated, String account_password, String account_status) {
 		// TODO Auto-generated method stub
-		accountDAO.updateAccount(account_id, account_role, account_mail, account_name, account_phone, total_donated, account_password, account_role);
+		accountDAO.updateAccount(account_id, account_role, account_mail, account_name, account_phone, total_donated, account_password, account_status);
 	}
 	@Override
-	public void insertAccount(int account_role, String account_mail, String account_name, String account_phone,
+	public void insertAccount(String account_role, String account_mail, String account_name, String account_phone,
 			long total_donated, String account_password, String account_status) {
 		// TODO Auto-generated method stub
 		accountDAO.insertAccount(account_role, account_mail, account_name, account_phone, total_donated, account_password, account_status);
 	}
 	@Override
-	public List<Account> getAccountBanned(String status) {
+	public List<Account> getAccountEnabled(int enabled){
 		// TODO Auto-generated method stub
-		return accountDAO.getAccountBanned(status);
+		return accountDAO.getAccountEnabled(enabled);
+	}
+	@Override
+	public void deleteAccountById(int id) {
+		// TODO Auto-generated method stub
+		accountDAO.deleteAccountById(id);
 	}
 
 }

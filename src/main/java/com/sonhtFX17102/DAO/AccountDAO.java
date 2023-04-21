@@ -19,7 +19,7 @@ public class AccountDAO extends BaseDao {
 
 	public List<Account> getPagingPage(int index) {
 		index = (index - 1) * 5;
-		String sql = "select * from account\r\n" + "order by account_id\r\n" + "OFFSET " + index
+		String sql = "select * from account where enabled=1" + "order by account_id\r\n" + "OFFSET " + index
 				+ " ROWS FETCH NEXT 5 ROWS ONLY";
 
 		List<Account> list = _jdbcTemplate.query(sql, new MapperAccount());
@@ -35,16 +35,16 @@ public class AccountDAO extends BaseDao {
 			return list.get(0);
 	}
 
-	public void insertAccount(int account_role, String account_mail, String account_name, String account_phone,
+	public void insertAccount(String account_role, String account_mail, String account_name, String account_phone,
 			long total_donated, String account_password, String account_status) {
 		String sql = "INSERT INTO Account([account_role],[account_mail],[account_name],[account_phone],[total_donated],[account_password],[account_status]) "
-				+ "VALUES (" + account_role + ","
+				+ "VALUES ('" + account_role + "',"
 				+ " N'"+ account_mail +"',"
 				+ " N'"+ account_name +"',"
 				+ " '"+ account_phone +"',"
 				+ " 0,"
 				+ "'"+account_password +"',"
-				+ " 0"
+				+ "'"+account_status +"',"
 				+ ");";
 		_jdbcTemplate.update(sql);
 	}
@@ -55,32 +55,39 @@ public class AccountDAO extends BaseDao {
 		return list.get(0);
 	}
 	
-	public void updateAccount(int account_id, int account_role, String account_mail, String account_name, String account_phone,
-			long total_donated, String account_password, int account_status) {
+	public void updateAccount(int account_id, String account_role, String account_mail, String account_name, String account_phone,
+			long total_donated, String account_password, String account_status) {
 		String sql = "UPDATE ACCOUNT\r\n"
 				+ "SET\r\n"
-				+ "account_role = " + account_role+",\r\n"
+				+ "account_role = '" + account_role+"',\r\n"
 				+ "account_mail = N'"+ account_mail + "',\r\n"
 				+ "account_name = N'"+ account_name +"',\r\n"
 				+ "account_phone = N'"+ account_phone +"',\r\n"
 				+ "total_donated = "+ total_donated + ", \r\n"
 				+ "account_password = N'"+ account_password +"', \r\n"
-				+ "account_status = " + account_status+"\r\n"
+				+ "account_status = '" + account_status+"'\r\n"
 				+ "WHERE\r\n"
 				+ "account_id = "+ account_id +";";
 		_jdbcTemplate.update(sql);
 	}
 	
-	public void updateRole(int id, int role) {
+	public void updateRole(int id, String role) {
 		String sql = "UPDATE ACCOUNT"
-				+ "SET account_role = "+ role 
+				+ "SET account_role = '"+ role + "'"
 				+ "WHERE account_id = "+ id +";";
 		_jdbcTemplate.update(sql);
 	}
 	
-	public List<Account> getAccountBanned(String status){
-		String sql = "SELECT * FROM ACCOUNT WHERE account_status = '"+ status +"';";
+	public List<Account> getAccountEnabled(int enabled){
+		String sql = "SELECT * FROM ACCOUNT WHERE enabled = "+ enabled +";";
 		List<Account> list = _jdbcTemplate.query(sql, new MapperAccount());
 		return list;
+	}
+	
+	public void deleteAccountById(int id) {
+		String sql = "update account "
+				+ "set enabled = 0"
+				+ "where account_id = " + id +";";
+		_jdbcTemplate.update(sql);
 	}
 }

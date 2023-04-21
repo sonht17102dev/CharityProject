@@ -38,11 +38,19 @@ public class ManageAccountController extends BaseController{
 		if (countPage % 5 != 0) {
 			endPage++;
 		}
-//		String action = request.getParameter("action");
-//		String roleS = request.getParameter("role");
-//		int role = Integer.parseInt(roleS);
-//		if(action != null && roleS != null && )
-		List<Account> listBanned = accService.getAccountBanned("ban");
+		String action = request.getParameter("action");
+		String roleS = request.getParameter("role");
+		String idS = request.getParameter("id");
+		int id;
+		if(action != null && roleS != null && action.equals("deleteAccount") && !roleS.equals("ADMIN")) {
+			id = Integer.parseInt(idS);
+			accService.deleteAccountById(id);
+		}
+		else if(action != null && roleS != null && action.equals("deleteAccount") && roleS.equals("ADMIN")) {
+			_mvShareAdmin.addObject("mess", "Không thể xóa admin!!!");
+			_mvShareAdmin.setViewName("redirect:/quan-ly-tai-khoan");
+		}
+		List<Account> listBanned = accService.getAccountEnabled(0);
 		_mvShareAdmin.addObject("listBanned", listBanned);
 		_mvShareAdmin.addObject("listTop5Account", accService.getPagingPage(index));
 		_mvShareAdmin.addObject("endPage", endPage);
@@ -59,7 +67,6 @@ public class ManageAccountController extends BaseController{
 	@RequestMapping(value= "cap-nhat-tai-khoan", method = RequestMethod.POST)
 	public String doEditAccount(HttpServletRequest request) {
 		String roleS = request.getParameter("account_role");
-		int role = Integer.parseInt(roleS);
 		String mail = request.getParameter("account_mail").trim();
 		String name = request.getParameter("account_name");
 		String phone = request.getParameter("account_phone");
@@ -67,11 +74,12 @@ public class ManageAccountController extends BaseController{
 		String md5Pass = DigestUtils.md5Hex(pass).toUpperCase();
 		String status = request.getParameter("account_status");
 		
-		Account account = new Account(role, mail, name, phone, 0, md5Pass, status);
+		Account account = new Account(roleS, mail, name, phone, 0, md5Pass, status);
 		System.out.println(account.toString());
 		account = accService.checkAccountByMailExist(mail);
 		try {
-			accService.updateAccount(account.getAccount_id(),role, mail, name, phone, 0, md5Pass, status);
+			accService.updateAccount(account.getAccount_id(),roleS, mail, name, phone, 0, md5Pass, status);
+			System.out.println(status);
 			return "redirect:quan-ly-tai-khoan";
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -82,20 +90,19 @@ public class ManageAccountController extends BaseController{
 	@RequestMapping(value= "them-tai-khoan", method = RequestMethod.POST)
 	public ModelAndView doAddAccount(HttpServletRequest request) {
 		String roleS = request.getParameter("account_role");
-		int role = Integer.parseInt(roleS);
 		String mail = request.getParameter("account_mail").trim();
 		String name = request.getParameter("account_name");
 		String phone = request.getParameter("account_phone");
 		String pass = request.getParameter("account_password");
 		String md5Pass = DigestUtils.md5Hex(pass).toUpperCase();
-		Account account = new Account(role, mail, name, phone, 0, md5Pass, "online");
+		Account account = new Account(roleS, mail, name, phone, 0, md5Pass, "offline");
 		
 		//System.out.println(account.toString());
 		account = accService.checkAccountByMailExist(mail);
 		
 		if (account == null) {
 			try {
-				accService.insertAccount(role, mail, name, phone, 0, md5Pass, "online");
+				accService.insertAccount(roleS, mail, name, phone, 0, md5Pass, "offline");
 				_mvShareAdmin.setViewName("admin/account/manageAccount");
 				//return "redirect:quan-ly-tai-khoan";
 			} catch (Exception e) {

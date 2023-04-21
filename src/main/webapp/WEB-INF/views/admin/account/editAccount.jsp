@@ -27,22 +27,22 @@
 							<c:set var = "role" value = "${accountByID.account_role}"/>
 								<select class="form-control" id="account_role" name="account_role">
 									<c:choose>
-							         <c:when test = "${role == 0}">
-							           <option value="0">0</option>
-							           <option value="Chọn chức danh (0: admin, 1: user)">Chọn chức danh (0: admin, 1: user)</option>
-							            <option value="1">1</option>
+							         <c:when test = "${role == 'ADMIN'}">
+							           <option value="ADMIN">ADMIN</option>
+							           <option value="Chọn chức danh">Chọn chức danh </option>
+							            <option value="USER">USER</option>
 							         </c:when>
 							         
-							         <c:when test = "${role == 1}">
-							            <option value="1">1</option>
-							            <option value="Chọn chức danh (0: admin, 1: user)">Chọn chức danh (0: admin, 1: user)</option>
-							            <option value="0">0</option>
+							         <c:when test = "${role == 'USER'}">
+							            <option value="USER">USER</option>
+							            <option value="Chọn chức danh">Chọn chức danh </option>
+							            <option value="ADMIN">ADMIN</option>
 							         </c:when>
 							         
 							         <c:otherwise>
-							            <option value="Chọn chức danh (0: admin, 1: user)">Chọn chức danh (0: admin, 1: user)</option>
-							            <option value="0">0</option>
-							            <option value="1">1</option>
+							            <option value="Chọn chức danh">Chọn chức danh </option>
+							            <option value="ADMIN">ADMIN</option>
+							            <option value="USER">USER</option>
 							         </c:otherwise>
 							      </c:choose>
 								</select>
@@ -91,27 +91,18 @@
 							           <option value="online">Online</option>
 							           <option value="Chọn trạng thái">Chọn trạng thái</option>
 							            <option value="offline">Offline</option>
-							            <option value="ban">Ban</option>
 							         </c:when>
 							         
 							         <c:when test = "${status == 'offline'}">
 							            <option value="offline">Offline</option>
 							            <option value="Chọn trạng thái">Chọn trạng thái</option>
 							            <option value="online">Online</option>
-							            <option value="ban">Ban</option>
-							         </c:when>
-							         <c:when test = "${status == 'ban'}">
-							            <option value="ban">Ban</option>
-							            <option value="Chọn trạng thái">Chọn trạng thái</option>
-							            <option value="online">Online</option>
-							            <option value="offline">Offline</option>
 							         </c:when>
 							         
 							         <c:otherwise>
 							            <option value="Chọn trạng thái">Chọn trạng thái</option>
 							            <option value="online">Online</option>
 							            <option value="offline">Offline</option>
-							            <option value="ban">Ban</option>
 							         </c:otherwise>
 							      </c:choose>
 								</select>
@@ -141,17 +132,18 @@
 	<!-- /.page-content -->
 </div>
 <script>
+
 $(document).ready(function () {	
 	$('input.cancle').on("click", function(event) {
 		location.assign("/CharityApp/admin/quan-ly-tai-khoan");
 	});
 	$("#btnReset").click(function() {
-		 $("#account_role").val("Chọn chức danh (0: admin, 1: user)");
+		 $("#account_role").val("Chọn chức danh");
 		 $("#account_mail").val("");
 		 $("#account_name").val("");
 		 $("#account_phone").val("");
 		 $("#account_password").val("");
-		 $("#account_status").val("Chọn trạng thái (0: active, 1: Inactive)");
+		 $("#account_status").val("Chọn trạng thái");
 	});
 	$("#formSubmit").validate({
         onfocusout: false,
@@ -160,8 +152,7 @@ $(document).ready(function () {
         //ignore: [],
         rules: {
         	"account_role": {
-        		required: true,
-        		digits: true
+        		required: true
         	},
             "account_mail": {
               required: true,
@@ -176,12 +167,14 @@ $(document).ready(function () {
             },
             "account_password": {
                 required: true
+            },
+            "account_status": {
+                required: true
             }
           },
           messages: {
         	"account_role": {
-        		required: "Hãy chọn chức danh",
-        		digits: "Yêu cầu nhập số"
+        		required: "Hãy chọn chức danh
         	},
             "account_mail": {
               required: "Hãy nhập tài khoản mail",
@@ -199,6 +192,9 @@ $(document).ready(function () {
             },
             "account_password": {
                 required: "Hãy nhập mật khẩu"
+            },
+            "account_status": {
+                required: "Hãy chọn trạng thái"
             }
           }
         });

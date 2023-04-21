@@ -104,11 +104,11 @@
 													</label></td>
 
 													<td class="hidden">${o.account_id}</td>
-													<c:if test="${o.account_role == 0}">
-													<td><span class="label label-xlg label-primary arrowed-in-right arrowed-in">Admin</span></td>
+													<c:if test="${o.account_role == 'ADMIN'}">
+													<td><span class="label label-xlg label-primary arrowed-in-right arrowed-in">ADMIN</span></td>
 													</c:if>
-													<c:if test="${o.account_role == 1}">
-													<td><span class="label label-xlg label-success arrowed-in-right arrowed-in">User</span></td>
+													<c:if test="${o.account_role == 'USER'}">
+													<td><span class="label label-xlg label-success arrowed-in-right arrowed-in">USER</span></td>
 													</c:if>
 													<td>${o.account_mail}</td>
 													<td>${o.account_name}</td>
@@ -119,9 +119,6 @@
 													</c:if>
 													<c:if test="${o.account_status == 'offline'}">
 													<span class="label label-inverse">Offline</span>
-													</c:if>
-													<c:if test="${o.account_status == 'ban'}">
-													<span class="label label-danger">Ban</span>
 													</c:if>
 													</td>
 													<td>
@@ -195,6 +192,7 @@
 							</div>
 						</div>
 					</div>
+					<%-- 
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="table-header">Danh sách các tài khoản bị cấm</div>
@@ -223,10 +221,10 @@
 													<td class="hidden"></td>
 
 													<td class="hidden">${o.account_id}</td>
-													<c:if test="${o.account_role == 0}">
+													<c:if test="${o.account_role == 'ADMIN'}">
 													<td><span class="label label-xlg label-primary arrowed-in-right arrowed-in">Admin</span></td>
 													</c:if>
-													<c:if test="${o.account_role == 1}">
+													<c:if test="${o.account_role == 'USER'}">
 													<td><span class="label label-xlg label-success arrowed-in-right arrowed-in">User</span></td>
 													</c:if>
 													<td>${o.account_mail}</td>
@@ -279,6 +277,7 @@
 							</div>
 						</div>
 					</div>
+					--%>
 					<!-- PAGE CONTENT ENDS -->
 				</div>
 				<!-- /.col -->
@@ -310,6 +309,8 @@
 										"click",
 										function(event) {
 											var $this = $(this);
+											var roleValue = this.parentNode.parentNode.parentNode
+											.getElementsByTagName('td')[2].textContent;
 											var idValue = this.parentNode.parentNode.parentNode
 													.getElementsByTagName('td')[1].textContent;
 											var status = this.parentNode.parentNode.parentNode
@@ -324,20 +325,17 @@
 															data : {
 																id : idValue,
 																action : 'deleteAccount',
-																role : role
+																role : roleValue
 															},
 															success : function(
 																	response) {
 																alert('Xóa Thành Công!');
 															},
 															error : function() {
-																alert('Xóa Thất Bại');
+																alert('Xóa Thất Bại - ${mess}');
 															}
 														});
-												$this.parents('tr').fadeOut(
-														function() {
-															$this.remove(); //remove row when animation is finished
-														});
+												
 											} else {
 												alert('Xóa Thất Bại');
 											}
@@ -359,8 +357,11 @@
 												ch
 														.each(function() {
 															var $this = $(this);
+															
 															var idValue = this.parentNode.parentNode.parentNode
 																	.getElementsByTagName('td')[1].textContent;
+															var role = this.parentNode.parentNode.parentNode
+																	.getElementsByTagName('td')[2].textContent;
 															if ($this
 																	.is(':checked')) {
 																sel = true; //set to true if there is/are selected row

@@ -1,12 +1,9 @@
 package com.sonhtFX17102.controller.user;
 
-import java.util.Random;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
@@ -43,39 +40,31 @@ public class UserController extends BaseController {
 		String mail = request.getParameter("usermail").trim();
 		String name = request.getParameter("username");
 		String phone = request.getParameter("userphone");
-		String pass = generateRandomPassword(10);
+		String pass = generateRandomPassword(8); // sử dụng phương thức của BaseController tạo mk random 8 kí tự
 		System.out.println(pass);
 		String md5Pass = DigestUtils.md5Hex(pass).toUpperCase();
-		Account account = new Account(1, mail, name, phone, 0, md5Pass, "online");
+		Account account = new Account("USER", mail, name, phone, 0, md5Pass, "offline");
 		
 		System.out.println(account.toString());
 		account = accService.checkAccountByMailExist(mail);
 		
 		if (account == null) {
 			try {
-				accService.insertAccount(1, mail, name, phone, 0, md5Pass, "online");
+				accService.insertAccount("USER", mail, name, phone, 0, md5Pass, "offline");
 				sendEmail("sonhtfx17102@funix.edu.vn",mail, "Chúc mừng bạn đã đăng ký thành công!", "Mật khẩu của bạn là " + pass + "/nVui lòng không cung cấp mật khẩu cho bất kỳ ai.");
 				_mvShare.setViewName("redirect:login");
 			} catch (Exception e) {
 				e.printStackTrace();
-				_mvShare.addObject("mess", "Tài khoản đã tồn tại, vui lòng nhập lại!!!");
+				
 				_mvShare.setViewName("redirect:register");
 			}
 
 		} else {
+			_mvShare.addObject("mess", "Tài khoản đã tồn tại, vui lòng nhập lại!!!");
 			_mvShare.setViewName("redirect:register");
 		}
 		return _mvShare;
 	}
 	
-	public static String generateRandomPassword(int length) {
-	    String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+{}[];:<>,.?/";
-	    StringBuilder sb = new StringBuilder();
-	    Random random = new Random();
-	    for (int i = 0; i < length; i++) {
-	        int index = random.nextInt(chars.length());
-	        sb.append(chars.charAt(index));
-	    }
-	    return sb.toString();
-	}
+	
 }

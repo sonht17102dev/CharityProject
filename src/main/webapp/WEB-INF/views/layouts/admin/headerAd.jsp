@@ -31,7 +31,10 @@
 				<li class="light-blue"><a data-toggle="dropdown" href="#"
 					class="dropdown-toggle"> <img class="nav-user-photo"
 						src="<c:url value="/resources/admin/assets/avatars/user.jpg"/>" alt="Jason's Photo" /> <span
-						class="user-info"> <small>Welcome,</small> Jason
+						class="user-info">
+						<security:authorize access="hasRole('ADMIN')">
+						 <small>Welcome,</small> <security:authentication property="principal.username" />
+						 </security:authorize>
 					</span> <i class="ace-icon fa fa-caret-down"></i>
 				</a>
 
