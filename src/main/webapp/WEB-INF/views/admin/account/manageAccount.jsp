@@ -49,12 +49,15 @@
 												<button data-toggle="dropdown"
 													class="btn btn-success dropdown-toggle"
 													aria-expanded="true">
-													Thể Loại<span
+													Tìm kiếm theo role<span
 														class="ace-icon fa fa-caret-down icon-on-right"></span>
 												</button>
 												<ul class="dropdown-menu dropdown-warning">
-														<li><a href="search?type="></a></li>
+														<li><a href="search-account?role=ADMIN">Admin</a></li>
 														<li class="divider"></li>
+														<li><a href="search-account?role=USER">User</a></li>
+														<li class="divider"></li>
+														<li><a href="search-account?type=phone">Phone</a></li>
 												</ul>
 											</div>
 
@@ -62,7 +65,7 @@
 									</div>
 									<div class="col-xs-6">
 										<div class="nav-search " id="nav-search">
-											<form id="form-search" class="form-search" action="search"
+											<form id="form-search" class="form-search" action="${pageContext.request.contextPath}/admin/search-account"
 												method="post">
 												<span class="input-icon"> <input type="text"
 													placeholder="Search Từ khóa" class="nav-search-input"

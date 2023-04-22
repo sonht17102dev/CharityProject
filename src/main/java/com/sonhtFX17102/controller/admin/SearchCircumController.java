@@ -17,7 +17,7 @@ import com.sonhtFX17102.entities.Circum;
 import com.sonhtFX17102.service.CircumImpl;
 
 @Controller
-public class SearchController extends BaseController{
+public class SearchCircumController extends BaseController{
 	@Autowired
 	private CircumImpl circumService;
 	

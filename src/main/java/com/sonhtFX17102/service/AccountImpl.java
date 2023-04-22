@@ -60,9 +60,24 @@ public class AccountImpl implements IAccountService{
 		accountDAO.deleteAccountById(id);
 	}
 	@Override
-	public void updateStatus(String account_mail) {
+	public void updateStatusOffline(String account_mail) {
 		// TODO Auto-generated method stub
-		accountDAO.updateStatus(account_mail);
+		accountDAO.updateStatusOffline(account_mail);
+	}
+	@Override
+	public void updateStatusOnline(String account_mail) {
+		// TODO Auto-generated method stub
+		accountDAO.updateStatusOnline(account_mail);
+	}
+	@Override
+	public List<Account> getAccountsByRole(String role) {
+		// TODO Auto-generated method stub
+		return accountDAO.getAccountsByRole(role);
+	}
+	@Override
+	public List<Account> getAccountsByKey(String key) {
+		// TODO Auto-generated method stub
+		return accountDAO.getAccountsByKey(key);
 	}
 
 }
