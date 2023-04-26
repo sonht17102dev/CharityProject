@@ -23,4 +23,5 @@ public interface IAccountService {
 	public void updateStatusOnline(String account_mail);
 	public List<Account> getAccountsByRole(String role);
 	public List<Account> getAccountsByKey(String key);
+	public void updatePasswordByEmail(String pass, String email);
 }

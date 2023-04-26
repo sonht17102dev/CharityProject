@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xmlns="http://java.sun.com/xml/ns/javaee"
- xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
           http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
- id="WebApp_ID" version="3.0">
+	id="WebApp_ID" version="3.0">
 	<listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>
-
-
-    <!-- Loads Spring Security config file -->
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>        
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<!-- Loads Spring Security config file -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>        
             /WEB-INF/spring-security.xml,
             /WEB-INF/data-source-cfg.xml
         </param-value>
-    </context-param>
+	</context-param>
 	<servlet>
 		<servlet-name>charity-config</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -26,18 +24,18 @@
 		<servlet-name>charity-config</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
-	
-	 <!-- Spring Security Filter -->
-    <filter>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    </filter>
 
-    <filter-mapping>
-        <filter-name>springSecurityFilterChain</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+
+	<!-- Spring Security Filter -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	<filter>
 		<filter-name>sitemesh</filter-name>
 		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
@@ -52,9 +50,7 @@
 	</filter-mapping>
 	<filter>
 		<filter-name>encoding-filter</filter-name>
-		<filter-class>
-            org.springframework.web.filter.CharacterEncodingFilter
-        </filter-class>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
 		<init-param>
 			<param-name>encoding</param-name>
 			<param-value>UTF-8</param-value>
@@ -69,7 +65,7 @@
 		<filter-name>encoding-filter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
 
 	<jsp-config>
 		<jsp-property-group>
@@ -77,7 +73,10 @@
 			<page-encoding>UTF-8</page-encoding>
 		</jsp-property-group>
 	</jsp-config>
-	<session-config>  
-       <session-timeout>60</session-timeout>  
-  	</session-config>
+	
+	
+	
+	<session-config>
+		<session-timeout>1</session-timeout>
+	</session-config>
 </web-app>

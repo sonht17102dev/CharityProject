@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 @Configuration
 public class MailConfig {
@@ -27,6 +28,5 @@ public class MailConfig {
         props.put("mail.smtp.ssl.trust", "*");
         return mailSender;
     }
-
 
 }

@@ -30,7 +30,11 @@
 			authentication-success-handler-ref="authenticationSuccessHandler"
 			authentication-failure-url="/login?error=true"
 			username-parameter="username" password-parameter="password" />
-		<session-management invalid-session-url="/login?sessionTimeout"/>
+		<session-management invalid-session-url="/login?invalid-session=true" /> 
+		<!-- 
+		<session-management
+			session-authentication-strategy-ref="sessionTimeoutHandle" />
+			-->
 		<logout logout-url="/logout"
 			success-handler-ref="customLogoutSuccessHandler"
 			delete-cookies="JSESSIONID" invalidate-session="true" />
@@ -55,4 +59,8 @@
 		class="com.sonhtFX17102.security.AuthenticationSuccessHandlerImpl" />
 	<beans:bean id="customLogoutSuccessHandler"
 		class="com.sonhtFX17102.security.CustomLogoutSuccessHandlerImpl" />
+		<!--  
+	<beans:bean id="sessionTimeoutHandle"
+		class="com.sonhtFX17102.security.SessionTimeoutHandle" />
+		-->
 </beans:beans>

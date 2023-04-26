@@ -17,20 +17,9 @@ import com.sonhtFX17102.service.AccountImpl;
 
 @Controller
 public class UserController extends BaseController {
-	 @Autowired
-	    public JavaMailSender emailSender;
 	@Autowired
 	private AccountImpl accService;
 	
-	public void sendEmail(String from,String to, String subject, String content) {
-		SimpleMailMessage mailMessage = new SimpleMailMessage();
-		mailMessage.setFrom(from);
-		mailMessage.setTo(to);
-		mailMessage.setSubject(subject);
-		mailMessage.setText(content);
-		
-		this.emailSender.send(mailMessage);
-	}
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register() {
 		return "register/registerMain";
@@ -51,7 +40,8 @@ public class UserController extends BaseController {
 		if (account == null) {
 			try {
 				accService.insertAccount("USER", mail, name, phone, 0, md5Pass, "offline");
-				sendEmail("sonhtfx17102@funix.edu.vn",mail, "Chúc mừng bạn đã đăng ký thành công!", "Mật khẩu của bạn là " + pass + "/nVui lòng không cung cấp mật khẩu cho bất kỳ ai.");
+				sendEmail("sonhtfx17102@funix.edu.vn",mail, "Chúc mừng bạn đã đăng ký thành công!",
+						"Mật khẩu của bạn là " + pass + "/nVui lòng không cung cấp mật khẩu cho bất kỳ ai.");
 				_mvShare.setViewName("redirect:login");
 			} catch (Exception e) {
 				e.printStackTrace();

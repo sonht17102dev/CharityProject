@@ -37,12 +37,12 @@
 							<a href="index.html"> <img
 								src="<c:url value="/resources/img/momo_logo.webp"/>" alt="">
 							</a>
-						</div>
+						<security:authorize access="isAuthenticated()">	
 						<security:authorize access="hasRole('USER')">
-						<div>
 							<span>Xin chào <security:authentication property="principal.username" /></span>
-						</div>
 						</security:authorize>
+						</security:authorize>
+						</div>
 					</div>
 					<div class="col-xl-9 col-lg-9">
 						<div class="main-menu">
@@ -67,39 +67,41 @@
 									<li><a href="">Đăng nhập<i class="ti-angle-down"></i></a>
 
 										<ul class="submenu">
-											<li>
-											<form:form
-												action="${pageContext.request.contextPath}/login"
-												method="GET">
-												<input type="submit" value="Đăng nhập" />
-
-											</form:form>
-											</li>
-											<li>
-											<form:form
-												action="${pageContext.request.contextPath}/register"
-												method="GET">
-												<input type="submit" value="Đăng ký" />
-											</form:form>
-											</li>
-											<li><form:form
-														action="${pageContext.request.contextPath}/logout"
-														method="POST">
-														<input type="submit" value="Đăng xuất" />
-
+											<security:authorize access="!isAuthenticated()">
+												<li>
+												<form:form
+													action="${pageContext.request.contextPath}/login"
+													method="GET">
+													<input type="submit" value="Đăng nhập" />
+	
 												</form:form>
-											</li>
-											<li>
-												<security:authorize access="hasRole('ADMIN')">
-
-													<!-- Add a link to point to /systems ... this is for the admins -->
-
+												</li>
+											</security:authorize>
+												<li>
+												<form:form
+													action="${pageContext.request.contextPath}/register"
+													method="GET">
+													<input type="submit" value="Đăng ký" />
+												</form:form>
+												</li>
+											<security:authorize access="isAuthenticated()">
+												<li><form:form
+															action="${pageContext.request.contextPath}/logout"
+															method="POST">
+															<input type="submit" value="Đăng xuất" />
+	
+													</form:form>
+												</li>
+											</security:authorize>
+											<security:authorize access="hasRole('ADMIN')">
+												<li>
+														<!-- Add a link to point to /systems ... this is for the admins -->
 													<p>
 														<a href="${pageContext.request.contextPath}/admin/">Về
-															trang ADMIN</a>
+																trang ADMIN</a>
 													</p>
-
-												</security:authorize></li>
+												</li>
+											</security:authorize>
 
 										</ul>
 									</li>

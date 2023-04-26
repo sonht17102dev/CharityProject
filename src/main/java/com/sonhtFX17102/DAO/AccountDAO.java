@@ -2,9 +2,11 @@ package com.sonhtFX17102.DAO;
 
 import java.util.List;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sonhtFX17102.controller.BaseController;
 import com.sonhtFX17102.entities.Account;
 import com.sonhtFX17102.entities.MapperAccount;
 
@@ -140,16 +142,17 @@ public class AccountDAO extends BaseDao {
 	}
 	
 	public List<Account> getAccountsByKey(String key) {
-		String sql = "select * from account "
-				+ "where account_mail like N'%"+ key +"%'";
+		String sql = "select * from account\r\n"
+				+ "where account_mail like N'%"+ key +"%' OR account_phone like '%"+ key +"%'";
 		List<Account> list = _jdbcTemplate.query(sql, new MapperAccount());
 		return list;
 	}
 	
-//	public List<Account> getAccountsByPhone(String phone) {
-//		String sql = "select * from account "
-//				+ "where account_phone = '%"+ phone +"'";
-//		List<Account> list = _jdbcTemplate.query(sql, new MapperAccount());
-//		return list;
-//	}
+	public void updatePasswordByEmail(String pass, String email) {
+		String sql = "Update account "
+				+ "set account_password = N'" + pass + "' "
+				+ "where account_mail = N'" + email + "' "
+				+ ";";
+		_jdbcTemplate.update(sql);
+	}
 }

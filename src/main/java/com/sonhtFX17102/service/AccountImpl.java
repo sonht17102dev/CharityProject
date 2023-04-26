@@ -79,5 +79,10 @@ public class AccountImpl implements IAccountService{
 		// TODO Auto-generated method stub
 		return accountDAO.getAccountsByKey(key);
 	}
+	@Override
+	public void updatePasswordByEmail(String pass, String email) {
+		// TODO Auto-generated method stub
+		accountDAO.updatePasswordByEmail(pass, email);
+	}
 
 }
