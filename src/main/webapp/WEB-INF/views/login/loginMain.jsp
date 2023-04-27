@@ -22,7 +22,9 @@
 	<c:if test='${resetMessage == "Mật khẩu của bạn đã được reset - Truy cập email để kiểm tra"}'>
 
 		<div class="alert alert-success col-xs-offset-1 col-xs-10">
-			Mật khẩu của bạn đã được reset - Truy cập email để kiểm tra. <br>
+			Mật khẩu của bạn đã được reset - Truy cập email để kiểm tra. 
+			<br>
+			Sau đó về Thông tin tài khoản để thay đổi mật khẩu.
 		</div>
 
 	</c:if>

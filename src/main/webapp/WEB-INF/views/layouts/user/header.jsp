@@ -64,6 +64,9 @@
 										</ul></li>
 									<li><a href="doi-tac">Đối tác</a></li>
 									<li><a href="tin-tuc">Tin tức cộng đồng</a></li>
+									<security:authorize access="isAuthenticated()">
+										<li><a href="tai-khoan">Thông Tin Tài khoản</a></li>
+									</security:authorize>
 									<li><a href="">Đăng nhập<i class="ti-angle-down"></i></a>
 
 										<ul class="submenu">

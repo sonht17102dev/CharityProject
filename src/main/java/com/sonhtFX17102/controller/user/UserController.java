@@ -56,5 +56,24 @@ public class UserController extends BaseController {
 		return _mvShare;
 	}
 	
-	
+	@RequestMapping(value = "/tai-khoan", method = RequestMethod.GET)
+	public String profile(HttpServletRequest request) {
+		
+		return "user/manageUser/profile";
+	}
+	@RequestMapping(value = "/thanh-toan", method = RequestMethod.GET)
+	public String billing(HttpServletRequest request) {
+		
+		return "user/manageUser/billing";
+	}
+	@RequestMapping(value = "/bao-mat", method = RequestMethod.GET)
+	public String security(HttpServletRequest request) {
+		
+		return "user/manageUser/security";
+	}
+	@RequestMapping(value = "/thong-bao", method = RequestMethod.GET)
+	public String account(HttpServletRequest request) {
+		
+		return "user/manageUser/notifications";
+	}
 }

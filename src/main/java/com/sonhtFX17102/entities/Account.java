@@ -9,6 +9,7 @@ public class Account {
 	private long total_donated;
 	private String account_password;
 	private String account_status;
+	private String account_image;
 	
 	public Account() {
 		super();
