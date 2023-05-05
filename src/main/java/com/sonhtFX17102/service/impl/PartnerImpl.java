@@ -1,4 +1,4 @@
-package com.sonhtFX17102.service;
+package com.sonhtFX17102.service.impl;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import com.sonhtFX17102.DAO.PartnerDAO;
 import com.sonhtFX17102.DTO.PartnerDTO;
 import com.sonhtFX17102.entities.Circum;
 import com.sonhtFX17102.entities.Partner;
+import com.sonhtFX17102.service.IPartnerService;
 
 @Service
 public class PartnerImpl implements IPartnerService {

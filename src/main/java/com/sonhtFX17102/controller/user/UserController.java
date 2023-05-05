@@ -7,73 +7,78 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sonhtFX17102.DTO.AccountDetailsDTO;
 import com.sonhtFX17102.controller.BaseController;
 import com.sonhtFX17102.entities.Account;
-import com.sonhtFX17102.service.AccountImpl;
+import com.sonhtFX17102.service.impl.AccountImpl;
 
 @Controller
 public class UserController extends BaseController {
 	@Autowired
 	private AccountImpl accService;
 	
-	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String register() {
-		return "register/registerMain";
-	}
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ModelAndView doRegister(HttpServletRequest request) {
-		String mail = request.getParameter("usermail").trim();
-		String name = request.getParameter("username");
-		String phone = request.getParameter("userphone");
-		String pass = generateRandomPassword(8); // sử dụng phương thức của BaseController tạo mk random 8 kí tự
-		System.out.println(pass);
-		String md5Pass = DigestUtils.md5Hex(pass).toUpperCase();
-		Account account = new Account("USER", mail, name, phone, 0, md5Pass, "offline");
-		
-		System.out.println(account.toString());
-		account = accService.checkAccountByMailExist(mail);
-		
-		if (account == null) {
-			try {
-				accService.insertAccount("USER", mail, name, phone, 0, md5Pass, "offline");
-				sendEmail("sonhtfx17102@funix.edu.vn",mail, "Chúc mừng bạn đã đăng ký thành công!",
-						"Mật khẩu của bạn là " + pass + "/nVui lòng không cung cấp mật khẩu cho bất kỳ ai.");
-				_mvShare.setViewName("redirect:login");
-			} catch (Exception e) {
-				e.printStackTrace();
-				
-				_mvShare.setViewName("redirect:register");
-			}
-
-		} else {
-			_mvShare.addObject("mess", "Tài khoản đã tồn tại, vui lòng nhập lại!!!");
-			_mvShare.setViewName("redirect:register");
-		}
+//	@RequestMapping(value = "/tai-khoan/cap-nhat", method = RequestMethod.GET)
+//	public ModelAndView profile(@RequestParam("usermail") String mail) {
+//		Account account = accService.checkAccountByMailExist(mail);
+//		AccountDetailsDTO accountDetailsDTO = accService.getAccountDetails(account.getAccount_id());
+//		_mvShare.addObject("user", account);
+//		_mvShare.addObject("userDetails", accountDetailsDTO);
+//		_mvShare.setViewName("user/manageUser/profile");
+//		return _mvShare;
+//	}
+	@RequestMapping(value = "/tai-khoan/cap-nhat", method = RequestMethod.GET)
+	public ModelAndView profile() {
+		_mvShare.setViewName("user/manageUser/profile");
 		return _mvShare;
 	}
-	
-	@RequestMapping(value = "/tai-khoan", method = RequestMethod.GET)
-	public String profile(HttpServletRequest request) {
-		
-		return "user/manageUser/profile";
-	}
-	@RequestMapping(value = "/thanh-toan", method = RequestMethod.GET)
+//	@RequestMapping(value = "/tai-khoan/cap-nhat", method = RequestMethod.POST)
+//	public ModelAndView updateProfile(HttpServletRequest request) {
+//		String username = request.getParameter("username");
+//		String firstName = request.getParameter("firstName");
+//		String lastName = request.getParameter("lastName");
+//		String orgName = request.getParameter("orgName");
+//		String address = request.getParameter("address");
+//		String phone = request.getParameter("phone");
+//		String birthday = request.getParameter("birthday");
+//		String idS = request.getParameter("id");
+//		int id = Integer.parseInt(idS);
+//		accService.updateAccountDetailsByUser(id, firstName, lastName, address,
+//					birthday, orgName, username, phone);
+//		_mvShare.addObject("messageUser", "Thay đổi thành công !!!");
+//		_mvShare.setViewName("user/manageUser/profile");
+//		return _mvShare;
+//	}
+	@RequestMapping(value = "/tai-khoan/thanh-toan", method = RequestMethod.GET)
 	public String billing(HttpServletRequest request) {
 		
 		return "user/manageUser/billing";
 	}
-	@RequestMapping(value = "/bao-mat", method = RequestMethod.GET)
-	public String security(HttpServletRequest request) {
-		
-		return "user/manageUser/security";
+	@RequestMapping(value = "/tai-khoan/bao-mat", method = RequestMethod.GET)
+	public ModelAndView security(HttpServletRequest request) {
+		_mvShare.addObject("messagePass", "");
+		_mvShare.setViewName("user/manageUser/security");
+		return _mvShare;
 	}
-	@RequestMapping(value = "/thong-bao", method = RequestMethod.GET)
-	public String account(HttpServletRequest request) {
-		
-		return "user/manageUser/notifications";
+	@RequestMapping(value = "/tai-khoan/bao-mat", method = RequestMethod.POST)
+	public ModelAndView securityChange(HttpServletRequest request) {
+		String mail = request.getParameter("account_mail");
+		String curPass = request.getParameter("currentPassword");
+		String newPass = request.getParameter("newPassword");
+		String md5Pass = DigestUtils.md5Hex(curPass);
+		String md5NewPass = DigestUtils.md5Hex(newPass);
+		Account acc = accService.checkAccountByMailExist(mail);
+		if(acc.getAccount_password().equals(md5Pass)) {
+			accService.updatePasswordByEmail(md5NewPass, mail);
+			_mvShare.addObject("messagePass", "Mật khẩu đã được thay đổi thành công - Vui lòng đăng nhập lại hoặc tiếp tục !");
+		}
+		_mvShare.setViewName("user/manageUser/security");
+		return _mvShare;
 	}
 }

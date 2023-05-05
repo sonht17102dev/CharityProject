@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.sonhtFX17102.DTO.MapperPartnerDTO;
 import com.sonhtFX17102.DTO.PartnerDTO;
-import com.sonhtFX17102.entities.MapperPartner;
 import com.sonhtFX17102.entities.Partner;
+import com.sonhtFX17102.mapper.MapperPartner;
+import com.sonhtFX17102.mapper.MapperPartnerDTO;
 
 @Repository
 public class PartnerDAO extends BaseDao{

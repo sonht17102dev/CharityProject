@@ -19,13 +19,17 @@
 		<div class="page-content">
 			<div class="row">
 				<div class="col-xs-12">
-					<h1 class='${message != null ? " " : "hidden"}' style="color:red;">${message}</h1>
-					<form id="formSubmit" action="${pageContext.request.contextPath}/admin/cap-nhat-tai-khoan" method="post">
+					<form id="formSubmit" action="${pageContext.request.contextPath}/admin/cap-nhat-tai-khoan" method="POST">
+					<%--
+					
+					<form id="formSubmit">
+					 --%>
 						<div class="form-group">
 							<label class="col-sm-3 control-label no-padding-right">Chức danh</label>
 							<div class="col-sm-9">
 							<c:set var = "role" value = "${accountByID.account_role}"/>
-								<select class="form-control" id="account_role" name="account_role">
+								<select id="mySelect" class="form-control" id="account_role" 
+									name="account_role" onchange="myFunction()">
 									<c:choose>
 							         <c:when test = "${role == 'ADMIN'}">
 							           <option value="ADMIN">ADMIN</option>
@@ -53,7 +57,7 @@
 							<label class="col-sm-3 control-label no-padding-right">Địa chỉ Mail</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="account_mail"
-									name="account_mail" value="${accountByID.account_mail}" />
+									name="account_mail" value="${accountByID.account_mail}" readonly />
 							</div>
 						</div>
 						<br /> <br />
@@ -77,35 +81,7 @@
 							<label class="col-sm-3 control-label no-padding-right">Mật khẩu</label>
 							<div class="col-sm-9">
 								<input type="password" class="form-control" id="account_password"
-									name="account_password" value="${accountByID.account_password}" />
-							</div>
-						</div>
-						<br /> <br />
-						<div class="form-group">
-							<label class="col-sm-3 control-label no-padding-right">Trạng thái</label>
-							<div class="col-sm-9">
-							<c:set var = "status" value = "${accountByID.account_status}"/>
-								<select class="form-control" id="account_status" name="account_status">
-									<c:choose>
-							         <c:when test = "${status == 'online'}">
-							           <option value="online">Online</option>
-							           <option value="Chọn trạng thái">Chọn trạng thái</option>
-							            <option value="offline">Offline</option>
-							         </c:when>
-							         
-							         <c:when test = "${status == 'offline'}">
-							            <option value="offline">Offline</option>
-							            <option value="Chọn trạng thái">Chọn trạng thái</option>
-							            <option value="online">Online</option>
-							         </c:when>
-							         
-							         <c:otherwise>
-							            <option value="Chọn trạng thái">Chọn trạng thái</option>
-							            <option value="online">Online</option>
-							            <option value="offline">Offline</option>
-							         </c:otherwise>
-							      </c:choose>
-								</select>
+									name="account_password" value="${accountByID.account_password}" readonly />
 							</div>
 						</div>
 						<br /> <br />
@@ -133,10 +109,22 @@
 </div>
 <script>
 
+const selectElement = document.querySelector("#mySelect"); // Lấy đối tượng thẻ <select> bằng ID
+const selectedOptionValue = selectElement.options[0].value; // Lấy giá trị của tùy chọn được chọn
+function myFunction() {
+	console.log(selectElement.value);
+	if(selectElement.value === 'USER') {
+		alert('Admin không được phép cập nhật thành USER !')
+		selectElement.value = 'Chọn chức danh';
+	}
+}
 $(document).ready(function () {	
 	$('input.cancle').on("click", function(event) {
 		location.assign("/CharityApp/admin/quan-ly-tai-khoan");
 	});
+	
+	
+	
 	$("#btnReset").click(function() {
 		 $("#account_role").val("Chọn chức danh");
 		 $("#account_mail").val("");
@@ -145,6 +133,7 @@ $(document).ready(function () {
 		 $("#account_password").val("");
 		 $("#account_status").val("Chọn trạng thái");
 	});
+	
 	$("#formSubmit").validate({
         onfocusout: false,
         onkeyup: false,
@@ -174,7 +163,7 @@ $(document).ready(function () {
           },
           messages: {
         	"account_role": {
-        		required: "Hãy chọn chức danh
+        		required: "Hãy chọn chức danh"
         	},
             "account_mail": {
               required: "Hãy nhập tài khoản mail",
@@ -197,7 +186,30 @@ $(document).ready(function () {
                 required: "Hãy chọn trạng thái"
             }
           }
-        });
+       });
+	/*
+	$("#btnSubmit").on("click",function(event) {
+		$.ajax({
+			url : "/CharityApp/admin/cap-nhat-tai-khoan",
+			type : 'post',
+			data : {
+				account_id : $("#account_id").val(),
+				account_role : $("#account_role").val(),
+				account_mail : $("#account_mail").val(),
+				account_name : $("#account_name").val(),
+				account_phone : $("#account_phone").val()
+			},
+			success : function(response) {
+				alert('Cập nhật thành công !!!');
+				location.assign("/CharityApp/admin/quan-ly-tai-khoan");
+			},
+			error : function() {
+				alert('Cập nhật thất bại !!!');
+				location.assign("/CharityApp/admin/cap-nhat-tai-khoan?id="+$("#account_id").val());
+			}
+		});
+	});	
+	*/
 });
 
 </script>

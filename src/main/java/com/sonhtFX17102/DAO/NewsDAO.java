@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.sonhtFX17102.entities.MapperNews;
 import com.sonhtFX17102.entities.News;
+import com.sonhtFX17102.mapper.MapperNews;
 
 @Repository
 public class NewsDAO extends BaseDao {

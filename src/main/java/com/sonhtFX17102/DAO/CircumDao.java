@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.sonhtFX17102.DTO.CircumDTO;
-import com.sonhtFX17102.DTO.MapperCircumDTO;
 import com.sonhtFX17102.entities.Circum;
-import com.sonhtFX17102.entities.MapperCircum;
+import com.sonhtFX17102.mapper.MapperCircum;
+import com.sonhtFX17102.mapper.MapperCircumDTO;
 
 @Repository
 public class CircumDao extends BaseDao {

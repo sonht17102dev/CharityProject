@@ -1,9 +1,11 @@
-package com.sonhtFX17102.DTO;
+package com.sonhtFX17102.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
+
+import com.sonhtFX17102.DTO.CircumDTO;
 
 public class MapperCircumDTO implements RowMapper<CircumDTO>{
 

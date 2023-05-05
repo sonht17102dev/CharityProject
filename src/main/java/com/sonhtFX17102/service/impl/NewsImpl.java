@@ -1,4 +1,4 @@
-package com.sonhtFX17102.service;
+package com.sonhtFX17102.service.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.sonhtFX17102.DAO.NewsDAO;
 import com.sonhtFX17102.entities.News;
+import com.sonhtFX17102.service.INewsService;
 
 @Service
 public class NewsImpl implements INewsService{

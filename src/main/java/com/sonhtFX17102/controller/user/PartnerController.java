@@ -15,8 +15,8 @@ import com.sonhtFX17102.DTO.PartnerDTO;
 import com.sonhtFX17102.controller.BaseController;
 import com.sonhtFX17102.entities.Circum;
 import com.sonhtFX17102.entities.Partner;
-import com.sonhtFX17102.service.CircumImpl;
-import com.sonhtFX17102.service.PartnerImpl;
+import com.sonhtFX17102.service.impl.CircumImpl;
+import com.sonhtFX17102.service.impl.PartnerImpl;
 
 @Controller
 public class PartnerController extends BaseController{

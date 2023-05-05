@@ -1,9 +1,11 @@
-package com.sonhtFX17102.entities;
+package com.sonhtFX17102.mapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
+
+import com.sonhtFX17102.entities.News;
 
 public class MapperNews implements RowMapper<News> {
 

@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sonhtFX17102.controller.BaseController;
 import com.sonhtFX17102.entities.Account;
-import com.sonhtFX17102.service.AccountImpl;
+import com.sonhtFX17102.service.impl.AccountImpl;
 
 @Controller
 @RequestMapping(value = "admin")

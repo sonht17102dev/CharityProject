@@ -10,7 +10,8 @@
 					<div class="col-xl-6 col-md-12 col-lg-8">
 						<div class="short_contact_list">
 							<ul>
-								<li><a href="#"> <i class="fa fa-phone"></i> 078.766.8828
+								<li><a href="#"> <i class="fa fa-phone"></i>
+										078.766.8828
 								</a></li>
 								<li><a href="#"> <i class="fa fa-envelope"></i>sonfx17102@funix.edu.vn
 								</a></li>
@@ -37,20 +38,21 @@
 							<a href="index.html"> <img
 								src="<c:url value="/resources/img/momo_logo.webp"/>" alt="">
 							</a>
-						<security:authorize access="isAuthenticated()">	
-						<security:authorize access="hasRole('USER')">
-							<span>Xin chào <security:authentication property="principal.username" /></span>
-						</security:authorize>
-						</security:authorize>
+							<security:authorize access="isAuthenticated()">
+								<security:authorize access="hasRole('USER')">
+									<span>Xin chào <security:authentication
+											property="principal.username" /></span>
+								</security:authorize>
+							</security:authorize>
 						</div>
 					</div>
 					<div class="col-xl-9 col-lg-9">
 						<div class="main-menu">
 							<nav>
 								<ul id="navigation">
-									<li><a href="trang-chu">Trang chủ</a></li>
-									<li><a href="ve-chung-toi">Về chúng tôi</a></li>
-									<li><a href="nhung-hoan-canh">Hoàn cảnh quyên góp <i
+									<li><a href="${pageContext.request.contextPath}/trang-chu">Trang chủ</a></li>
+									<li><a href="${pageContext.request.contextPath}/ve-chung-toi">Về chúng tôi</a></li>
+									<li><a href="${pageContext.request.contextPath}/nhung-hoan-canh">Hoàn cảnh quyên góp <i
 											class="ti-angle-down"></i></a>
 										<ul class="submenu">
 											<li><a href="#">Vì Trẻ Em</a></li>
@@ -62,52 +64,53 @@
 											<li><a href="#">Cứu Trợ Động Vật</a></li>
 											<li><a href="#">Bảo Vệ Môi Trường</a></li>
 										</ul></li>
-									<li><a href="doi-tac">Đối tác</a></li>
-									<li><a href="tin-tuc">Tin tức cộng đồng</a></li>
+									<li><a href="${pageContext.request.contextPath}/doi-tac">Đối tác</a></li>
+									<li><a href="${pageContext.request.contextPath}/tin-tuc">Tin tức cộng đồng</a></li>
 									<security:authorize access="isAuthenticated()">
-										<li><a href="tai-khoan">Thông Tin Tài khoản</a></li>
+										<%-- 
+										<li><a
+											href="${pageContext.request.contextPath}/tai-khoan/cap-nhat?usermail=<security:authentication property="principal.username" />">
+												Thông Tin Tài khoản</a></li>
+										--%>
+										<li><a
+											href="${pageContext.request.contextPath}/tai-khoan/bao-mat">
+												Thông Tin Tài khoản</a></li>
 									</security:authorize>
 									<li><a href="">Đăng nhập<i class="ti-angle-down"></i></a>
 
 										<ul class="submenu">
 											<security:authorize access="!isAuthenticated()">
-												<li>
-												<form:form
-													action="${pageContext.request.contextPath}/login"
-													method="GET">
-													<input type="submit" value="Đăng nhập" />
-	
-												</form:form>
-												</li>
+												<li><form:form
+														action="${pageContext.request.contextPath}/login"
+														method="GET">
+														<input type="submit" value="Đăng nhập" />
+
+													</form:form></li>
 											</security:authorize>
-												<li>
-												<form:form
+											<li><form:form
 													action="${pageContext.request.contextPath}/register"
 													method="GET">
 													<input type="submit" value="Đăng ký" />
-												</form:form>
-												</li>
+												</form:form></li>
 											<security:authorize access="isAuthenticated()">
 												<li><form:form
-															action="${pageContext.request.contextPath}/logout"
-															method="POST">
-															<input type="submit" value="Đăng xuất" />
-	
-													</form:form>
-												</li>
+														action="${pageContext.request.contextPath}/logout"
+														method="POST">
+														<input type="submit" value="Đăng xuất" />
+
+													</form:form></li>
 											</security:authorize>
 											<security:authorize access="hasRole('ADMIN')">
 												<li>
-														<!-- Add a link to point to /systems ... this is for the admins -->
+													<!-- Add a link to point to /systems ... this is for the admins -->
 													<p>
 														<a href="${pageContext.request.contextPath}/admin/">Về
-																trang ADMIN</a>
+															trang ADMIN</a>
 													</p>
 												</li>
 											</security:authorize>
 
-										</ul>
-									</li>
+										</ul></li>
 								</ul>
 							</nav>
 						</div>

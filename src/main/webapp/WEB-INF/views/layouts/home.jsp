@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/user/css/slicknav.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/user/css/style.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/user/css/responsive.css"/>">
+    <link rel="stylesheet" href="<c:url value="/resources/user/css/account-css.css"/>">
     
     <!-- jquery pagination plugin -->
     <!-- 

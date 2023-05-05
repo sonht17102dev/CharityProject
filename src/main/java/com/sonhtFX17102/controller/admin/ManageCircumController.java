@@ -23,7 +23,7 @@ import com.sonhtFX17102.DTO.Category;
 import com.sonhtFX17102.DTO.CircumDTO;
 import com.sonhtFX17102.controller.BaseController;
 import com.sonhtFX17102.entities.Circum;
-import com.sonhtFX17102.service.CircumImpl;
+import com.sonhtFX17102.service.impl.CircumImpl;
 
 @Controller
 @RequestMapping(value = "admin")

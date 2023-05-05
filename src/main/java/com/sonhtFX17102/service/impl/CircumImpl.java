@@ -1,4 +1,4 @@
-package com.sonhtFX17102.service;
+package com.sonhtFX17102.service.impl;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.sonhtFX17102.DAO.CircumDao;
 import com.sonhtFX17102.DTO.CircumDTO;
 import com.sonhtFX17102.entities.Circum;
+import com.sonhtFX17102.service.ICircumService;
 
 @Service
 public class CircumImpl implements ICircumService {

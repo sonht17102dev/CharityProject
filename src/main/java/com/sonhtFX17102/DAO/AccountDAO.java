@@ -6,9 +6,11 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sonhtFX17102.DTO.AccountDetailsDTO;
 import com.sonhtFX17102.controller.BaseController;
 import com.sonhtFX17102.entities.Account;
-import com.sonhtFX17102.entities.MapperAccount;
+import com.sonhtFX17102.mapper.MapperAccount;
+import com.sonhtFX17102.mapper.MapperAccountDetailsDTO;
 
 @Repository
 public class AccountDAO extends BaseDao {
@@ -16,7 +18,7 @@ public class AccountDAO extends BaseDao {
 	 * method getCountAllAccount trả về tổng số items của bảng account
 	 */
 	public int getCountAllAccount() {
-		String sql = "select * from account";
+		String sql = "select * from account where enabled=1;";
 		List<Account> list = _jdbcTemplate.query(sql, new MapperAccount());
 		return list.size();
 	}
@@ -27,7 +29,9 @@ public class AccountDAO extends BaseDao {
 	 */
 	public List<Account> getPagingPage(int index) {
 		index = (index - 1) * 5;
-		String sql = "select * from account where enabled=1" + "order by account_id\r\n" + "OFFSET " + index
+		String sql = "select * from account "
+				+ " where enabled=1" 
+				+ " order by account_id\r\n" + "OFFSET " + index
 				+ " ROWS FETCH NEXT 5 ROWS ONLY";
 
 		List<Account> list = _jdbcTemplate.query(sql, new MapperAccount());
@@ -48,15 +52,14 @@ public class AccountDAO extends BaseDao {
 	 * method insertAccount thêm mới items vào database
 	 */
 	public void insertAccount(String account_role, String account_mail, String account_name, String account_phone,
-			long total_donated, String account_password, String account_status) {
-		String sql = "INSERT INTO Account([account_role],[account_mail],[account_name],[account_phone],[total_donated],[account_password],[account_status]) "
+		 String account_password, String account_status) {
+		String sql = "INSERT INTO Account([account_role],[account_mail],[account_name],[account_phone],[account_password],[account_status]) "
 				+ "VALUES ('" + account_role + "',"
 				+ " N'"+ account_mail +"',"
 				+ " N'"+ account_name +"',"
 				+ " '"+ account_phone +"',"
-				+ " 0,"
 				+ "'"+account_password +"',"
-				+ "'"+account_status +"',"
+				+ "'"+account_status +"' "
 				+ ");";
 		_jdbcTemplate.update(sql);
 	}
@@ -71,17 +74,14 @@ public class AccountDAO extends BaseDao {
 	/*
 	 * method updateAccount cập nhật dữ liệu trong database dựa trên id 
 	 */
-	public void updateAccount(int account_id, String account_role, String account_mail, String account_name, String account_phone,
-			long total_donated, String account_password, String account_status) {
+	public void updateAccount(int account_id, String account_role, String account_mail,
+			String account_name, String account_phone) {
 		String sql = "UPDATE ACCOUNT\r\n"
 				+ "SET\r\n"
 				+ "account_role = '" + account_role+"',\r\n"
 				+ "account_mail = N'"+ account_mail + "',\r\n"
 				+ "account_name = N'"+ account_name +"',\r\n"
-				+ "account_phone = N'"+ account_phone +"',\r\n"
-				+ "total_donated = "+ total_donated + ", \r\n"
-				+ "account_password = N'"+ account_password +"', \r\n"
-				+ "account_status = '" + account_status+"'\r\n"
+				+ "account_phone = N'"+ account_phone +"' "
 				+ "WHERE\r\n"
 				+ "account_id = "+ account_id +";";
 		_jdbcTemplate.update(sql);
@@ -136,14 +136,14 @@ public class AccountDAO extends BaseDao {
 	}
 	public List<Account> getAccountsByRole(String role) {
 		// TODO Auto-generated method stub
-		String sql = "select * from account where account_role = '"+ role +"';" ;
+		String sql = "select * from account where account_role = '"+ role +"' and enabled=1;" ;
 		List<Account> list = _jdbcTemplate.query(sql, new MapperAccount());
 		return list;
 	}
 	
 	public List<Account> getAccountsByKey(String key) {
 		String sql = "select * from account\r\n"
-				+ "where account_mail like N'%"+ key +"%' OR account_phone like '%"+ key +"%'";
+				+ "where account_mail like N'%"+ key +"%' OR account_phone like '%"+ key +"%' and enabled=1;";
 		List<Account> list = _jdbcTemplate.query(sql, new MapperAccount());
 		return list;
 	}
@@ -155,4 +155,34 @@ public class AccountDAO extends BaseDao {
 				+ ";";
 		_jdbcTemplate.update(sql);
 	}
+	
+	public void updateAccountDetailsByUser(
+			int account_id, String account_firstName, String account_lastName,
+			String account_address, String account_birthday, String account_organization,
+			String account_name, String account_phone) {
+//		int id = getAccountByID(account_id)
+		String sql = "Update account "
+				+ "Set "
+				+ "account_name = N'" + account_name + "', "
+				+ "account_phone = '" + account_phone + "' "
+				+ "where account_id = "+ account_id +"; ";
+		
+		String sqlAddAccountDetail = "Update ACCOUNTDETAILS "
+				+ "set account_firstName = N'"+ account_firstName + "', "
+				+ "account_lastName = N'"+ account_lastName + "', "
+				+ "account_address = N'"+ account_address + "', "
+				+ "account_birthday = N'"+ account_birthday + "', "
+				+ "account_organization = N'"+ account_organization + "' "
+				+ "where account_id = " + account_id + "; ";
+		_jdbcTemplate.update(sql);		
+		_jdbcTemplate.update(sqlAddAccountDetail);		
+		
+	}
+	
+	public AccountDetailsDTO getAccountDetails(int id) {
+		String sql = "select * from accountdetails where account_id = " + id + ";";
+		List<AccountDetailsDTO> list = _jdbcTemplate.query(sql, new MapperAccountDetailsDTO());
+		return list.get(0);
+	}
+	
 }

@@ -1,16 +1,12 @@
 package com.sonhtFX17102.controller.admin;
 
-import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,9 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sonhtFX17102.controller.BaseController;
 import com.sonhtFX17102.entities.Account;
-import com.sonhtFX17102.entities.Circum;
-import com.sonhtFX17102.service.AccountImpl;
-import com.sonhtFX17102.service.CircumImpl;
+import com.sonhtFX17102.service.impl.AccountImpl;
 
 @Controller
 @RequestMapping(value = "admin")
@@ -47,50 +41,37 @@ public class ManageAccountController extends BaseController{
 		String roleS = request.getParameter("role");
 		String idS = request.getParameter("id");
 		int id;
-		if(action != null && roleS != null && action.equals("deleteAccount") && !roleS.equals("ADMIN")) {
-			id = Integer.parseInt(idS);
-			accService.deleteAccountById(id);
-		}
-		else if(action != null && roleS != null && action.equals("deleteAccount") && roleS.equals("ADMIN")) {
-			_mvShareAdmin.addObject("mess", "Không thể xóa admin!!!");
-			_mvShareAdmin.setViewName("redirect:/quan-ly-tai-khoan");
+		if(action != null && roleS != null && idS != null && action.equals("deleteAccount")) {
+			if(!roleS.equals("ADMIN")) {
+				id = Integer.parseInt(idS);
+				accService.deleteAccountById(id);
+			}
 		}
 		List<Account> listBanned = accService.getAccountEnabled(0);
 		_mvShareAdmin.addObject("listBanned", listBanned);
 		_mvShareAdmin.addObject("listTop5Account", accService.getPagingPage(index));
 		_mvShareAdmin.addObject("endPage", endPage);
 		_mvShareAdmin.addObject("tag", index);
+		_mvShareAdmin.addObject("mess", "");
 		return _mvShareAdmin;
 	}
 	@RequestMapping(value= "cap-nhat-tai-khoan", method = RequestMethod.GET)
-	public ModelAndView editAccount(@RequestParam("id") int id) {
+	public ModelAndView editAccount(@RequestParam(value="id", required = false) int id) {
 		Account acc = accService.getAccountByID(id);
 		_mvShareAdmin.addObject("accountByID", acc);
 		_mvShareAdmin.setViewName("admin/account/editAccount");
 		return _mvShareAdmin;
 	}
 	@RequestMapping(value= "cap-nhat-tai-khoan", method = RequestMethod.POST)
-	public String doEditAccount(HttpServletRequest request) {
-		String roleS = request.getParameter("account_role");
+	public ModelAndView doEditAccount(HttpServletRequest request) {
+		String idS = request.getParameter("account_id");
 		String mail = request.getParameter("account_mail").trim();
 		String name = request.getParameter("account_name");
 		String phone = request.getParameter("account_phone");
-		String pass = request.getParameter("account_password");
-		String md5Pass = DigestUtils.md5Hex(pass).toUpperCase();
-		String status = request.getParameter("account_status");
-		
-		Account account = new Account(roleS, mail, name, phone, 0, md5Pass, status);
-		System.out.println(account.toString());
-		account = accService.checkAccountByMailExist(mail);
-		try {
-			accService.updateAccount(account.getAccount_id(),roleS, mail, name, phone, 0, md5Pass, status);
-			System.out.println(status);
-			return "redirect:quan-ly-tai-khoan";
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("message", "Cập nhật thất bại - Mail đã tồn tại vui lòng thử lại !!!");
-		}
-		return "redirect:cap-nhat-tai-khoan";
+		int id = Integer.parseInt(idS);
+		accService.updateAccount(id, "ADMIN", mail, name, phone);
+		_mvShareAdmin.setViewName("redirect:quan-ly-tai-khoan");
+		return _mvShareAdmin;
 	}
 	@RequestMapping(value= "them-tai-khoan", method = RequestMethod.POST)
 	public ModelAndView doAddAccount(HttpServletRequest request) {
@@ -99,23 +80,26 @@ public class ManageAccountController extends BaseController{
 		String name = request.getParameter("account_name");
 		String phone = request.getParameter("account_phone");
 		String pass = request.getParameter("account_password");
-		String md5Pass = DigestUtils.md5Hex(pass).toUpperCase();
-		Account account = new Account(roleS, mail, name, phone, 0, md5Pass, "offline");
+		String md5Pass = DigestUtils.md5Hex(pass);
+		System.out.println(pass);
+		Account account = new Account(roleS, mail, name, phone, md5Pass, "offline");
 		
-		//System.out.println(account.toString());
+		System.out.println(account.toString());
 		account = accService.checkAccountByMailExist(mail);
 		
 		if (account == null) {
 			try {
-				accService.insertAccount(roleS, mail, name, phone, 0, md5Pass, "offline");
+				accService.insertAccount(roleS, mail, name, phone, md5Pass, "offline");
 				_mvShareAdmin.setViewName("admin/account/manageAccount");
 				//return "redirect:quan-ly-tai-khoan";
 			} catch (Exception e) {
 				e.printStackTrace();
-				_mvShareAdmin.addObject("mess", "Thêm mới thất bại - Mail đã tồn tại vui lòng thử lại !!!");
-				_mvShareAdmin.setViewName("admin/account/addAccount");
 			}
 
+		} else {
+			_mvShareAdmin.addObject("mess", "Thêm mới thất bại - Mail đã tồn tại vui lòng thử lại !!!");
+			_mvShareAdmin.setViewName("admin/account/addAccount");
+			
 		}
 		//return "redirect:them-tai-khoan";
 		return _mvShareAdmin;

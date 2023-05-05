@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sonhtFX17102.DTO.CircumDTO;
 import com.sonhtFX17102.controller.BaseController;
 import com.sonhtFX17102.entities.Circum;
-import com.sonhtFX17102.service.CircumImpl;
+import com.sonhtFX17102.service.impl.CircumImpl;
 
 @Controller
 public class CircumController extends BaseController {
