@@ -117,5 +117,17 @@ public class AccountImpl implements IAccountService {
 		return accountDAO.getAccountDetails(id);
 	}
 
+	@Override
+	public AccountDetailsDTO getAccountDetailsByMail(String mail) {
+		// TODO Auto-generated method stub
+		return accountDAO.getAccountDetailsByMail(mail);
+	}
+
+	@Override
+	public void uploadAvatar(String image, String id) {
+		// TODO Auto-generated method stub
+		accountDAO.uploadAvatar(image, id);
+	}
+
 
 }

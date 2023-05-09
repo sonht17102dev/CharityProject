@@ -104,19 +104,20 @@
 															type="checkbox" class="checkbox" /> <span class="lbl"></span>
 													</label></td>
 													<td class="hidden">${o.circum_id}</td> 
-													<td><span class="label label-success arrowed">${o.circum_status}</span></td>
+													<td class="center"><span class="label label-success arrowed">${o.circum_status}</span></td>
 													<td>${o.circum_name}</td>
-													<td>${o.circum_type}</td>
-													<td><fmt:formatNumber type="number"
+													<td class="center">${o.circum_type}</td>
+													<td class="center"><fmt:formatNumber type="number"
 															value="${o.circum_donations}" /></td>
-													<td class="hidden-480"><fmt:formatNumber type="number"
+													<td class="center"><fmt:formatNumber type="number"
 															value="${o.circum_target}" />/<fmt:formatNumber
 															type="number" value="${o.circum_raise}" /></td>
-													<td>
+													<td class="center">
 														<div class="hidden-sm hidden-xs action-buttons">
-															<a class="green"> <i
+															<a class="green" title="Chỉnh sửa"> <i
 																class="ace-icon fa fa-pencil bigger-130"></i>
-															</a> <a class="red delete_single"> <i
+															</a> 
+															<a class="red delete_single" title="Xóa"> <i
 																class="ace-icon fa fa-trash-o bigger-130"></i>
 															</a>
 														</div>
@@ -183,12 +184,6 @@
 													<li aria-controls="dynamic-table" id="dynamic-table_next"><a
 														class='paginate_button next ${tag==endPage ? "hidden" : "" }'
 														href="quan-ly-quyen-gop?trang=${tag + 1}">Next</a></li>
-												<%-- 
-														<li aria-controls="dynamic-table" tabindex="1"><button
-															class='paginate_button' id="phantrang1">1</button></li>
-														<li aria-controls="dynamic-table" tabindex="2"><button
-															class='paginate_button' id="phantrang2">2</button></li>
-												--%> 
 												</ul>
 											</div>
 										</div>

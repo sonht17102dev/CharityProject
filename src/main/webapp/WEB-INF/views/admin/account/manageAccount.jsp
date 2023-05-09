@@ -105,15 +105,15 @@
 
 													<td class="hidden">${o.account_id}</td>
 													<c:if test="${o.account_role == 'ADMIN'}">
-													<td><span class="label label-xlg label-primary arrowed-in-right arrowed-in">ADMIN</span></td>
+													<td class="center"><span class="label label-xlg label-primary arrowed-in-right arrowed-in">ADMIN</span></td>
 													</c:if>
 													<c:if test="${o.account_role == 'USER'}">
-													<td><span class="label label-xlg label-success arrowed-in-right arrowed-in">USER</span></td>
+													<td class="center"><span class="label label-xlg label-success arrowed-in-right arrowed-in">USER</span></td>
 													</c:if>
-													<td>${o.account_mail}</td>
-													<td>${o.account_name}</td>
-													<td class="hidden-480">${o.account_phone}</td>
-													<td class="hidden-480">
+													<td class="center">${o.account_mail}</td>
+													<td class="center">${o.account_name}</td>
+													<td class="center">${o.account_phone}</td>
+													<td class="center">
 													<c:if test="${o.account_status == 'online'}">
 													<span class="label label-success arrowed">Online</span>
 													</c:if>
@@ -121,12 +121,12 @@
 													<span class="label label-inverse">Offline</span>
 													</c:if>
 													</td>
-													<td>
+													<td class="center">
 														<div class="hidden-sm hidden-xs action-buttons">
-															<a class="green"> <i
+															<a class="green" title="Chỉnh sửa"> <i
 																class="ace-icon fa fa-pencil bigger-130"></i>
 															</a> 
-															<a class="red delete_single"> <i
+															<a class="red delete_single" title="Xóa"> <i
 																class="ace-icon fa fa-trash-o bigger-130"></i>
 															</a>
 														</div>

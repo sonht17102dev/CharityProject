@@ -10,14 +10,14 @@ public class Partner {
 	private int partner_number_donate;
 	private long partner_total_money;
 	private String partner_content;
+	private String partner_status;
 	public Partner() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
+	
+	
 	public Partner(int partner_id, String partner_name, String partner_slogan, String partner_logo,
 			String partner_banner, String partner_introduce, int partner_number_donate, long partner_total_money,
-			String partner_content) {
-		super();
+			String partner_content, String partner_status) {
 		this.partner_id = partner_id;
 		this.partner_name = partner_name;
 		this.partner_slogan = partner_slogan;
@@ -27,7 +27,43 @@ public class Partner {
 		this.partner_number_donate = partner_number_donate;
 		this.partner_total_money = partner_total_money;
 		this.partner_content = partner_content;
+		this.partner_status = partner_status;
 	}
+	public Partner( String partner_name, String partner_slogan, String partner_logo,
+			String partner_banner, int partner_number_donate, long partner_total_money,String partner_introduce, 
+			String partner_content, String partner_status) {
+		this.partner_name = partner_name;
+		this.partner_slogan = partner_slogan;
+		this.partner_logo = partner_logo;
+		this.partner_banner = partner_banner;
+		this.partner_introduce = partner_introduce;
+		this.partner_number_donate = partner_number_donate;
+		this.partner_total_money = partner_total_money;
+		this.partner_content = partner_content;
+		this.partner_status = partner_status;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Partner [partner_id=" + partner_id + ", partner_name=" + partner_name + ", partner_slogan="
+				+ partner_slogan + ", partner_logo=" + partner_logo + ", partner_banner=" + partner_banner
+				+ ", partner_introduce=" + partner_introduce + ", partner_number_donate=" + partner_number_donate
+				+ ", partner_total_money=" + partner_total_money + ", partner_content=" + partner_content
+				+ ", partner_status=" + partner_status + "]";
+	}
+
+
+	public String getPartner_status() {
+		return partner_status;
+	}
+
+
+	public void setPartner_status(String partner_status) {
+		this.partner_status = partner_status;
+	}
+
+
 	public int getPartner_id() {
 		return partner_id;
 	}

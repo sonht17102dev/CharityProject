@@ -12,12 +12,20 @@
 				<div class="card-body text-center">
 
 					<img class="img-account-profile rounded-circle mb-2"
-						src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+						src="<c:url value="/resources/image/${info.account_image}"/>" alt="Hình đại diện">
 
 					<div class="small font-italic text-muted mb-4">JPG hay PNG
 						không vượt quá 5 MB</div>
-
-					<button class="btn btn-primary" type="button">Tải ảnh mới</button>
+					<form action="${pageContext.request.contextPath}/tai-khoan/uploadfile" method="post" enctype="multipart/form-data">
+						<input type="hidden" id="email" name="email"
+								value="${info.account_mail}" readonly>
+						<input type="hidden" name="id" value="${info.account_id}">
+						<div class="form-group">
+						<label for="formFile" class="form-label">Upload Your file</label>
+						<input name="thisfile" class="form-control" type="file" id="formFile">
+						</div>
+						<button class="btn btn-primary">Tải ảnh mới</button>
+					</form>
 				</div>
 			</div>
 			<div class="card mb-4 mb-xl-0">
@@ -30,16 +38,22 @@
 		<!-- layout change infomation -->
 		<div id="changeInfo" class="col-xl-8">
 			<div class="card mb-4">
-				<div class="card-header">Thông tin tài khoản</div>
+				<div class="card-header">
+					Thông tin tài khoản
+				<c:if test="${param.messageUser == 'Thay đổi thành công !!!'}">
+					<span style="color:green;float:right;">Cập nhật thành công !!</span>
+				</c:if>
+				</div>
 				<div class="card-body">
 					<form id="formInfo" method="post" action="${pageContext.request.contextPath}/tai-khoan/cap-nhat">
-						<input type="hidden" name="id" value="${user.account_id}">
+						<input type="hidden" name="id" value="${info.account_id}">
 						<div class="mb-3">
 							<label class="small mb-1" for="inputUsername">Username
 								(tên của bạn sẽ hiển thị như thế nào với những người dùng khác
-								trên trang web)</label> <input class="form-control" id="username"
-								type="text" placeholder="Nhập username của bạn" name="username"
-								value="${user.account_name}">
+								trên trang web)</label> 
+								<input class="form-control" id="username" name="username"
+								type="text" placeholder="Nhập username của bạn" 
+								value="${info.account_name}">
 						</div>
 
 						<div class="row gx-3 mb-3">
@@ -48,14 +62,14 @@
 								<label class="small mb-1" for="inputFirstName">Tên</label> <input
 									class="form-control" id="firstName" name="firstName"
 									type="text" placeholder="Nhập tên của bạn" 
-									value="${userDetails.account_firstName}">
+									value="${info.account_firstName}">
 							</div>
 
 							<div class="col-md-6">
 								<label class="small mb-1" for="inputLastName">Họ</label> <input
 									class="form-control" id="lastName" name="lastName" type="text"
 									placeholder="Nhập họ của bạn" 
-									value="${userDetails.account_lastName}">
+									value="${info.account_lastName}">
 							</div>
 						</div>
 
@@ -65,14 +79,14 @@
 								<label class="small mb-1" for="inputOrgName">Tên tổ chức</label>
 								<input class="form-control" id="orgName" name="orgName"
 									type="text" placeholder="Nhập tên tổ chức của bạn" 
-									value="${userDetails.account_organization}">
+									value="${info.account_organization}">
 							</div>
 
 							<div class="col-md-6">
 								<label class="small mb-1" for="inputLocation">Địa chỉ</label> <input
 									class="form-control" id="address" name="address" type="text"
 									placeholder="Nhập địa chỉ của bạn" 
-									value="${userDetails.account_address}">
+									value="${info.account_address}">
 							</div>
 						</div>
 
@@ -80,7 +94,7 @@
 							<label class="small mb-1" for="inputEmailAddress">Địa chỉ
 								Email</label> <input class="form-control" id="email" name="email"
 								type="email" placeholder="Nhập địa chỉ email của bạn" 
-								value="${user.account_mail}" disabled>
+								value="${info.account_mail}" readonly>
 						</div>
 
 						<div class="row gx-3 mb-3">
@@ -89,14 +103,14 @@
 								<label class="small mb-1" for="inputPhone">Số điện thoại</label>
 								<input class="form-control" id="phone" name="phone" type="tel"
 									placeholder="Nhập số điện thoại của bạn" 
-									value="${user.account_phone}">
+									value="${info.account_phone}">
 							</div>
 
 							<div class="col-md-6">
 								<label class="small mb-1" for="inputBirthday">Ngày sinh</label>
 								<input class="form-control" id="birthday" type="text"
 									name="birthday" placeholder="Nhập ngày sinh của bạn" 
-									value="${userDetails.account_birthday}">
+									value="${info.account_birthday}">
 							</div>
 						</div>
 

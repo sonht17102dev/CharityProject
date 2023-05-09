@@ -15,6 +15,9 @@ public class MapperAccountDetailsDTO implements RowMapper<AccountDetailsDTO>{
 		AccountDetailsDTO account = new AccountDetailsDTO();
 		
 		account.setAccount_id(rs.getInt("account_id"));
+		account.setAccount_name(rs.getString("account_name"));
+		account.setAccount_mail(rs.getString("account_mail"));
+		account.setAccount_phone(rs.getString("account_phone"));
 		account.setAccount_firstName(rs.getString("account_firstName"));
 		account.setAccount_lastName(rs.getString("account_lastName"));
 		account.setAccount_image(rs.getString("account_image"));

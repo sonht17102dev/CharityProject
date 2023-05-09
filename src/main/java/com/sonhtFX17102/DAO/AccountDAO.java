@@ -67,7 +67,7 @@ public class AccountDAO extends BaseDao {
 	 * method getAccountByID tìm kiếm 1 item account trong database dựa trên id
 	 */
 	public Account getAccountByID(int id) {
-		String sql = "Select * from account where account_id = " + id;
+		String sql = "Select * from account where account_id = " + id + " where enabled = 1;";
 		List<Account> list = _jdbcTemplate.query(sql, new MapperAccount());
 		return list.get(0);
 	}
@@ -153,6 +153,25 @@ public class AccountDAO extends BaseDao {
 				+ "set account_password = N'" + pass + "' "
 				+ "where account_mail = N'" + email + "' "
 				+ ";";
+		_jdbcTemplate.update(sql);
+	}
+//	public Account getAccountDetailsByMail(int id, String name, String mail, String phone, String address, String fName, 
+//			 String lName, String img, String birth, String org, long totalDonate) {
+		public AccountDetailsDTO getAccountDetailsByMail(String mail) {
+		String sql = "select a.account_id, account_name, account_mail, account_phone, account_address,"
+				+ " account_firstName, account_lastName, account_image, account_birthday,"
+				+ " account_organization, total_donated from account a\r\n"
+				+ " inner join ACCOUNTDETAILS ad\r\n "
+				+ " on a.account_id = ad.account_id\r\n "
+				+ " where account_mail = '"+ mail +"';" ;
+		List<AccountDetailsDTO> list = _jdbcTemplate.query(sql, new MapperAccountDetailsDTO()); 
+		return list.get(0);
+	}
+		
+	public void uploadAvatar(String image, String id) {
+		String sql = "Update ACCOUNTDETAILS SET "
+				+ " account_image = '" + image + "' "
+				+ " where account_id = '" + id + "';";
 		_jdbcTemplate.update(sql);
 	}
 	

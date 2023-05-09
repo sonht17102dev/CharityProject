@@ -101,7 +101,6 @@ public class ManageAccountController extends BaseController{
 			_mvShareAdmin.setViewName("admin/account/addAccount");
 			
 		}
-		//return "redirect:them-tai-khoan";
 		return _mvShareAdmin;
 	}
 	@RequestMapping(value= "them-tai-khoan", method = RequestMethod.GET)

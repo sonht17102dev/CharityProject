@@ -30,4 +30,6 @@ public interface IAccountService {
 			int account_id, String account_firstName, String account_lastName,
 			String account_address, String account_birthday, String account_organization,
 			String account_name, String account_phone);
+	public AccountDetailsDTO getAccountDetailsByMail(String mail);
+	public void uploadAvatar(String image, String id);
 }

@@ -13,10 +13,10 @@
 			</script>
 
 			<ul class="breadcrumb">
-				<li><i class="ace-icon fa fa-home home-icon"></i> <a href="#">Home</a>
+				<li><i class="ace-icon fa fa-home home-icon"></i> <a href="home">Home</a>
 				</li>
 
-				<li><a href="#">Quản Lý</a></li>
+				<li><a href="quan-ly-doi-tac">Quản Lý</a></li>
 				<li class="active">Quản Lý Đối Tác</li>
 			</ul>
 			<!-- /.breadcrumb -->
@@ -29,121 +29,170 @@
 					Bảng thống kê các đối tác đồng hành
 				</h1>
 			</div>
+			<c:if test="${param.message == 'Cập nhật thành công !!!'}">
+			<div class="page-header" style="color:green;">
+				<h2>Cập nhật thành công !!!</h2>
+			</div>
+			</c:if>
 			<!-- /.page-header -->
-
+			<!-- begin row -->
 			<div class="row">
 				<div class="col-xs-12">
 					<!-- PAGE CONTENT BEGINS -->
 					<div class="hr hr-18 dotted hr-double"></div>
-
 					<div class="row">
 						<div class="col-xs-12">
-
+							<div class="table-header">Danh sách các đối tác đang hoạt động</div>
 							<!-- div.dataTables_borderWrap -->
 							<div>
+								<div class="row">
+
+									<div class="col-xs-6">
+										<div class="btn-toolbar">
+
+											<!-- /.nav-search -->
+											<div class="btn-group">
+												<button data-toggle="dropdown"
+													class="btn btn-success dropdown-toggle"
+													aria-expanded="true">
+													Bộ lọc<span
+														class="ace-icon fa fa-caret-down icon-on-right"></span>
+												</button>
+												<ul class="dropdown-menu dropdown-warning">
+													<li><a href="${pageContext.request.contextPath}/admin/search-money">
+													Tổng tiền quyên góp > 30 tỷ</a></li>
+													<li class="divider"></li>
+													<li><a href="${pageContext.request.contextPath}/admin/search-project">
+													Tổng số dự án > 10</a></li>
+												</ul>
+											</div>
+
+										</div>
+									</div>
+									<div class="col-xs-6">
+										<div class="nav-search " id="nav-search">
+											<form id="form-search" class="form-search" action="${pageContext.request.contextPath}/admin/search-partner" method="post">
+												<span class="input-icon"> 
+												<input type="text"
+													placeholder="Search Từ khóa" class="nav-search-input"
+													id="nav-search-input" name="nav-search-input" autocomplete="off" /> <i
+													class="ace-icon fa fa-search nav-search-icon"></i>
+												</span>
+											</form>
+										</div>
+									</div>
+								</div>
 								<div id="dynamic-table_wrapper"
 									class="dataTables_wrapper form-inline no-footer">
 									<table id="dynamic-table"
-										class="table table-striped table-bordered table-hover dataTable no-footer DTTT_selectable"
-										role="grid" aria-describedby="dynamic-table_info">
+										class="table table-striped table-bordered table-hover">
 										<thead>
 											<tr>
 												<th class="center"><label class="pos-rel"> <input
-														type="checkbox" class="ace" /> <span class="lbl"></span>
+														type="checkbox" class="checkall"
+														onclick="toggleChecked(this.checked)" /> <span
+														class="lbl"></span>
 												</label></th>
-												<th>Id</th>
-												<th>Tên đối tác</th>
-												<th>Khẩu hiệu</th>
-												<th>Số dự án đã thực hiện</th>
-												<th class="hidden-480">Tổng số tiền đã quyên góp</th>
-												<th class="hidden-480">Chức năng</th>
+												<th class="hidden">Id</th>
+												<th class="center">Trạng thái</th>
+												<th class="center">Tên đối tác</th>
+												<th class="center">Logo</th>
+												<th class="center">Tổng số tiền nhận (Đơn vị: tỷ)</th>
+												<th class="center">Tổng các dự án </th>
+
+												<th class="center">Chức năng</th>
 											</tr>
 										</thead>
-										<tbody>
-											<c:forEach begin="0" end="5">
-											<tr>
-												<td class="center"><label class="pos-rel"> <input
-														type="checkbox" class="ace" /> <span class="lbl"></span>
-												</label></td>
 
-												<td>1</td>
-												<td>Sức Mạnh 2000</td>
-												<td>Tiền lẻ mỗi ngày-Xây ngay nghìn trường mới</td>
-												<td>123</td>
-												<td class="hidden-480">100,000,000</td>
-												<td>
-													<div class="hidden-sm hidden-xs action-buttons">
-														<button  class="blue" type="button" onclick="redirectPartner()"> <i
-															class="ace-icon fa fa-plus bigger-130"></i>
-														</button> 
-														<button class="green"  type="button"onclick="redirectPartner()"> <i
-															class="ace-icon fa fa-pencil bigger-130"></i>
-														</button> 
-														<button class="red"  type="button" onclick=""> <i
-															class="ace-icon fa fa-trash-o bigger-130"></i>
-														</button>
-													</div>
-
-													<div class="hidden-md hidden-lg">
-														<div class="inline pos-rel">
-															<button class="btn btn-minier btn-yellow dropdown-toggle"
-																data-toggle="dropdown" data-position="auto">
-																<i
-																	class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-															</button>
-
-															<ul
-																class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-																<li><a href="#" class="tooltip-info"
-																	data-rel="tooltip" title="View"> <span class="blue">
-																			<i class="ace-icon fa fa-search-plus bigger-120"></i>
-																	</span>
-																</a></li>
-
-																<li><a href="#" class="tooltip-success"
-																	data-rel="tooltip" title="Edit"> <span
-																		class="green"> <i
-																			class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																	</span>
-																</a></li>
-
-																<li><a href="#" class="tooltip-error"
-																	data-rel="tooltip" title="Delete"> <span
-																		class="red"> <i
-																			class="ace-icon fa fa-trash-o bigger-120"></i>
-																	</span>
-																</a></li>
-															</ul>
+										<tbody id="tbody">
+											<c:forEach items="${listTop5Partner}" var="o">
+												<tr class="product-brand-number">
+													<td class="center"><label class="pos-rel"> <input
+															type="checkbox" class="checkbox" /> <span class="lbl"></span>
+													</label></td>
+													<td class="hidden">${o.partner_id}</td> 
+													<td class="center"><span class="label label-success arrowed">${o.partner_status}</span></td>
+													<td>${o.partner_name}</td>
+													<td class="center"><img src="${o.partner_logo}" width="70" height="30"></td>
+													<td class="center">${o.partner_total_money} </td>
+													<td class="center">${o.partner_number_donate} </td>
+													<td class="center">
+														<div class="hidden-sm hidden-xs action-buttons">
+															<a class="green" title="Chỉnh sửa"> <i
+																class="ace-icon fa fa-pencil bigger-130"></i>
+															</a> 
+															<a class="red delete_single" title="Xóa"> <i
+																class="ace-icon fa fa-trash-o bigger-130"></i>
+															</a>
 														</div>
-													</div>
-												</td>
-											</tr>
+														<div class="hidden-md hidden-lg">
+															<div class="inline pos-rel">
+																<button
+																	class="btn btn-minier btn-yellow dropdown-toggle"
+																	data-toggle="dropdown" data-position="auto">
+																	<i
+																		class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
+																</button>
+
+																<ul
+																	class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+																	<li><a href="#" class="tooltip-info"
+																		data-rel="tooltip" title="View"> <span
+																			class="blue"> <i
+																				class="ace-icon fa fa-search-plus bigger-120"></i>
+																		</span>
+																	</a></li>
+
+																	<li><a class="tooltip-success" data-rel="tooltip">
+																			<span class="green"> <i
+																				class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+																		</span>
+																	</a></li>
+
+																	<li><a class="tooltip-error" data-rel="tooltip">
+																			<span class="red"> <i
+																				class="ace-icon fa fa-trash-o bigger-120"></i>
+																		</span>
+																	</a></li>
+																</ul>
+															</div>
+														</div>
+													</td>
+												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
 									<div class="row">
 										<div class="col-xs-6">
+											<button class="deleteall btn btn-danger"
+												title="dynamic-table">Xóa đã chọn</button>
+											<button class="btn btn-primary addPartner"
+												title="Thêm đối tác">Thêm đối tác</button>
+
+										</div>
+										<div class="col-xs-6">
 											<div class="dataTables_paginate paging_simple_numbers"
 												id="dynamic-table_paginate">
-												<ul class="pagination">
-													<li class="paginate_button previous disabled"
-														aria-controls="dynamic-table" tabindex="0"
-														id="dynamic-table_previous"><a href="#">Previous</a></li>
-													<li class="paginate_button active"
-														aria-controls="dynamic-table" tabindex="0"><a
-														href="#">1</a></li>
-													<li class="paginate_button " aria-controls="dynamic-table"
-														tabindex="0"><a href="#">2</a></li>
-													<li class="paginate_button " aria-controls="dynamic-table"
-														tabindex="0"><a href="#">3</a></li>
-													<li class="paginate_button next"
-														aria-controls="dynamic-table" tabindex="0"
-														id="dynamic-table_next"><a href="#">Next</a></li>
+												
+												<ul class="pagination" id="pagination">
+													<li aria-controls="dynamic-table"
+														id="dynamic-table_previous"><a
+														class="paginate_button previous ${(tag==null||tag==1) ? "
+														hidden " : "" }" href="quan-ly-doi-tac?trang=${tag - 1}">Previous</a></li>
+													<c:forEach begin="1" end="${endPage}" var="i">
+														<li aria-controls="dynamic-table" tabindex="${i}"><a
+															class='paginate_button ${tag == i ? "active" : ""}'
+															href="quan-ly-doi-tac?trang=${i}">${i}</a></li>
+													</c:forEach>
+													<li aria-controls="dynamic-table" id="dynamic-table_next"><a
+														class='paginate_button next ${tag==endPage ? "hidden" : "" }'
+														href="quan-ly-doi-tac?trang=${tag + 1}">Next</a></li>
 												</ul>
 											</div>
 										</div>
 									</div>
 								</div>
+
 							</div>
 						</div>
 					</div>
@@ -159,267 +208,93 @@
 </div>
 
 
-<!-- page specific plugin scripts -->
-<script
-	src="<c:url value="/resources/admin/assets/js/jquery.dataTables.min.js"/>"></script>
-<script
-	src="<c:url value="/resources/admin/assets/js/jquery.dataTables.bootstrap.min.js"/>"></script>
-<script
-	src="<c:url value="/resources/admin/assets/js/dataTables.tableTools.min.js"/>"></script>
-<script
-	src="<c:url value="/resources/admin/assets/js/dataTables.colVis.min.js"/>"></script>
 <script type="text/javascript">
-	function redirectPartner(){
-		location.assign("/CharityApp/admin/edit-add-partner");
-	}
-</script>
-<script type="text/javascript">
-	jQuery(function($) {
-		//initiate dataTables plugin
-		var oTable1 = $('#dynamic-table')
-		//.wrap("<div class='dataTables_borderWrap' />")   //if you are applying horizontal scrolling (sScrollX)
-		.dataTable({
-			bAutoWidth : false,
-			"aoColumns" : [ {
-				"bSortable" : false
-			}, null, null, null, null, null, {
-				"bSortable" : false
-			} ],
-			"aaSorting" : [],
-
-		//,
-		//"sScrollY": "200px",
-		//"bPaginate": false,
-
-		//"sScrollX": "100%",
-		//"sScrollXInner": "120%",
-		//"bScrollCollapse": true,
-		//Note: if you are applying horizontal scrolling (sScrollX) on a ".table-bordered"
-		//you may want to wrap the table inside a "div.dataTables_borderWrap" element
-
-		//"iDisplayLength": 50
-		});
-		//oTable1.fnAdjustColumnSizing();
-
-		//TableTools settings
-		TableTools.classes.container = "btn-group btn-overlap";
-		TableTools.classes.print = {
-			"body" : "DTTT_Print",
-			"info" : "tableTools-alert gritter-item-wrapper gritter-info gritter-center white",
-			"message" : "tableTools-print-navbar"
+$('button.addPartner').on("click", function(event) {
+	location.assign("/CharityApp/admin/them-doi-tac");
+});
+$('a.green').on("click",function(event) {
+	var idValue = this.parentNode.parentNode.parentNode
+			.getElementsByTagName('td')[1].textContent;
+	location.assign("/CharityApp/admin/cap-nhat-doi-tac?id="+ idValue);
+});
+$(document).ready(function() {
+	//function is used to delete individual row
+	$('a.delete_single').on("click",function(event) {
+		var $this = $(this);
+		var idValue = this.parentNode.parentNode.parentNode
+				.getElementsByTagName('td')[1].textContent;
+		console.log(idValue);
+		var c = confirm('Bạn muốn xóa dòng này chứ?\nClick Ok để tiếp tục\nClick cancle nếu bạn chưa muốn xóa !!!');
+		if (c) {
+			$.ajax({
+				url : "/CharityApp/admin/quan-ly-doi-tac",
+				type : 'GET',
+				data : {
+					id : idValue,
+					action : 'deletePartner'
+				},
+				success : function(response) {
+					alert('Xóa Thành Công!');
+					location.assign("/CharityApp/admin/quan-ly-doi-tac");
+				},
+				error : function() {
+					alert('Xóa Thất Bại');
+					location.assign("/CharityApp/admin/quan-ly-doi-tac");
+				}
+			});
+			$this.parents('tr').fadeOut(function() {
+				$this.remove(); //remove row when animation is finished
+			});
+		} else {
+			alert('Xóa Thất Bại');
 		}
+		return false;
+});
 
-		//initiate TableTools extension
-		var tableTools_obj = new $.fn.dataTable.TableTools(
-				oTable1,
-				{
-					"sSwfPath" : "assets/swf/copy_csv_xls_pdf.swf",
-
-					"sRowSelector" : "td:not(:last-child)",
-					"sRowSelect" : "multi",
-					"fnRowSelected" : function(row) {
-						//check checkbox when row is selected
-						try {
-							$(row).find('input[type=checkbox]').get(0).checked = true
-						} catch (e) {
+	//function is used to delete selected row
+	$('button.deleteall').on("click",function(event) {
+		var tb = $(this).attr('title');
+		console.log(tb);
+		var sel = false;
+		var ch = $('#' + tb).find('tbody input[type=checkbox]');
+		console.log(ch);
+		var c = confirm('Bạn muốn xóa những dòng này chứ?\nClick Ok để tiếp tục!!!\nClick cancle nếu bạn chưa muốn xóa !!!');
+		if (c) {
+			ch.each(function() {
+				var $this = $(this);
+				var idValue = this.parentNode.parentNode.parentNode
+						.getElementsByTagName('td')[1].textContent;
+				if ($this.is(':checked')) {
+					sel = true; //set to true if there is/are selected row
+					$.ajax({
+						url : "/CharityApp/admin/quan-ly-doi-tac",
+						type : 'GET',
+						data : {
+							id : idValue,
+							action : 'deletePartner'
+						},
+						success : function(response) {
+						},
+						error : function() {
 						}
-					},
-					"fnRowDeselected" : function(row) {
-						//uncheck checkbox
-						try {
-							$(row).find('input[type=checkbox]').get(0).checked = false
-						} catch (e) {
-						}
-					},
-
-					"sSelectedClass" : "success",
-					"aButtons" : [
-							{
-								"sExtends" : "copy",
-								"sToolTip" : "Copy to clipboard",
-								"sButtonClass" : "btn btn-white btn-primary btn-bold",
-								"sButtonText" : "<i class='fa fa-copy bigger-110 pink'></i>",
-								"fnComplete" : function() {
-									this
-											.fnInfo(
-													'<h3 class="no-margin-top smaller">Table copied</h3>\
-									<p>Copied '
-															+ (oTable1
-																	.fnSettings()
-																	.fnRecordsTotal())
-															+ ' row(s) to the clipboard.</p>',
-													1500);
-								}
-							},
-
-							{
-								"sExtends" : "csv",
-								"sToolTip" : "Export to CSV",
-								"sButtonClass" : "btn btn-white btn-primary  btn-bold",
-								"sButtonText" : "<i class='fa fa-file-excel-o bigger-110 green'></i>"
-							},
-
-							{
-								"sExtends" : "pdf",
-								"sToolTip" : "Export to PDF",
-								"sButtonClass" : "btn btn-white btn-primary  btn-bold",
-								"sButtonText" : "<i class='fa fa-file-pdf-o bigger-110 red'></i>"
-							},
-
-							{
-								"sExtends" : "print",
-								"sToolTip" : "Print view",
-								"sButtonClass" : "btn btn-white btn-primary  btn-bold",
-								"sButtonText" : "<i class='fa fa-print bigger-110 grey'></i>",
-
-								"sMessage" : "<div class='navbar navbar-default'><div class='navbar-header pull-left'><a class='navbar-brand' href='#'><small>Optional Navbar &amp; Text</small></a></div></div>",
-
-								"sInfo" : "<h3 class='no-margin-top'>Print view</h3>\
-									  <p>Please use your browser's print function to\
-									  print this table.\
-									  <br />Press <b>escape</b> when finished.</p>",
-							} ]
-				});
-		//we put a container before our table and append TableTools element to it
-		$(tableTools_obj.fnContainer()).appendTo($('.tableTools-container'));
-
-		//also add tooltips to table tools buttons
-		//addding tooltips directly to "A" buttons results in buttons disappearing (weired! don't know why!)
-		//so we add tooltips to the "DIV" child after it becomes inserted
-		//flash objects inside table tools buttons are inserted with some delay (100ms) (for some reason)
-		setTimeout(function() {
-			$(tableTools_obj.fnContainer()).find('a.DTTT_button').each(
-					function() {
-						var div = $(this).find('> div');
-						if (div.length > 0)
-							div.tooltip({
-								container : 'body'
-							});
-						else
-							$(this).tooltip({
-								container : 'body'
-							});
 					});
-		}, 200);
-
-		//ColVis extension
-		var colvis = new $.fn.dataTable.ColVis(oTable1, {
-			"buttonText" : "<i class='fa fa-search'></i>",
-			"aiExclude" : [ 0, 6 ],
-			"bShowAll" : true,
-			//"bRestore": true,
-			"sAlign" : "right",
-			"fnLabel" : function(i, title, th) {
-				return $(th).text();//remove icons, etc
+				$this.parents('tr').fadeOut(function() {
+					$this.remove(); //remove row when animation is finished
+				});
 			}
-
 		});
-
-		//style it
-		$(colvis.button()).addClass('btn-group').find('button').addClass(
-				'btn btn-white btn-info btn-bold')
-
-		//and append it to our table tools btn-group, also add tooltip
-		$(colvis.button()).prependTo('.tableTools-container .btn-group').attr(
-				'title', 'Show/hide columns').tooltip({
-			container : 'body'
-		});
-
-		//and make the list, buttons and checkboxed Ace-like
-		$(colvis.dom.collection)
-				.addClass(
-						'dropdown-menu dropdown-light dropdown-caret dropdown-caret-right')
-				.find('li').wrapInner('<a href="javascript:void(0)" />') //'A' tag is required for better styling
-				.find('input[type=checkbox]').addClass('ace').next().addClass(
-						'lbl padding-8');
-
-		/////////////////////////////////
-		//table checkboxes
-		$('th input[type=checkbox], td input[type=checkbox]').prop('checked',
-				false);
-
-		//select/deselect all rows according to table header checkbox
-		$('#dynamic-table > thead > tr > th input[type=checkbox]').eq(0).on(
-				'click',
-				function() {
-					var th_checked = this.checked;//checkbox inside "TH" table header
-
-					$(this).closest('table').find('tbody > tr').each(
-							function() {
-								var row = this;
-								if (th_checked)
-									tableTools_obj.fnSelect(row);
-								else
-									tableTools_obj.fnDeselect(row);
-							});
-				});
-
-		//select/deselect a row when the checkbox is checked/unchecked
-		$('#dynamic-table').on('click', 'td input[type=checkbox]', function() {
-			var row = $(this).closest('tr').get(0);
-			if (!this.checked)
-				tableTools_obj.fnSelect(row);
-			else
-				tableTools_obj.fnDeselect($(this).closest('tr').get(0));
-		});
-
-		$(document).on('click', '#dynamic-table .dropdown-toggle', function(e) {
-			e.stopImmediatePropagation();
-			e.stopPropagation();
-			e.preventDefault();
-		});
-
-		//And for the first simple table, which doesn't have TableTools or dataTables
-		//select/deselect all rows according to table header checkbox
-		var active_class = 'active';
-		$('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on(
-				'click',
-				function() {
-					var th_checked = this.checked;//checkbox inside "TH" table header
-
-					$(this).closest('table').find('tbody > tr').each(
-							function() {
-								var row = this;
-								if (th_checked)
-									$(row).addClass(active_class).find(
-											'input[type=checkbox]').eq(0).prop(
-											'checked', true);
-								else
-									$(row).removeClass(active_class).find(
-											'input[type=checkbox]').eq(0).prop(
-											'checked', false);
-							});
-				});
-
-		//select/deselect a row when the checkbox is checked/unchecked
-		$('#simple-table').on('click', 'td input[type=checkbox]', function() {
-			var $row = $(this).closest('tr');
-			if (this.checked)
-				$row.addClass(active_class);
-			else
-				$row.removeClass(active_class);
-		});
-
-		/********************************/
-		//add tooltip for small view action buttons in dropdown menu
-		$('[data-rel="tooltip"]').tooltip({
-			placement : tooltip_placement
-		});
-
-		//tooltip placement on right or left
-		function tooltip_placement(context, source) {
-			var $source = $(source);
-			var $parent = $source.closest('table')
-			var off1 = $parent.offset();
-			var w1 = $parent.width();
-
-			var off2 = $source.offset();
-			//var w2 = $source.width();
-
-			if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2))
-				return 'right';
-			return 'left';
+		if (sel)
+			alert("Xóa Thành Công!");
+		if (!sel)
+			alert('Xóa Thất Bại - Không có trường nào được chọn');
 		}
+		return false;
+	});
+});
 
+function toggleChecked(status) {
+	$(".checkbox").each(function() {
+		$(this).attr("checked", status);
 	})
+}
 </script>

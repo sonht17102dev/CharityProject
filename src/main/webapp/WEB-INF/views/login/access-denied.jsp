@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ include file="/WEB-INF/views/user/taglib.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -107,8 +108,14 @@ p img {
 				này.</p>
 			<hr>
 			<p>
+			<security:authorize access="hasRole('USER')">
 				<a href="${pageContext.request.contextPath}/trang-chu">Quay trở
 					về trang chủ</a>
+			</security:authorize>
+			<security:authorize access="hasRole('ADMIN')">
+				<a href="${pageContext.request.contextPath}/admin/">Quay trở
+					về trang chủ</a>
+			</security:authorize>
 			</p>
 		</div>
 	</div>

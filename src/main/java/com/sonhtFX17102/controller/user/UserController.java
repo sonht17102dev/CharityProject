@@ -1,20 +1,21 @@
 package com.sonhtFX17102.controller.user;
 
+import java.io.File;
+import java.io.FileOutputStream;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sonhtFX17102.DTO.AccountDetailsDTO;
 import com.sonhtFX17102.controller.BaseController;
 import com.sonhtFX17102.entities.Account;
 import com.sonhtFX17102.service.impl.AccountImpl;
@@ -24,37 +25,30 @@ public class UserController extends BaseController {
 	@Autowired
 	private AccountImpl accService;
 	
-//	@RequestMapping(value = "/tai-khoan/cap-nhat", method = RequestMethod.GET)
-//	public ModelAndView profile(@RequestParam("usermail") String mail) {
-//		Account account = accService.checkAccountByMailExist(mail);
-//		AccountDetailsDTO accountDetailsDTO = accService.getAccountDetails(account.getAccount_id());
-//		_mvShare.addObject("user", account);
-//		_mvShare.addObject("userDetails", accountDetailsDTO);
-//		_mvShare.setViewName("user/manageUser/profile");
-//		return _mvShare;
-//	}
 	@RequestMapping(value = "/tai-khoan/cap-nhat", method = RequestMethod.GET)
-	public ModelAndView profile() {
+	public ModelAndView profile(@RequestParam("usermail") String mail) {
+		_mvShare.addObject("info", accService.getAccountDetailsByMail(mail));
 		_mvShare.setViewName("user/manageUser/profile");
 		return _mvShare;
 	}
-//	@RequestMapping(value = "/tai-khoan/cap-nhat", method = RequestMethod.POST)
-//	public ModelAndView updateProfile(HttpServletRequest request) {
-//		String username = request.getParameter("username");
-//		String firstName = request.getParameter("firstName");
-//		String lastName = request.getParameter("lastName");
-//		String orgName = request.getParameter("orgName");
-//		String address = request.getParameter("address");
-//		String phone = request.getParameter("phone");
-//		String birthday = request.getParameter("birthday");
-//		String idS = request.getParameter("id");
-//		int id = Integer.parseInt(idS);
-//		accService.updateAccountDetailsByUser(id, firstName, lastName, address,
-//					birthday, orgName, username, phone);
-//		_mvShare.addObject("messageUser", "Thay đổi thành công !!!");
-//		_mvShare.setViewName("user/manageUser/profile");
-//		return _mvShare;
-//	}
+	@RequestMapping(value = "/tai-khoan/cap-nhat", method = RequestMethod.POST)
+	public ModelAndView updateProfile(HttpServletRequest request) {
+		String username = request.getParameter("username");
+		String firstName = request.getParameter("firstName");
+		String lastName = request.getParameter("lastName");
+		String orgName = request.getParameter("orgName");
+		String address = request.getParameter("address");
+		String phone = request.getParameter("phone");
+		String birthday = request.getParameter("birthday");
+		String mail = request.getParameter("email");
+		String idS = request.getParameter("id");
+		int id = Integer.parseInt(idS);
+		accService.updateAccountDetailsByUser(id, firstName, lastName, address,
+					birthday, orgName, username, phone);
+		_mvShare.addObject("messageUser", "Thay đổi thành công !!!");
+		_mvShare.setViewName("redirect:cap-nhat?usermail="+mail);
+		return _mvShare;
+	}
 	@RequestMapping(value = "/tai-khoan/thanh-toan", method = RequestMethod.GET)
 	public String billing(HttpServletRequest request) {
 		
@@ -80,5 +74,25 @@ public class UserController extends BaseController {
 		}
 		_mvShare.setViewName("user/manageUser/security");
 		return _mvShare;
+	}
+	
+	@RequestMapping(value = "/tai-khoan/uploadfile", method = RequestMethod.POST)
+	public String fileUpload(@RequestParam("thisfile") CommonsMultipartFile file, 
+			@RequestParam("id") String id,@RequestParam("email") String mail , HttpSession s, Model mod ) {
+		byte[] data = file.getBytes();
+		String filePath = s.getServletContext().getRealPath("/") + "resources"
+				+ File.separator + "image" + File.separator + file.getOriginalFilename();
+		System.out.println(filePath);
+		try {
+			FileOutputStream fileout = new FileOutputStream(filePath);
+			fileout.write(data);
+			fileout.close();
+			mod.addAttribute("imgName", file.getOriginalFilename());
+			accService.uploadAvatar(file.getOriginalFilename(), id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "redirect:/tai-khoan/cap-nhat?usermail="+mail;
 	}
 }

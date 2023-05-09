@@ -67,14 +67,14 @@
 									<li><a href="${pageContext.request.contextPath}/doi-tac">Đối tác</a></li>
 									<li><a href="${pageContext.request.contextPath}/tin-tuc">Tin tức cộng đồng</a></li>
 									<security:authorize access="isAuthenticated()">
-										<%-- 
 										<li><a
 											href="${pageContext.request.contextPath}/tai-khoan/cap-nhat?usermail=<security:authentication property="principal.username" />">
 												Thông Tin Tài khoản</a></li>
-										--%>
+										<%-- 
 										<li><a
 											href="${pageContext.request.contextPath}/tai-khoan/bao-mat">
 												Thông Tin Tài khoản</a></li>
+										--%>
 									</security:authorize>
 									<li><a href="">Đăng nhập<i class="ti-angle-down"></i></a>
 

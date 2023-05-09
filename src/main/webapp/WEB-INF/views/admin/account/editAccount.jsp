@@ -20,10 +20,6 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<form id="formSubmit" action="${pageContext.request.contextPath}/admin/cap-nhat-tai-khoan" method="POST">
-					<%--
-					
-					<form id="formSubmit">
-					 --%>
 						<div class="form-group">
 							<label class="col-sm-3 control-label no-padding-right">Chức danh</label>
 							<div class="col-sm-9">

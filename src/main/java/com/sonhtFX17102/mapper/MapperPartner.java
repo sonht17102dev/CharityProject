@@ -22,6 +22,7 @@ public class MapperPartner implements RowMapper<Partner> {
 		p.setPartner_number_donate(rs.getInt("partner_number_donate"));
 		p.setPartner_total_money(rs.getLong("partner_total_money"));
 		p.setPartner_content(rs.getString("partner_content"));
+		p.setPartner_status(rs.getString("partner_status"));
 		return p;
 	}
 
