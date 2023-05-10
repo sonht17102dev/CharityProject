@@ -13,4 +13,12 @@ public interface INewsService {
 	public List<News> getAllNews();
 	public List<News> getTop6List();
 	public List<News> getNext6News(int iamount);
+	public List<News> getPagingPage(int index);
+	public int getCountAllNews();
+	public void deleteNewsById(int id);
+	public News checkNewsByTitleExisted(String title);
+	public void insertNews(String description, String banner, String date, String content);
+	public News getNewsById(int id);
+	public void updateNewsById(int news_id, String description, String banner,
+			String date, String content, String status);
 }

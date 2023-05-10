@@ -63,15 +63,14 @@ public class ManageAccountController extends BaseController{
 		return _mvShareAdmin;
 	}
 	@RequestMapping(value= "cap-nhat-tai-khoan", method = RequestMethod.POST)
-	public ModelAndView doEditAccount(HttpServletRequest request) {
+	public String doEditAccount(HttpServletRequest request) {
 		String idS = request.getParameter("account_id");
 		String mail = request.getParameter("account_mail").trim();
 		String name = request.getParameter("account_name");
 		String phone = request.getParameter("account_phone");
 		int id = Integer.parseInt(idS);
 		accService.updateAccount(id, "ADMIN", mail, name, phone);
-		_mvShareAdmin.setViewName("redirect:quan-ly-tai-khoan");
-		return _mvShareAdmin;
+		return "redirect:quan-ly-tai-khoan";
 	}
 	@RequestMapping(value= "them-tai-khoan", method = RequestMethod.POST)
 	public ModelAndView doAddAccount(HttpServletRequest request) {

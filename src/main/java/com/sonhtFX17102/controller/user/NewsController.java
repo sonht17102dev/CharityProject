@@ -49,8 +49,6 @@ public class NewsController extends BaseController{
 	@ResponseBody
 	public String loadMore(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		request.setCharacterEncoding("UTF-8");
-//	    response.setCharacterEncoding("UTF-8");
-//	    response.setContentType("text/html; charset=UTF-8");
 		String amount = request.getParameter("existItems");
 		int iamount = Integer.parseInt(amount);
 		List<News> list = newsService.getNext6News(iamount);
@@ -69,7 +67,7 @@ public class NewsController extends BaseController{
 					+ "		<h4>\r\n"
 					+ "			<a type=\"button\"\r\n"
 					+ "				onclick=\"document.getElementById('id-news-"+news.getNews_id()+"').style.display='block'\"\r\n"
-					+ "				style=\"width: 100%;\">"+news.getNews_descritption()+"</a>\r\n"
+					+ "				style=\"width: 100%;\">"+news.getNews_description()+"</a>\r\n"
 					+ "		</h4>\r\n"
 					+ "	</div>\r\n"
 					+ "</div>";

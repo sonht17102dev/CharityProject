@@ -6,17 +6,17 @@
 		<div class="breadcrumbs" id="breadcrumbs">
 
 			<div class="breadcrumbs" id="breadcrumbs">
-			<ul class="breadcrumb">
-				<li><i class="ace-icon fa fa-home home-icon"></i> <a href="home">Home</a>
-				</li>
-				<li><a href="home">Quản lý</a>
-				</li>
-				<li><a href="quan-ly-doi-tac">Quản lý đối tác</a>
-				</li>
-				<li class="active">Thêm đối tác mới</li>
-			</ul>
-			<!-- /.breadcrumb -->
-		</div>
+				<ul class="breadcrumb">
+					<li><i class="ace-icon fa fa-home home-icon"></i> <a href="home">Home</a>
+					</li>
+					<li><a href="home">Quản lý</a>
+					</li>
+					<li><a href="quan-ly-doi-tac">Quản lý đối tác</a>
+					</li>
+					<li class="active">Thêm đối tác mới</li>
+				</ul>
+				<!-- /.breadcrumb -->
+			</div>
 		</div>
 
 		<div class="page-content">
@@ -125,8 +125,8 @@ $(document).ready(function () {
 	
 	$("#btnReset").click(function() {
 		 //$(this).closest('form').find("input[type=text], textarea").val("");
-		 $("#formSubmit")[0].reset();
-		 CKEDITOR.instances['partner_content'].setData('');
+		 //$("#formSubmit")[0].reset();
+		 //CKEDITOR.instances['partner_content'].setData('');
 	});
 	$('input.cancle').on("click", function(event) {
 		location.assign("/CharityApp/admin/quan-ly-doi-tac");

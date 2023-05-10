@@ -17,3 +17,11 @@
 	background-color: red;
 	color: white;
 }
+.white input {
+	background:#438eb9; 
+	border:none;
+}
+.sidebar-shortcuts-large .welcome {
+	color: #337ab7;
+	font-weight: 700;
+}

@@ -40,8 +40,8 @@ public class LoginController extends BaseController {
 	 * chuyển trạng thái status từ online -> offline
 	 */
 	@RequestMapping(value = "/logout-success", method = RequestMethod.GET)
-	public String logoutSuccess(@RequestParam("usermail") String usermail) {
-		accountService.updateStatusOffline(usermail);
+	public String logoutSuccess(@RequestParam("username") String username) {
+		accountService.updateStatusOffline(username);
 		return "user/index";
 	}
 	

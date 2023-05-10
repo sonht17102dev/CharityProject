@@ -27,9 +27,9 @@ public class HomeAdminController extends BaseController{
 	 * chuyển trạng thái status từ offline -> online
 	 */
 	@RequestMapping(value= "/admin/loginSuccess", method = RequestMethod.GET)
-	public String adminLoginSuccess(@RequestParam("usermail") String usermail) {
+	public String adminLoginSuccess(@RequestParam("username") String username) {
 		// thay đổi field account_status trong database từ offline -> online
-		accountService.updateStatusOnline(usermail);
+		accountService.updateStatusOnline(username);
 		return "redirect:/admin/";
 	}
 }

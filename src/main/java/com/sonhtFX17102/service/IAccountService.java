@@ -20,8 +20,8 @@ public interface IAccountService {
 	public void updateRole(int id, String role);
 	public List<Account> getAccountEnabled(int enabled);
 	public void deleteAccountById(int id);
-	public void updateStatusOffline(String account_mail);
-	public void updateStatusOnline(String account_mail);
+	public void updateStatusOffline(String account_name);
+	public void updateStatusOnline(String account_name);
 	public List<Account> getAccountsByRole(String role);
 	public List<Account> getAccountsByKey(String key);
 	public void updatePasswordByEmail(String pass, String email);

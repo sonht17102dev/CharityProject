@@ -73,15 +73,15 @@ public class AccountImpl implements IAccountService {
 	}
 
 	@Override
-	public void updateStatusOffline(String account_mail) {
+	public void updateStatusOffline(String account_name) {
 		// TODO Auto-generated method stub
-		accountDAO.updateStatusOffline(account_mail);
+		accountDAO.updateStatusOffline(account_name);
 	}
 
 	@Override
-	public void updateStatusOnline(String account_mail) {
+	public void updateStatusOnline(String account_name) {
 		// TODO Auto-generated method stub
-		accountDAO.updateStatusOnline(account_mail);
+		accountDAO.updateStatusOnline(account_name);
 	}
 
 	@Override

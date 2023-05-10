@@ -5,12 +5,6 @@
 <div class="main-content">
 	<div class="main-content-inner">
 		<div class="breadcrumbs" id="breadcrumbs">
-			<script type="text/javascript">
-				try {
-					ace.settings.check('breadcrumbs', 'fixed')
-				} catch (e) {
-				}
-			</script>
 
 			<ul class="breadcrumb">
 				<li><i class="ace-icon fa fa-home home-icon"></i> <a href="home">Home</a>
@@ -30,8 +24,8 @@
 				</h1>
 			</div>
 			<c:if test="${param.message == 'Cập nhật thành công !!!'}">
-			<div class="page-header" style="color:green;">
-				<h2>Cập nhật thành công !!!</h2>
+			<div class="page-header" >
+				<h1 style="color:green;">Cập nhật thành công !!!</h1>
 			</div>
 			</c:if>
 			<!-- /.page-header -->
@@ -39,7 +33,6 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<!-- PAGE CONTENT BEGINS -->
-					<div class="hr hr-18 dotted hr-double"></div>
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="table-header">Danh sách các đối tác đang hoạt động</div>
@@ -48,8 +41,6 @@
 								<div class="row">
 
 									<div class="col-xs-6">
-										<div class="btn-toolbar">
-
 											<!-- /.nav-search -->
 											<div class="btn-group">
 												<button data-toggle="dropdown"
@@ -66,8 +57,6 @@
 													Tổng số dự án > 10</a></li>
 												</ul>
 											</div>
-
-										</div>
 									</div>
 									<div class="col-xs-6">
 										<div class="nav-search " id="nav-search">

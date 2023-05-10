@@ -30,7 +30,7 @@
 							<div class="col-sm-9">
 						<c:set var = "stt" value = "${partner.partner_status}"/>
 								<select id="mySelect" class="form-control" id="partner_status" 
-									name="partner_status" onchange="myFunction()">
+									name="partner_status" >
 									<c:choose>
 							         <c:when test = "${stt == 'active'}">
 							           <option value="active">Đang hoạt động</option>
@@ -117,9 +117,8 @@
 							<label class="col-sm-3 control-label no-padding-right">Nội
 								dung</label>
 							<div class="col-sm-9">
-								<textarea rows="" cols="" id="partner_content"
-									name="partner_content" style="width: 820px; height: 175px;"
-									 value="${partner.partner_content}"></textarea>
+								<textarea rows="" cols="" id="partner_content" name="partner_content" 
+									style="width: 820px; height: 175px;">${partner.partner_content}</textarea>
 							</div>
 						</div>
 						<br /> <br />
@@ -148,16 +147,24 @@ $(document).ready(function () {
 	var editor = '';
 	$(document).ready(function() {
 		editor = CKEDITOR.replace('partner_content');
-	});
-	
-	$("#btnReset").click(function() {
-		 //$(this).closest('form').find("input[type=text], textarea").val("");
-		 $("#formSubmit")[0].reset();
-		 CKEDITOR.instances['partner_introduce'].setData('');
-		 CKEDITOR.instances['partner_content'].setData('');
-	});
-	$('input.cancle').on("click", function(event) {
-		location.assign("/CharityApp/admin/quan-ly-doi-tac");
+		var defaultTextareaValue = editor.getData();
+		
+		$('#partner_content').data('default', defaultTextareaValue);
+		$("#btnReset").click(function() {
+			defaultTextareaValue = $('#textarea-id').data('default');
+			 $('#mySelect').val("${partner.partner_status}");
+			 $('#partner_name').val("${partner.partner_name}");
+			 $('#partner_slogan').val("${partner.partner_slogan}");
+			 $('#partner_logo').val("${partner.partner_logo}");
+			 $('#partner_banner').val("${partner.partner_banner}");
+			 $('#partner_total_money').val("${partner.partner_total_money}");
+			 $('#partner_number_donate').val("${partner.partner_number_donate}");
+			 $('#partner_introduce').val("${partner.partner_introduce}");
+			 CKEDITOR.instances['partner_content'].setData(defaultTextareaValue);
+		});
+		$('input.cancle').on("click", function(event) {
+			location.assign("/CharityApp/admin/quan-ly-doi-tac");
+		});
 	});
 	$("#formSubmit").validate({
         onfocusout: false,

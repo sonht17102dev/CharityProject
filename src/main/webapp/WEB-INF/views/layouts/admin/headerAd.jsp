@@ -2,13 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/user/taglib.jsp"%>
 
+<security:authentication property="name" var="username" />
+
 <div id="navbar" class="navbar navbar-default">
-	<script type="text/javascript">
-		try {
-			ace.settings.check('navbar', 'fixed')
-		} catch (e) {
-		}
-	</script>
 
 	<div class="navbar-container" id="navbar-container">
 		<button type="button" class="navbar-toggle menu-toggler pull-left"
@@ -27,41 +23,16 @@
 
 		<div class="navbar-buttons navbar-header pull-right" role="navigation">
 			<ul class="nav ace-nav">
-
-				<li class="light-blue"><a data-toggle="dropdown" href="#"
-					class="dropdown-toggle"> <img class="nav-user-photo"
-						src="<c:url value="/resources/admin/assets/avatars/user.jpg"/>" alt="Jason's Photo" /> <span
-						class="user-info">
-						<security:authorize access="hasRole('ADMIN')">
-						 <small>Welcome,</small> <security:authentication property="principal.username" />
-						 </security:authorize>
-					</span> <i class="ace-icon fa fa-caret-down"></i>
-				</a>
-
-					<ul
-						class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-						<li><a href="#"> <i class="ace-icon fa fa-cog"></i>
-								Settings
-						</a></li>
-
-						<li><a href="profile.html"> <i
-								class="ace-icon fa fa-user"></i> Profile
-						</a></li>
-
-						<li class="divider"></li>
-
-						<li> 
-						<!-- Add a logout button -->
-						<form:form action="${pageContext.request.contextPath}/logout" 
-								   method="POST">
+				
+				<li class="white"> 
+					<!-- Add a logout button -->
+					<form:form action="${pageContext.request.contextPath}/logout" 
+							method="POST">
+						<i class="ace-icon fa fa-power-off"></i>
+						<input type="submit" value="Logout" />
 						
-								<i class="ace-icon fa fa-power-off"></i>
-							<input type="submit" value="Logout" />
-						
-						</form:form>
-								
-						</li>
-					</ul></li>
+					</form:form>
+				</li>
 			</ul>
 		</div>
 	</div>
@@ -86,21 +57,11 @@
 
 		<div class="sidebar-shortcuts" id="sidebar-shortcuts">
 			<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-				<button class="btn btn-success">
-					<i class="ace-icon fa fa-signal"></i>
-				</button>
-
-				<button class="btn btn-info">
-					<i class="ace-icon fa fa-pencil"></i>
-				</button>
-
-				<button class="btn btn-warning">
-					<i class="ace-icon fa fa-users"></i>
-				</button>
-
-				<button class="btn btn-danger">
-					<i class="ace-icon fa fa-cogs"></i>
-				</button>
+				<span class="welcome active">
+					<security:authorize access="hasRole('ADMIN')">
+						 Welcome, ${username}
+						 </security:authorize>
+				</span>
 			</div>
 
 			<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">

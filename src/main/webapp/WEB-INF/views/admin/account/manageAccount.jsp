@@ -32,7 +32,6 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<!-- PAGE CONTENT BEGINS -->
-					<div class="hr hr-18 dotted hr-double"></div>
 
 					<div class="row">
 						<div class="col-xs-12">
@@ -42,8 +41,6 @@
 								<div class="row">
 
 									<div class="col-xs-6">
-										<div class="btn-toolbar">
-
 											<!-- /.nav-search -->
 											<div class="btn-group">
 												<button data-toggle="dropdown"
@@ -58,8 +55,6 @@
 														<li><a href="search-account?role=USER">User</a></li>
 												</ul>
 											</div>
-
-										</div>
 									</div>
 									<div class="col-xs-6">
 										<div class="nav-search " id="nav-search">

@@ -15,7 +15,7 @@
 				<h2>Cập nhật các tin tức quyên góp mới nhất</h2>
 				<div class="banner_news">
 					<img src="${latest_news.news_img_banner}">
-					<h3>${latest_news.news_descritption}</h3>
+					<h3>${latest_news.news_description}</h3>
 				</div>
 				${latest_news.news_content}
 
@@ -44,7 +44,7 @@
 					<h2>Cập nhật các tin tức quyên góp mới nhất</h2>
 					<div class="banner_news">
 						<img src="${news_sub.news_img_banner}">
-						<h3>${news_sub.news_descritption}</h3>
+						<h3>${news_sub.news_description}</h3>
 					</div>
 					${news_sub.news_content}
 
@@ -81,7 +81,7 @@
 					<h4>
 						<a type="button"
 							onclick="document.getElementById('id-news-${latest_news.news_id}').style.display='block'"
-							style="width: 100%;">${latest_news.news_descritption}</a>
+							style="width: 100%;">${latest_news.news_description}</a>
 					</h4>
 				</div>
 			</div>
@@ -101,7 +101,7 @@
 						<h4>
 							<a type="button"
 								onclick="document.getElementById('id-news-${o.news_id}').style.display='block'"
-								style="width: 100%;">${o.news_descritption}</a>
+								style="width: 100%;">${o.news_description}</a>
 						</h4>
 					</div>
 				</div>

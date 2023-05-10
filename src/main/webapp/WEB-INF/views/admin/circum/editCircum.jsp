@@ -4,12 +4,6 @@
 <div class="main-content">
 	<div class="main-content-inner">
 		<div class="breadcrumbs" id="breadcrumbs">
-			<script type="text/javascript">
-				try {
-					ace.settings.check('breadcrumbs', 'fixed')
-				} catch (e) {
-				}
-			</script>
 
 			<ul class="breadcrumb">
 				<li><i class="ace-icon fa fa-home home-icon"></i> <a href="home">Home</a>
@@ -26,7 +20,6 @@
 			<div class="row">
 				<div class="col-xs-12">
 
-					<div class="alert alert-${alert}"></div>
 					<h1 class='${message != null ? " " : "hidden"}' style="color:red;">${message}</h1>
 					<form id="formSubmit" action="cap-nhat-quyen-gop" method="post">
 						<div class="form-group">
@@ -46,8 +39,7 @@
 						</div>
 						<br /> <br />
 						<div class="form-group">
-							<label class="col-sm-3 control-label no-padding-right">Thể
-								loại</label>
+							<label class="col-sm-3 control-label no-padding-right">Trạng thái</label>
 							<div class="col-sm-9">
 							<c:set var = "status" value = "${circum.circum_status}"/>
 								<select class="form-control" id="circum_status" name="circum_status">
@@ -156,7 +148,7 @@
 								ảnh</label>
 							<div class="col-sm-9">
 								<textarea rows="" cols="" id="circum_image" name="circum_image"
-									style="width: 820px; height: 175px" value="${images}"></textarea>
+									style="width: 820px; height: 175px" >${images}</textarea>
 							</div>
 						</div>
 						<br /> <br />
@@ -166,7 +158,7 @@
 							<div class="col-sm-9">
 								<textarea rows="" cols="" id="circum_content"
 									name="circum_content" style="width: 820px; height: 175px"
-									value="${circum.circum_content}"></textarea>
+									>${circum.circum_content}</textarea>
 							</div>
 						</div>
 						<br /> <br />
@@ -199,25 +191,25 @@ $(document).ready(function () {
 	$(document).ready(function() {
 		editor = CKEDITOR.replace('circum_content');
 		editor = CKEDITOR.replace('circum_image');
-	});
-	
-	$("#btnReset").click(function() {
-		 //$(this).closest('form').find("input[type=text]").val("");
-		 $("#formSubmit")[0].reset();
-		 $("#circum_type").val("Chọn thể loại");
-		 $("#parner_id").val("");
-		 $("#circum_name").val("");
-		 $("#circum_des").val("");
-		 $("#circum_donations").val("");
-		 $("#circum_target").val("");
-		 $("#circum_raise").val("");
-		 $("#circum_time_end").val("");
-		 $("#circum_start_donate").val("");
-		 CKEDITOR.instances['circum_image'].setData('');
-		 CKEDITOR.instances['circum_content'].setData('');
-	});
-	$('input.cancle').on("click", function(event) {
-		location.assign("/CharityApp/admin/quan-ly-quyen-gop");
+		/*
+		$("#btnReset").click(function() {
+			 $("#formSubmit")[0].reset();
+			 $("#circum_type").val("Chọn thể loại");
+			 $("#parner_id").val("");
+			 $("#circum_name").val("");
+			 $("#circum_des").val("");
+			 $("#circum_donations").val("");
+			 $("#circum_target").val("");
+			 $("#circum_raise").val("");
+			 $("#circum_time_end").val("");
+			 $("#circum_start_donate").val("");
+			 CKEDITOR.instances['circum_image'].setData('');
+			 CKEDITOR.instances['circum_content'].setData('');
+		});
+		*/
+		$('input.cancle').on("click", function(event) {
+			location.assign("/CharityApp/admin/quan-ly-quyen-gop");
+		});
 	});
 	$("#formSubmit").validate({
         onfocusout: false,

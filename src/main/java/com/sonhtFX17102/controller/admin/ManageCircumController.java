@@ -104,16 +104,9 @@ public class ManageCircumController extends BaseController {
 		String splitString = img.substring(3, img.length() - 6);
 		String content = request.getParameter("circum_content");
 		String status = request.getParameter("circum_status");
-		try {
-			circumService.upDateCircum(Integer.parseInt(id), Integer.parseInt(pId), name, type, content, splitString, des, 
+		circumService.upDateCircum(Integer.parseInt(id), Integer.parseInt(pId), name, type, content, splitString, des, 
 					Integer.parseInt(donation), Long.parseLong(target), Long.parseLong(raise), Integer.parseInt(end), start, status);
-			return "redirect:quan-ly-quyen-gop";
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("message", "Cập nhật thất bại - Tiêu đề đã tồn tại vui lòng thử lại !!!");
-			
-		}
-		return "redirect:cap-nhat-quyen-gop";
+		return "redirect:quan-ly-quyen-gop";
 	}
 
 	@RequestMapping(value = "them-quyen-gop", method = RequestMethod.GET)
