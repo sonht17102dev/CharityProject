@@ -51,16 +51,17 @@
 												</button>
 												<ul class="dropdown-menu dropdown-warning">
 													<li><a href="${pageContext.request.contextPath}/admin/search-money">
-													Tổng tiền quyên góp > 30 tỷ</a></li>
+													Tổng tiền quyên góp > 2 tỷ</a></li>
 													<li class="divider"></li>
 													<li><a href="${pageContext.request.contextPath}/admin/search-project">
-													Tổng số dự án > 10</a></li>
+													Tổng số dự án > 30</a></li>
 												</ul>
 											</div>
 									</div>
 									<div class="col-xs-6">
 										<div class="nav-search " id="nav-search">
-											<form id="form-search" class="form-search" action="${pageContext.request.contextPath}/admin/search-partner" method="post">
+											<form id="form-search" class="form-search" method="post"
+											action="${pageContext.request.contextPath}/admin/search-partner" >
 												<span class="input-icon"> 
 												<input type="text"
 													placeholder="Search Từ khóa" class="nav-search-input"
@@ -86,7 +87,7 @@
 												<th class="center">Trạng thái</th>
 												<th class="center">Tên đối tác</th>
 												<th class="center">Logo</th>
-												<th class="center">Tổng số tiền nhận (Đơn vị: tỷ)</th>
+												<th class="center">Tổng số tiền nhận (Đơn vị: triệu đồng)</th>
 												<th class="center">Tổng các dự án </th>
 
 												<th class="center">Chức năng</th>
@@ -95,6 +96,7 @@
 
 										<tbody id="tbody">
 											<c:forEach items="${listTop5Partner}" var="o">
+											<c:set var="money" value="${o.partner_total_money}"/>
 												<tr class="product-brand-number">
 													<td class="center"><label class="pos-rel"> <input
 															type="checkbox" class="checkbox" /> <span class="lbl"></span>
@@ -103,7 +105,15 @@
 													<td class="center"><span class="label label-success arrowed">${o.partner_status}</span></td>
 													<td>${o.partner_name}</td>
 													<td class="center"><img src="${o.partner_logo}" width="70" height="30"></td>
-													<td class="center">${o.partner_total_money} </td>
+													
+													<c:if test="${money <= 1000}">
+													<td class="center">${money} </td>
+													</c:if>
+													<c:if test="${money > 1000}">
+													<td class="center">
+													<fmt:formatNumber type = "number" 
+         										pattern = "###,###" value = "${money}" /> </td>
+													</c:if>
 													<td class="center">${o.partner_number_donate} </td>
 													<td class="center">
 														<div class="hidden-sm hidden-xs action-buttons">

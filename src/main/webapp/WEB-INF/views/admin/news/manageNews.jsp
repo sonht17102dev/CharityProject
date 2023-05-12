@@ -46,22 +46,25 @@
 												<button data-toggle="dropdown"
 													class="btn btn-success dropdown-toggle"
 													aria-expanded="true">
-													Bộ lọc<span
+													Bộ lọc ngày đăng bài<span
 														class="ace-icon fa fa-caret-down icon-on-right"></span>
 												</button>
 												<ul class="dropdown-menu dropdown-warning">
-													<li><a href="${pageContext.request.contextPath}/admin/search-money">
-													Tổng tiền quyên góp > 30 tỷ</a></li>
+													<li><a href="${pageContext.request.contextPath}/admin/searchYear?year=2023">
+													2023</a></li>
 													<li class="divider"></li>
-													<li><a href="${pageContext.request.contextPath}/admin/search-project">
-													Tổng số dự án > 10</a></li>
+													<li><a href="${pageContext.request.contextPath}/admin/searchYear?year=2022">
+													2022</a></li>
+													<li class="divider"></li>
+													<li><a href="${pageContext.request.contextPath}/admin/searchYear?year=2021">
+													2021</a></li>
 												</ul>
 											</div>
 									</div>
 									<div class="col-xs-6">
 										<div class="nav-search " id="nav-search">
-											<form id="form-search" class="form-search" 
-												action="${pageContext.request.contextPath}/admin/search-news" method="post">
+											<form id="form-search" class="form-search" method="post"
+												action="${pageContext.request.contextPath}/admin/search-news" >
 												<span class="input-icon"> 
 												<input type="text"
 													placeholder="Search Từ khóa" class="nav-search-input"

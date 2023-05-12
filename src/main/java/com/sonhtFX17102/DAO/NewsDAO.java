@@ -17,12 +17,17 @@ public class NewsDAO extends BaseDao {
 		List<News> list = _jdbcTemplate.query(sql, new MapperNews());
 		return list;
 	}
+	public List<News> getTop2News() {
+		String sql = "select top 2 * from news order by news_id";
+		List<News> list = _jdbcTemplate.query(sql, new MapperNews());
+		return list;
+	}
 	public List<News> getTop6List() {
 		String sql = "select top 6 * from news";
 		List<News> list = _jdbcTemplate.query(sql, new MapperNews());
 		return list;
 	}
-
+	
 	public List<News> getNext6News(int amount) {
 		String sql = "SELECT *\n" + "  FROM news\n where news_status = 'active'" + " ORDER BY news_id\n" + "OFFSET " + amount + " ROWS\n"
 				+ " FETCH NEXT 6 ROWS ONLY";
@@ -86,5 +91,16 @@ public class NewsDAO extends BaseDao {
 				+ " news_status = N'" + status + "' "
 				+ " where news_id = " + news_id + " ;" ;
 		_jdbcTemplate.update(sql);
+	}
+	
+	public List<News> getNewsByYear(String year) {
+		String sql = "select * from news where news_post_date like '%" + year + "' and news_status='active' ;" ;
+		List<News> list = _jdbcTemplate.query(sql, new MapperNews());
+		return list;
+	}
+	public List<News> getNewsByKey(String key) {
+		String sql = "select * from news where news_description like N'%" + key + "%' and news_status='active' ;" ;
+		List<News> list = _jdbcTemplate.query(sql, new MapperNews());
+		return list;
 	}
 }

@@ -561,10 +561,6 @@ label {
   color: #fff;
   text-shadow: none;
 }
-.logo img {
-  width: 10%;
-  height: 10%;
-}
 /* line 79, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_theme-default.scss */
 ::-moz-selection {
   background: #444;

@@ -34,7 +34,6 @@ public class LoginController extends BaseController {
 	public String showAccessDenied() {
 		return "login/access-denied";
 	}
-	
 	/* 
 	 * url này để thay đổi trạng thái khi 1 account logout thành công
 	 * chuyển trạng thái status từ online -> offline

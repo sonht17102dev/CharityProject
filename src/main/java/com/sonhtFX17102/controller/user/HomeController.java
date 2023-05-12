@@ -11,10 +11,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sonhtFX17102.controller.BaseController;
 import com.sonhtFX17102.entities.Circum;
+import com.sonhtFX17102.entities.News;
+import com.sonhtFX17102.entities.Partner;
+import com.sonhtFX17102.service.HomeService;
 import com.sonhtFX17102.service.impl.AccountImpl;
 
 @Controller
 public class HomeController extends BaseController {
+	@Autowired
+	public HomeService _homeService;
 	@Autowired
 	private AccountImpl accountService;
 	
@@ -25,8 +30,13 @@ public class HomeController extends BaseController {
 			String[] banner_img = circum.getCircum_image().split(",");
 			circum.setCircum_image(banner_img[0]);
 		}
-
-		_mvShare.addObject("list6", list);
+		List<Partner> listPartners = _homeService.getTop6Partner();
+		List<News> listNews = _homeService.getTop2News();
+		
+		_mvShare.addObject("list6Partner", listPartners);
+		_mvShare.addObject("list2News", listNews);
+		_mvShare.addObject("list6Circum", list);
+		_mvShare.addObject("category", category);
 		_mvShare.setViewName("user/index");
 		return _mvShare;
 	}
@@ -36,8 +46,13 @@ public class HomeController extends BaseController {
 	 * chuyển trạng thái status từ offline -> online
 	 */
 	@RequestMapping(value = "/trang-chu/loginSuccess", method = RequestMethod.GET)
-	public String loginSuccess(@RequestParam("usermail") String usermail) {
-		accountService.updateStatusOnline(usermail);
+	public String loginSuccess(@RequestParam("username") String username) {
+		accountService.updateStatusOnline(username);
 		return "redirect:/trang-chu";
+	}
+	
+	@RequestMapping("/quyen-gop")
+	public String payment() {
+		return "user/cart/cart";
 	}
 }

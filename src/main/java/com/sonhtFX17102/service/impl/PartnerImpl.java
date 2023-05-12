@@ -96,4 +96,5 @@ public class PartnerImpl implements IPartnerService {
 		partnerDAO.updatePartnerById(partner_id, partner_name, partner_slogan, partner_logo, partner_banner,
 				partner_number_donate, partner_total_money, partner_introduce, partner_content, partner_status);
 	}
+
 }

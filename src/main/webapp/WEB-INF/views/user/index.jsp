@@ -63,8 +63,6 @@
 								<p>lượt quyên góp</p>
 							</div>
 						</div>
-						<a href="#" data-scroll-nav='1' class="boxed-btn4">Quyên góp</a> <a
-							href="#" data-scroll-nav='1' class="boxed-btn4">Giới thiệu</a>
 					</div>
 				</div>
 			</div>
@@ -87,7 +85,7 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-12">
-					<c:forEach items="${list6}" var="o">
+					<c:forEach items="${list6Circum}" var="o">
 						<c:set var="percent"
 							value="${o.circum_target / o.circum_raise * 100}" />
 						<div class="single_cause box-cause">
@@ -134,11 +132,11 @@
 										<span><fmt:formatNumber type="number"
 													maxFractionDigits="3" value="${percent}" />%</span></li>
 										<c:if test="${percent >=100}">
-											<li><a href="#" data-scroll-nav='1' class="btn-Donate">Đạt
+											<li><a href="#" class="btn-Donate">Đạt
 													mục tiêu</a></li>
 										</c:if>
 										<c:if test="${percent < 100}">
-											<li><a href="quyen-gop" data-scroll-nav='1'
+											<li><a href="quyen-gop" 
 												class="btn-Donate">Quyên góp</a></li>
 										</c:if>
 									</ul>
@@ -235,89 +233,30 @@
 					</div>
 				</div>
 				<div class="row">
+				<c:forEach items="${list6Partner}" var="p">
 					<div class="col-md-4 our-partner">
 						<div>
 							<img
-								src="<c:url value="/resources/img/volenteer/quy-suc-manh2000.png"/>">
+								src="<c:url value="${p.partner_logo}"/>">
 						</div>
 						<div class="single-defination">
-							<h4 class="mb-20" style="color: deeppink;">Sức mạnh 2000</h4>
-							<p>Tiền lẻ mỗi ngày - Xây ngay nghìn trường mới</p>
+							<h4 class="mb-20" style="color: deeppink;">${p.partner_name}</h4>
+							<p>${p.partner_slogan}</p>
 							<p>
-								<a href="#">Xem chi tiết >></a>
+								<a href="doi-tac-chi-tiet?id=${p.partner_id}">Xem chi tiết >></a>
 							</p>
 						</div>
 					</div>
-					<div class="col-md-4 our-partner">
-						<div>
-							<img
-								src="<c:url value="/resources/img/volenteer/quy-trang-khuyet.png"/>">
-						</div>
-						<div class="single-defination">
-							<h4 class="mb-20" style="color: deeppink;">Quỹ trăng khuyết</h4>
-							<p>Hỗ trợ người già & trẻ em</p>
-							<p>
-								<a href="#">Xem chi tiết >></a>
-							</p>
-						</div>
-					</div>
-					<div class="col-md-4 our-partner">
-						<div>
-							<img
-								src="<c:url value="/resources/img/volenteer/giao-hoi-phat-giao.jpg"/>">
-						</div>
-						<div class="single-defination">
-							<h4 class="mb-20" style="color: deeppink;">Giáo hội phật
-								giáo</h4>
-							<p>Tổ chức Phật Giáo toàn quốc</p>
-							<p>
-								<a href="#">Xem chi tiết >></a>
-							</p>
-						</div>
-					</div>
+				</c:forEach>
 				</div>
-				<div class="row ">
-					<div class="col-md-4 our-partner">
-						<div>
-							<img
-								src="<c:url value="/resources/img/volenteer/quy-suc-manh2000.png"/>">
-						</div>
-						<div class="single-defination">
-							<h4 class="mb-20" style="color: deeppink;">Sức mạnh 2000</h4>
-							<p>Tiền lẻ mỗi ngày - Xây ngay nghìn trường mới</p>
-							<p>
-								<a href="#">Xem chi tiết >></a>
-							</p>
-						</div>
-					</div>
-					<div class="col-md-4 our-partner">
-						<div>
-							<img
-								src="<c:url value="/resources/img/volenteer/quy-trang-khuyet.png"/>">
-						</div>
-						<div class="single-defination">
-							<h4 class="mb-20" style="color: deeppink;">Quỹ trăng khuyết</h4>
-							<p>Hỗ trợ người già & trẻ em</p>
-							<p>
-								<a href="#">Xem chi tiết >></a>
-							</p>
-						</div>
-					</div>
-					<div class="col-md-4 our-partner">
-						<div>
-							<img
-								src="<c:url value="/resources/img/volenteer/giao-hoi-phat-giao.jpg"/>">
-						</div>
-						<div class="single-defination">
-							<h4 class="mb-20" style="color: deeppink;">Giáo hội phật
-								giáo</h4>
-							<p>Tổ chức Phật Giáo toàn quốc</p>
-							<p>
-								<a href="#">Xem chi tiết >></a>
-							</p>
-						</div>
-					</div>
-				</div>
+				<div class="row">
+                    <div class="col-12 mt-4">
+                        <div class="donate_now_btn text-center">
+                            
+                            <a href="doi-tac" class="boxed-btn4">Xem thêm >></a>
+                        </div>
+                    </div>
+                </div>
 			</div>
 
 		</div>
@@ -340,102 +279,25 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="news_active owl-carousel">
+					<c:forEach items="${list2News}" var="n">
 						<div class="single__blog d-flex align-items-center">
 							<div class="thum">
-								<img src="<c:url value="/resources/img/news/1.png"/>" alt="">
+								<img src="<c:url value="${n.news_img_banner}"/>" alt="">
 							</div>
 							<div class="newsinfo">
-								<span>July 18, 2019</span> <a href="single-blog.html">
-									<h3>Pure Water Is More Essential</h3>
+								<span>${n.news_post_date}</span> <a href="tin-tuc-chi-tiet?id=${n.news_id}">
+									<h3>${n.news_description }</h3>
 								</a>
-								<p>The passage experienced a surge in popularity during the
-									1960s when used it on their sheets, and again.</p>
-								<a class="read_more" href="single-blog.html">Read More</a>
+								<a class="read_more" href="tin-tuc-chi-tiet?id=${n.news_id}">>>Xem chi tiết</a>
 							</div>
 						</div>
-						<div class="single__blog d-flex align-items-center">
-							<div class="thum">
-								<img src="<c:url value="/resources/img/news/2.png"/>" alt="">
-							</div>
-							<div class="newsinfo">
-								<span>July 18, 2019</span> <a href="single-blog.html">
-									<h3>Pure Water Is More Essential</h3>
-								</a>
-								<p>The passage experienced a surge in popularity during the
-									1960s when used it on their sheets, and again.</p>
-								<a class="read_more" href="single-blog.html">Read More</a>
-							</div>
-						</div>
+					</c:forEach>
 					</div>
 				</div>
 			</div>
+			
 		</div>
 	</div>
 	<!-- news__area_end  -->
-
-	<div data-scroll-index='1' class="make_donation_area section_padding">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-6">
-					<div class="section_title text-center mb-55">
-						<h3>
-							<span>Make a Donation</span>
-						</h3>
-					</div>
-				</div>
-			</div>
-			<div class="row justify-content-center">
-				<div class="col-lg-6">
-					<form action="#" class="donation_form">
-						<div class="row align-items-center">
-							<div class="col-md-4">
-								<div class="single_amount">
-									<div class="input_field">
-										<div class="input-group">
-											<div class="input-group-prepend">
-												<span class="input-group-text" id="basic-addon1">$</span>
-											</div>
-											<input type="text" class="form-control" placeholder="40,200"
-												aria-label="Username" aria-describedby="basic-addon1">
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-md-8">
-								<div class="single_amount">
-									<div
-										class="fixed_donat d-flex align-items-center justify-content-between">
-										<div class="select_prise">
-											<h4>Select Amount:</h4>
-										</div>
-										<div class="single_doonate">
-											<input type="radio" id="blns_1" name="radio-group" checked>
-											<label for="blns_1">10</label>
-										</div>
-										<div class="single_doonate">
-											<input type="radio" id="blns_2" name="radio-group" checked>
-											<label for="blns_2">30</label>
-										</div>
-										<div class="single_doonate">
-											<input type="radio" id="Other" name="radio-group" checked>
-											<label for="Other">Other</label>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</form>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-12">
-					<div class="donate_now_btn text-center">
-						<a href="#" class="boxed-btn4">Donate Now</a>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div>
 </body>
 </html>

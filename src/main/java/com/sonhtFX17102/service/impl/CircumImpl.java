@@ -14,7 +14,7 @@ import com.sonhtFX17102.service.ICircumService;
 public class CircumImpl implements ICircumService {
 	@Autowired
 	private CircumDao circumDao;
-
+	
 	@Override
 	public int getCountAllCircums() {
 
@@ -118,6 +118,12 @@ public class CircumImpl implements ICircumService {
 	public List<Circum> findCircumsInactive(String status) {
 		// TODO Auto-generated method stub
 		return circumDao.findCircumsInactive(status);
+	}
+
+	@Override
+	public List<Circum> getTop3Circums() {
+		// TODO Auto-generated method stub
+		return circumDao.getTop3Circums();
 	}
 
 }

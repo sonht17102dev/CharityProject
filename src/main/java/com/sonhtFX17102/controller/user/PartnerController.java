@@ -27,7 +27,7 @@ public class PartnerController extends BaseController{
 	public ModelAndView partner() {
 		List<PartnerDTO> list = partnerService.getAllPartners();
 		_mvShare.addObject("listPartner", list);
-		_mvShare.setViewName("user/partner");
+		_mvShare.setViewName("user/partner/partner");
 		return _mvShare;
 	}
 	@RequestMapping(value = "doi-tac-chi-tiet", method = RequestMethod.GET)
@@ -38,7 +38,7 @@ public class PartnerController extends BaseController{
 		_mvShare.addObject("listPartner", list);
 		List<Circum> listCircumOfPartner = partnerService.getAllCircumsOfPartner(id);
 		_mvShare.addObject("listCircumOfPartner", listCircumOfPartner);
-		_mvShare.setViewName("user/partner_detail");
+		_mvShare.setViewName("user/partner/partner_detail");
 		return _mvShare;
 	}
 }

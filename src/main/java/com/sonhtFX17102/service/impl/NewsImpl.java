@@ -69,4 +69,16 @@ public class NewsImpl implements INewsService{
 		// TODO Auto-generated method stub
 		newsDAO.updateNewsById(news_id, description, banner, date, content, status);
 	}
+
+	@Override
+	public List<News> getNewsByYear(String year) {
+		// TODO Auto-generated method stub
+		return newsDAO.getNewsByYear(year);
+	}
+
+	@Override
+	public List<News> getNewsByKey(String key) {
+		// TODO Auto-generated method stub
+		return newsDAO.getNewsByKey(key);
+	}
 }

@@ -10,10 +10,14 @@ import com.sonhtFX17102.entities.Circum;
 
 @Service
 public interface ICircumService {
+	
+	
+	public List<Circum> get6NewestCircums() ;
+	
+	public List<Circum> getTop6Circums() ;
+	public List<Circum> getTop3Circums();
 	public List<Circum> getAllCircums();
 	public int getCountAllCircums();
-	public List<Circum> get6NewestCircums();
-	public List<Circum> getTop6Circums();
 	public List<Circum> getTop10Circums();
 	public CircumDTO getCircumDetailsById(int id) ;
 	public List<Circum> getPagingPage(int index);

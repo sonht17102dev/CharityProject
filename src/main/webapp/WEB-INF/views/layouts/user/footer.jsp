@@ -37,14 +37,9 @@
 					<div class="footer_widget">
 						<h3 class="footer_title">Hoàn cảnh quyên góp</h3>
 						<ul class="links">
-							<li><a href="#">Vì trẻ em</a></li>
-							<li><a href="#">Người Già, Người Khuyết Tật</a></li>
-							<li><a href="#">Bệnh Hiểm Nghèo</a></li>
-							<li><a href="#">Hoàn Cảnh Khó Khăn</a></li>
-							<li><a href="#">Hỗ Trợ Giáo Dục</a></li>
-							<li><a href="#">Đầu Tư Cơ Sở Vật Chất</a></li>
-							<li><a href="#">Cứu Trợ Động Vật</a></li>
-							<li><a href="#">Bảo Vệ Môi Trường</a></li>
+							<c:forEach var="c" items="${category}">
+								<li><a href="search?type=${c}">${c}</a></li>
+							</c:forEach>
 						</ul>
 					</div>
 				</div>

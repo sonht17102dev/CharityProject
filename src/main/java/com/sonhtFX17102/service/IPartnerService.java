@@ -11,7 +11,6 @@ import com.sonhtFX17102.entities.Partner;
 
 @Service
 public interface IPartnerService {
-	@Autowired
 	public List<PartnerDTO> getAllPartners();
 	public Partner getPartnerById(int id);
 	public List<Circum> getAllCircumsOfPartner(int partner_id);
@@ -28,4 +27,5 @@ public interface IPartnerService {
 	public void updatePartnerById(int partner_id, String partner_name, String partner_slogan, String partner_logo,
 			String partner_banner, int partner_number_donate, int partner_total_money, String partner_introduce,
 			String partner_content, String partner_status);
+	
 }

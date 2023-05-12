@@ -17,10 +17,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sonhtFX17102.controller.BaseController;
 import com.sonhtFX17102.entities.Circum;
 import com.sonhtFX17102.entities.News;
+import com.sonhtFX17102.service.impl.CircumImpl;
 import com.sonhtFX17102.service.impl.NewsImpl;
 
 @Controller
 public class NewsController extends BaseController{
+	@Autowired
+	private CircumImpl circumService;
 	@Autowired
 	private NewsImpl newsService;
 	
@@ -33,7 +36,7 @@ public class NewsController extends BaseController{
 		_mvShare.addObject("latest_news", latest_news);
 		//listNews.remove(0);
 		_mvShare.addObject("listAllNews", listNews);
-		List<Circum> list = _homeService.getTop3Circums();
+		List<Circum> list = circumService.getTop3Circums();
 		for (Circum circum : list) {
 			String[] banner_img = circum.getCircum_image().split(",");
 			circum.setCircum_image(banner_img[0]);
@@ -41,7 +44,7 @@ public class NewsController extends BaseController{
 		int size = newsService.getAllNews().size();
 		_mvShare.addObject("listTop3Circum", list);
 		_mvShare.addObject("size", size);
-		_mvShare.setViewName("user/news");
+		_mvShare.setViewName("user/news/news");
 		return _mvShare;
 	}
 

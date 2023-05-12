@@ -1,14 +1,11 @@
-package com.sonhtFX17102.controller.admin;
+package com.sonhtFX17102.controller.search.user;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,13 +14,17 @@ import com.sonhtFX17102.entities.Circum;
 import com.sonhtFX17102.service.impl.CircumImpl;
 
 @Controller
-public class SearchCircumController extends BaseController{
-	@Autowired
+public class SeachUserController extends BaseController{
+	
 	private CircumImpl circumService;
 	
-	@RequestMapping(value = "admin/search", method = RequestMethod.GET)
+	@Autowired
+	public SeachUserController(CircumImpl circumService) {
+		this.circumService = circumService;
+	}
+
+	@RequestMapping(value = "/search") 
 	public ModelAndView findByCategoryCircum(@RequestParam("type") String type) {
-//		String type = request.getParameter("type");
 		List<Circum> list = new ArrayList<>();
 		if(type != null && type.equalsIgnoreCase(category[0].trim())) {
 			list = circumService.findByCategory(type);
@@ -49,18 +50,9 @@ public class SearchCircumController extends BaseController{
 		else if(type != null && type.equalsIgnoreCase(category[7].trim())) {
 			list = circumService.findByCategory(type);
 		}
-		_mvShareAdmin.addObject("listTop10Circum", list);
-		_mvShareAdmin.addObject("category", category);
-		_mvShareAdmin.setViewName("admin/circum/manageCircum");
-		return _mvShareAdmin;
+		_mvShare.addObject("listTop6Circum", list);
+		_mvShare.addObject("category", category);
+		_mvShare.setViewName("user/cause/cause");
+		return _mvShare;
 	}
-	
-	@RequestMapping(value = "admin/search", method = RequestMethod.POST)
-	public ModelAndView findByNameCircum(HttpServletRequest request) {
-		String name = request.getParameter("nav-search-input");
-		List<Circum> list = circumService.findByName(name);
-		_mvShareAdmin.addObject("listTop10Circum", list);
-		_mvShareAdmin.setViewName("admin/circum/manageCircum");
-		return _mvShareAdmin;
-	} 
 }

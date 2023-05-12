@@ -21,4 +21,6 @@ public interface INewsService {
 	public News getNewsById(int id);
 	public void updateNewsById(int news_id, String description, String banner,
 			String date, String content, String status);
+	public List<News> getNewsByYear(String year);
+	public List<News> getNewsByKey(String key);
 }

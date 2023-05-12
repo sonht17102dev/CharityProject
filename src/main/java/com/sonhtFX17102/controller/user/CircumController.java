@@ -24,7 +24,7 @@ public class CircumController extends BaseController {
 	@RequestMapping(value = "/nhung-hoan-canh", method = RequestMethod.GET)
 	public ModelAndView circum(HttpServletRequest request) {
 
-		_mvShare.setViewName("user/cause");
+		_mvShare.setViewName("user/cause/cause");
 
 		String indexPage = request.getParameter("trang");
 		if (indexPage == null) {
@@ -44,6 +44,7 @@ public class CircumController extends BaseController {
 		_mvShare.addObject("endPage", endPage);
 		_mvShare.addObject("tag", index);
 		_mvShare.addObject("listTop6Circum", list);
+		_mvShare.addObject("category", category);
 		return _mvShare;
 	}
 
@@ -52,7 +53,7 @@ public class CircumController extends BaseController {
 	public ModelAndView circum_detail(@RequestParam("id") int id) {
 		CircumDTO circumDetail = (CircumDTO) circumService.getCircumDetailsById(id);
 		String[] img = circumDetail.getCircum_image().split(",");
-		List<Circum> list = _homeService.getTop3Circums();
+		List<Circum> list = circumService.getTop3Circums();
 		for (Circum circum : list) {
 			String[] banner_img = circum.getCircum_image().split(",");
 			circum.setCircum_image(banner_img[0]);
@@ -61,7 +62,7 @@ public class CircumController extends BaseController {
 		_mvShare.addObject("listTop3Circum", list);
 		_mvShare.addObject("circumDetail", circumDetail);
 		_mvShare.addObject("img", img);
-		_mvShare.setViewName("user/cause_detail");
+		_mvShare.setViewName("user/cause/cause_detail");
 		return _mvShare;
 	}
 

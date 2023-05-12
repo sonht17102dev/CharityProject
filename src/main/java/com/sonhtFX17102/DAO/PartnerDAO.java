@@ -50,6 +50,13 @@ public class PartnerDAO extends BaseDao{
 		return list;
 	}
 	
+	public List<Partner> getTop6Partner() {
+		String sql = "select top 6 * from partner\r\n"
+				+ " where partner_status='active' "
+				+ " order by partner_id;";
+		List<Partner> list = _jdbcTemplate.query(sql, new MapperPartner());
+		return list;
+	}
 	public List<Partner> getPartnersByKey(String key) {
 		String sql = "select * from partner\r\n"
 				+ " where partner_name like N'%"+ key +"%' and partner_status='active';";
@@ -58,13 +65,13 @@ public class PartnerDAO extends BaseDao{
 	}
 	public List<Partner> getPartnerByMoney() {
 		String sql = "select * from partner\r\n"
-				+ " where partner_total_money > 30 and partner_status='active';";
+				+ " where partner_total_money > 2000 and partner_status='active';";
 		List<Partner> list = _jdbcTemplate.query(sql, new MapperPartner());
 		return list;
 	}
 	public List<Partner> getPartnerByProject() {
 		String sql = "select * from partner\r\n"
-				+ " where partner_total_money > 10 and partner_status='active';";
+				+ " where partner_number_donate > 30 and partner_status='active';";
 		List<Partner> list = _jdbcTemplate.query(sql, new MapperPartner());
 		return list;
 	}

@@ -28,14 +28,11 @@ public class AuthenticationSuccessHandlerImpl extends SimpleUrlAuthenticationSuc
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
 		String username = authentication.getName();
-    	//System.out.println("the user " + usermail + " has loggin in system.");
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
         if (roles.contains("ROLE_ADMIN")) {
-            getRedirectStrategy().sendRedirect(request, response, "/admin/loginSuccess?username="+username);
-//        	response.sendRedirect("/CharityApp/admin/loginSuccess?usermail="+usermail);
+        	response.sendRedirect("/CharityApp/admin/loginSuccess?username="+username);
         } else if (roles.contains("ROLE_USER")) {
-            getRedirectStrategy().sendRedirect(request, response, "/trang-chu/loginSuccess?username="+username);
-//        	response.sendRedirect("/CharityApp/trang-chu/loginSuccess?usermail="+usermail);
+        	response.sendRedirect("/CharityApp/trang-chu/loginSuccess?username="+username);
         } else {
 	        super.onAuthenticationSuccess(request, response, authentication);
 	        return;

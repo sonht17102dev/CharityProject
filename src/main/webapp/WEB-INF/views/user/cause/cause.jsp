@@ -66,12 +66,11 @@
 								<span><fmt:formatNumber type="number"
 											maxFractionDigits="3" value="${percent}" />%</span></li>
 								<c:if test="${percent >=100}">
-									<li><a href="#" data-scroll-nav='1' class="btn-Donate">Đạt
+									<li><a href="#" class="btn-Donate">Đạt
 											mục tiêu</a></li>
 								</c:if>
 								<c:if test="${percent < 100}">
-									<li><a href="quyen-gop" data-scroll-nav='1'
-										class="btn-Donate">Quyên góp</a></li>
+									<li><a href="quyen-gop" class="btn-Donate">Quyên góp</a></li>
 								</c:if>
 							</ul>
 						</div>

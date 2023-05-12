@@ -17,9 +17,8 @@
 	background-color: red;
 	color: white;
 }
-.white input {
+.white > li > a {
 	background:#438eb9; 
-	border:none;
 }
 .sidebar-shortcuts-large .welcome {
 	color: #337ab7;

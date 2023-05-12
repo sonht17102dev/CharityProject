@@ -49,8 +49,7 @@
 			<password-encoder ref="md5PasswordEncoder" />
 			<jdbc-user-service data-source-ref="dataSource"
 				users-by-username-query="select account_name, account_password , ENABLED  from account where account_name = ?"
-				authorities-by-username-query="Select account_name, concat('ROLE_',account_role) 
-				account_role from account where account_name = ? ;" />
+				authorities-by-username-query="Select account_name, concat('ROLE_',account_role) account_role from account where account_name = ? ;" />
 
 		</authentication-provider>
 
