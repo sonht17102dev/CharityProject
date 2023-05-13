@@ -2,6 +2,8 @@ package com.sonhtFX17102.controller.user;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +26,8 @@ public class HomeController extends BaseController {
 	private AccountImpl accountService;
 	
 	@RequestMapping(value = { "/", "/trang-chu" }, method = RequestMethod.GET)
-	public ModelAndView index() {
+	public ModelAndView index(HttpSession session) {
+		
 		List<Circum> list = _homeService.getTop6Circums();
 		for (Circum circum : list) {
 			String[] banner_img = circum.getCircum_image().split(",");
@@ -38,6 +41,7 @@ public class HomeController extends BaseController {
 		_mvShare.addObject("list6Circum", list);
 		_mvShare.addObject("category", category);
 		_mvShare.setViewName("user/index");
+		//session.removeAttribute("message");
 		return _mvShare;
 	}
 	
@@ -51,8 +55,4 @@ public class HomeController extends BaseController {
 		return "redirect:/trang-chu";
 	}
 	
-	@RequestMapping("/quyen-gop")
-	public String payment() {
-		return "user/cart/cart";
-	}
 }

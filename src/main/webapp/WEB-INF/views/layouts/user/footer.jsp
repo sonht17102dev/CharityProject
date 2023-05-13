@@ -9,8 +9,11 @@
 				<div class="col-xl-4 col-md-6 col-lg-4 ">
 					<div class="footer_widget">
 						<div class="footer_logo">
-							<a href="#"> CHĂM SÓC KHÁCH HÀNG </a>
+							<a href="trang-chu">
+							<img src="<c:url value="/resources/user/img/footer_logo.png"/>" alt="footer_logo">
+							 </a>
 						</div>
+						
 						<p class="address_text">Địa chỉ: Tầng M, Tòa nhà Victory
 							Tower, Số 12 Tân Trào, Phường Tân Phú, Quận 7, Thành phố Hồ Chí
 							Minh.</p>

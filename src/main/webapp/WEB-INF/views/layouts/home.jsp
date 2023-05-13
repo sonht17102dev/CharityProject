@@ -17,6 +17,7 @@
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
+    <link rel="stylesheet" href='<c:url value="/resources/user/css/table-cart.css"/>'>
     <link rel="stylesheet" href='<c:url value="/resources/user/css/bootstrap.min.css"/>'>
     <link rel="stylesheet" href="<c:url value="/resources/user/css/owl.carousel.min.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/user/css/magnific-popup.css"/>">
@@ -31,16 +32,12 @@
     <link rel="stylesheet" href="<c:url value="/resources/user/css/responsive.css"/>">
     <link rel="stylesheet" href="<c:url value="/resources/user/css/account-css.css"/>">
     
-    <!-- jquery pagination plugin -->
-    <!-- 
-     -->
+    <!-- jquery validate  -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <%--
-	<script src="<c:url value="/resources/admin/assets/js/jquery.twbsPagination.js"/>"></script>
-     --%>
 	<script
 		src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"
 		type="text/javascript"></script>
+	
 </head>
 <body>
 	<%@include file="/WEB-INF/views/layouts/user/header.jsp"%>

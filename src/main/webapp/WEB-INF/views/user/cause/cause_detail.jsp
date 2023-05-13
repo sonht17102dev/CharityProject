@@ -107,7 +107,7 @@
 												mục tiêu</a></li>
 									</c:if>
 									<c:if test="${percentTop3 < 100}">
-										<li><a href="quyen-gop" data-scroll-nav='1'
+										<li><a href="quyen-gop?id=${o.circum_id}" 
 											class="btn-Donate">Quyên góp</a></li>
 									</c:if>
 								</ul>

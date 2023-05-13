@@ -332,14 +332,19 @@ body {
 .hidden {
   display: none;
 }
-
+.success {
+	color: green;
+}
+.error {
+	color: red;
+}
 .title-detail-cause .container{
   max-width: 100%;
   
   padding-top: 70px;
 }
     /* Full-width input fields */
-    input[type=text], input[type=password] {
+    input[type=text], input[type=password], input[type=email] {
       width: 100%;
       padding: 12px 20px;
       margin: 8px 0;

@@ -70,7 +70,7 @@
 											mục tiêu</a></li>
 								</c:if>
 								<c:if test="${percent < 100}">
-									<li><a href="quyen-gop" class="btn-Donate">Quyên góp</a></li>
+									<li><a href="quyen-gop?id=${o.circum_id}" class="btn-Donate">Quyên góp</a></li>
 								</c:if>
 							</ul>
 						</div>

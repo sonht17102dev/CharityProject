@@ -2,230 +2,207 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/user/taglib.jsp"%>
 
-<div class="section-top-border">
-	<h3 class="mb-30">Table</h3>
-	<div class="progress-table-wrap">
-		<div class="progress-table">
-			<div class="table-head">
-				<div class="serial">#</div>
-				<div class="country">Countries</div>
-				<div class="visit">Visits</div>
-				<div class="percentage">Percentages</div>
-			</div>
-			<div class="table-row">
-				<div class="serial">01</div>
-				<div class="country">
-					<img src="img/elements/f1.jpg" alt="flag">Canada
-				</div>
-				<div class="visit">645032</div>
-				<div class="percentage">
-					<div class="progress">
-						<div class="progress-bar color-1" role="progressbar"
-							style="width: 80%" aria-valuenow="80" aria-valuemin="0"
-							aria-valuemax="100"></div>
+<div class="popular_causes_area section_padding mt-4">
+	<div class="container-xl">
+		<div class="table-responsive">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-sm-5">
+							<h2>
+								<b>Xác nhận</b> quyên góp
+							</h2>
+						</div>
+						<div class="col-sm-7">
+							<a href="nhung-hoan-canh" class="btn btn-secondary"> <i
+								class="fa fa-hand-o-right"></i> <span>Trở về trang quyên
+									góp</span></a>
+							<!--  
+							 <a
+								href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i>
+								<span>Export to Excel</span></a>
+						-->
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="table-row">
-				<div class="serial">02</div>
-				<div class="country">
-					<img src="img/elements/f2.jpg" alt="flag">Canada
-				</div>
-				<div class="visit">645032</div>
-				<div class="percentage">
-					<div class="progress">
-						<div class="progress-bar color-2" role="progressbar"
-							style="width: 30%" aria-valuenow="30" aria-valuemin="0"
-							aria-valuemax="100"></div>
-					</div>
-				</div>
-			</div>
-			<div class="table-row">
-				<div class="serial">03</div>
-				<div class="country">
-					<img src="img/elements/f3.jpg" alt="flag">Canada
-				</div>
-				<div class="visit">645032</div>
-				<div class="percentage">
-					<div class="progress">
-						<div class="progress-bar color-3" role="progressbar"
-							style="width: 55%" aria-valuenow="55" aria-valuemin="0"
-							aria-valuemax="100"></div>
-					</div>
-				</div>
-			</div>
-			<div class="table-row">
-				<div class="serial">04</div>
-				<div class="country">
-					<img src="img/elements/f4.jpg" alt="flag">Canada
-				</div>
-				<div class="visit">645032</div>
-				<div class="percentage">
-					<div class="progress">
-						<div class="progress-bar color-4" role="progressbar"
-							style="width: 60%" aria-valuenow="60" aria-valuemin="0"
-							aria-valuemax="100"></div>
-					</div>
-				</div>
-			</div>
-			<div class="table-row">
-				<div class="serial">05</div>
-				<div class="country">
-					<img src="img/elements/f5.jpg" alt="flag">Canada
-				</div>
-				<div class="visit">645032</div>
-				<div class="percentage">
-					<div class="progress">
-						<div class="progress-bar color-5" role="progressbar"
-							style="width: 40%" aria-valuenow="40" aria-valuemin="0"
-							aria-valuemax="100"></div>
-					</div>
-				</div>
-			</div>
-			<div class="table-row">
-				<div class="serial">06</div>
-				<div class="country">
-					<img src="img/elements/f6.jpg" alt="flag">Canada
-				</div>
-				<div class="visit">645032</div>
-				<div class="percentage">
-					<div class="progress">
-						<div class="progress-bar color-6" role="progressbar"
-							style="width: 70%" aria-valuenow="70" aria-valuemin="0"
-							aria-valuemax="100"></div>
-					</div>
-				</div>
-			</div>
-			<div class="table-row">
-				<div class="serial">07</div>
-				<div class="country">
-					<img src="img/elements/f7.jpg" alt="flag">Canada
-				</div>
-				<div class="visit">645032</div>
-				<div class="percentage">
-					<div class="progress">
-						<div class="progress-bar color-7" role="progressbar"
-							style="width: 30%" aria-valuenow="30" aria-valuemin="0"
-							aria-valuemax="100"></div>
-					</div>
-				</div>
-			</div>
-			<div class="table-row">
-				<div class="serial">08</div>
-				<div class="country">
-					<img src="img/elements/f8.jpg" alt="flag">Canada
-				</div>
-				<div class="visit">645032</div>
-				<div class="percentage">
-					<div class="progress">
-						<div class="progress-bar color-8" role="progressbar"
-							style="width: 60%" aria-valuenow="60" aria-valuemin="0"
-							aria-valuemax="100"></div>
-					</div>
-				</div>
+				<c:set var="now" value="<%=new java.util.Date()%>" />
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>STT</th>
+							<th>Tên quyên góp</th>
+							<th>Đối tác</th>
+							<th>Loại hoàn cảnh</th>
+							<th>Số tiền quyên góp (đv: nghìn đồng)</th>
+							<th>Ngày quyên góp</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td><a href="hoan-canh-chi-tiet?id=${circum.circum_id}">${circum.circum_name}</a></td>
+							<td><a href="doi-tac-chi-tiet?id=${circum.partner_id}">
+									<img src="<c:url value="${logoPartner}"/>" style="width: 50%;"
+									alt="logo Partner">
+							</a></td>
+							<td>${circum.circum_type}</td>
+							<td><label>Số tiền : </label> <input type="number"
+								name="amount" style="width: 40%;" id="amount" min="1"></td>
+							<td><fmt:formatDate type="date" dateStyle="short"
+									value="${now}" /></td>
+						</tr>
+
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
+
 </div>
 
-<div class="section-top-border">
+
+<div class="container">
 	<div class="row">
-		<div class="col-lg-8 col-md-8">
-			<h3 class="mb-30">Form Element</h3>
-			<form action="#">
-				<div class="mt-10">
-					<input type="text" name="first_name" placeholder="First Name"
-						onfocus="this.placeholder = ''"
-						onblur="this.placeholder = 'First Name'" required
-						class="single-input">
+		<div class="col-lg-12 col-md-12">
+			
+			<h3 class="mb-30">Thông tin người ủng hộ</h3>
+			<form id="formSubmit" action="quyen-gop" method="post">
+
+				<input type="hidden" name="circum_id" id="circum_id"
+					value="${circum.circum_id}"> <input type="hidden"
+					name="circum_order_date" id="circum_order_date"
+					value="<fmt:formatDate type = "date" 
+	        						 dateStyle = "short" value = "${now}" />">
+				<div class="mt-10 form-group">
+					<label class="col-sm-3 ">Họ và tên</label> <input type="text"
+						name="circum_order_name" id="circum_order_name"
+						class="single-input col-sm-7" placeholder="Họ tên">
 				</div>
-				<div class="mt-10">
-					<input type="text" name="last_name" placeholder="Last Name"
-						onfocus="this.placeholder = ''"
-						onblur="this.placeholder = 'Last Name'" required
-						class="single-input">
+				<div class="mt-10 form-group">
+					<label class="col-sm-3">Địa chỉ Email</label> <input type="email"
+						name="circum_order_mail" id="circum_order_mail"
+						placeholder="Địa chỉ Email" class="single-input col-sm-7">
 				</div>
-				<div class="mt-10">
-					<input type="text" name="last_name" placeholder="Last Name"
-						onfocus="this.placeholder = ''"
-						onblur="this.placeholder = 'Last Name'" required
-						class="single-input">
+				<div class="mt-10 form-group">
+					<label class="col-sm-3 ">Số điện thoại</label> <input type="text"
+						name="circum_order_phone" id="circum_order_phone"
+						class="single-input col-sm-7" placeholder="Số điện thoại">
 				</div>
-				<div class="mt-10">
-					<input type="email" name="EMAIL" placeholder="Email address"
-						onfocus="this.placeholder = ''"
-						onblur="this.placeholder = 'Email address'" required
-						class="single-input">
+				<input type="hidden" name="circum_order_amount"
+					id="circum_order_amount" class="single-input col-sm-7">
+
+				<div class="mt-10 form-group">
+					<label class="col-sm-3 ">Tài khoản ngân hàng</label> <input
+						type="text" name="circum_order_bank" id="circum_order_bank"
+						class="single-input col-sm-7" placeholder="Tài khoản ngân hàng">
 				</div>
-				<div class="input-group-icon mt-10">
-					<div class="icon">
-						<i class="fa fa-thumb-tack" aria-hidden="true"></i>
-					</div>
-					<input type="text" name="address" placeholder="Address"
-						onfocus="this.placeholder = ''"
-						onblur="this.placeholder = 'Address'" required
-						class="single-input">
+				<div class="mt-10 form-group">
+					<label class="col-sm-3 ">Tên ngân hàng</label> <input type="text"
+						name="circum_order_bankname" id="circum_order_bankname"
+						class="single-input col-sm-7" placeholder="Tên ngân hàng">
 				</div>
-				<div class="input-group-icon mt-10">
-					<div class="icon">
-						<i class="fa fa-plane" aria-hidden="true"></i>
-					</div>
-					<div class="form-select" id="default-select"">
-						<select>
-							<option value=" 1">City</option>
-							<option value="1">Dhaka</option>
-							<option value="1">Dilli</option>
-							<option value="1">Newyork</option>
-							<option value="1">Islamabad</option>
-						</select>
-					</div>
-				</div>
-				<div class="input-group-icon mt-10">
-					<div class="icon">
-						<i class="fa fa-globe" aria-hidden="true"></i>
-					</div>
-					<div class="form-select" id="default-select"">
-						<select>
-							<option value=" 1">Country</option>
-							<option value="1">Bangladesh</option>
-							<option value="1">India</option>
-							<option value="1">England</option>
-							<option value="1">Srilanka</option>
-						</select>
-					</div>
+				<div class="mt-10 form-group">
+					<label class="col-sm-3 ">Địa chỉ</label> <input type="text"
+						name="circum_order_address" id="circum_order_address"
+						class="single-input col-sm-7" placeholder="Địa chỉ">
 				</div>
 
-				<div class="mt-10">
-					<textarea class="single-textarea" placeholder="Message"
-						onfocus="this.placeholder = ''"
-						onblur="this.placeholder = 'Message'" required></textarea>
-				</div>
-				<!-- For Gradient Border Use -->
-				<!-- <div class="mt-10">
-										<div class="primary-input">
-											<input id="primary-input" type="text" name="first_name" placeholder="Primary color" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Primary color'">
-											<label for="primary-input"></label>
-										</div>
-									</div> -->
-				<div class="mt-10">
-					<input type="text" name="first_name" placeholder="Primary color"
-						onfocus="this.placeholder = ''"
-						onblur="this.placeholder = 'Primary color'" required
-						class="single-input-primary">
-				</div>
-				<div class="mt-10">
-					<input type="text" name="first_name" placeholder="Accent color"
-						onfocus="this.placeholder = ''"
-						onblur="this.placeholder = 'Accent color'" required
-						class="single-input-accent">
-				</div>
-				<div class="mt-10">
-					<input type="text" name="first_name" placeholder="Secondary color"
-						onfocus="this.placeholder = ''"
-						onblur="this.placeholder = 'Secondary color'" required
-						class="single-input-secondary">
+				<div class="mt-10 form-group">
+
+					<div class="col-10 mt-4">
+						<div class="donate_now_btn text-center">
+							<input type="submit" class="boxed-btn4" value="Xác nhận">
+							<input type="button" class="boxed-btn4" 
+							id="reset" value="Reset">
+							<input type="button" class="boxed-btn4" 
+							id="cancel" value="Hủy">
+						</div>
+						<div class="donate_now_btn text-center">
+						</div>
+					</div>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
+<script>
+	
+	const inputAmount = document.getElementById('amount');
+	const inputAmountForm = document.getElementById('circum_order_amount');
+
+	inputAmount.oninput = function() {
+		inputAmountForm.value = this.value;
+	}
+	$(document).ready(function() {
+		$("#cancel").click(function() {
+			location.assign("/CharityApp/nhung-hoan-canh");
+		});
+		$("#reset").click(function(){
+			$("#circum_order_name").val('');
+			$("#circum_order_mail").val('');
+			$("#circum_order_phone").val('');
+			$("#circum_order_bank").val('');
+			$("#circum_order_bankname").val('');
+			$("#circum_order_address").val('');
+			$("#amount").val('');
+		});
+		
+		$("#formSubmit").validate({
+			onfocusout : false,
+			onkeyup : false,
+			onclick : false,
+			//ignore: [],
+			rules : {
+				"circum_order_name" : {
+					required : true
+				},
+				"circum_order_mail" : {
+					required : true,
+					email : true
+				},
+				"circum_order_phone" : {
+					required : true,
+					digits : true
+				},
+				"circum_order_bank" : {
+					required : true,
+					digits : true
+				},
+				"circum_order_bankname" : {
+					required : true,
+				},
+				"circum_order_address" : {
+					required : true
+				}
+
+			},
+			messages : {
+				"circum_order_name" : {
+					required : "Trường này là bắt buộc !"
+				},
+				"circum_order_mail" : {
+					required : "Trường này là bắt buộc !",
+					email : "Email không hợp lệ !"
+				},
+				"circum_order_phone" : {
+					required : "Trường này là bắt buộc !",
+					digits : "Yêu cầu nhập số !"
+				},
+				"circum_order_bank" : {
+					required : "Trường này là bắt buộc !",
+					digits : "Yêu cầu nhập số !"
+				},
+				"circum_order_bankname" : {
+					required : "Trường này là bắt buộc !"
+				},
+				"circum_order_address" : {
+					required : "Trường này là bắt buộc !"
+				}
+
+			}
+		});
+	});
+	<c:if test="${message == 'Fail'}">
+		alert('Hãy nhập số tiền trước khi xác nhận quyên góp!');
+	</c:if>
+</script>
