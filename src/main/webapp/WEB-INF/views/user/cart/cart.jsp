@@ -42,7 +42,7 @@
 							<td>1</td>
 							<td><a href="hoan-canh-chi-tiet?id=${circum.circum_id}">${circum.circum_name}</a></td>
 							<td><a href="doi-tac-chi-tiet?id=${circum.partner_id}">
-									<img src="<c:url value="${logoPartner}"/>" style="width: 50%;"
+									<img src="<c:url value="${logoPartner}"/>" style="width: 20%;"
 									alt="logo Partner">
 							</a></td>
 							<td>${circum.circum_type}</td>
@@ -69,44 +69,91 @@
 			<form id="formSubmit" action="quyen-gop" method="post">
 
 				<input type="hidden" name="circum_id" id="circum_id"
-					value="${circum.circum_id}"> <input type="hidden"
+					value="${circum.circum_id}"> 
+				<input type="hidden"
 					name="circum_order_date" id="circum_order_date"
 					value="<fmt:formatDate type = "date" 
 	        						 dateStyle = "short" value = "${now}" />">
-				<div class="mt-10 form-group">
-					<label class="col-sm-3 ">Họ và tên</label> <input type="text"
-						name="circum_order_name" id="circum_order_name"
-						class="single-input col-sm-7" placeholder="Họ tên">
-				</div>
-				<div class="mt-10 form-group">
-					<label class="col-sm-3">Địa chỉ Email</label> <input type="email"
-						name="circum_order_mail" id="circum_order_mail"
-						placeholder="Địa chỉ Email" class="single-input col-sm-7">
-				</div>
-				<div class="mt-10 form-group">
-					<label class="col-sm-3 ">Số điện thoại</label> <input type="text"
-						name="circum_order_phone" id="circum_order_phone"
-						class="single-input col-sm-7" placeholder="Số điện thoại">
-				</div>
-				<input type="hidden" name="circum_order_amount"
-					id="circum_order_amount" class="single-input col-sm-7">
-
-				<div class="mt-10 form-group">
-					<label class="col-sm-3 ">Tài khoản ngân hàng</label> <input
-						type="text" name="circum_order_bank" id="circum_order_bank"
-						class="single-input col-sm-7" placeholder="Tài khoản ngân hàng">
-				</div>
-				<div class="mt-10 form-group">
-					<label class="col-sm-3 ">Tên ngân hàng</label> <input type="text"
-						name="circum_order_bankname" id="circum_order_bankname"
-						class="single-input col-sm-7" placeholder="Tên ngân hàng">
-				</div>
-				<div class="mt-10 form-group">
-					<label class="col-sm-3 ">Địa chỉ</label> <input type="text"
-						name="circum_order_address" id="circum_order_address"
-						class="single-input col-sm-7" placeholder="Địa chỉ">
-				</div>
-
+	        	<input type="hidden" name="circum_name" id="circum_name"
+					value="${circum.circum_name}">
+	        	<security:authorize access="!isAuthenticated()">
+	        		<input type="hidden" name="circum_order_amount"
+						id="circum_order_amount" class="single-input col-sm-7">
+					<div class="mt-10 form-group">
+						<label class="col-sm-3 ">Họ và tên</label> <input type="text"
+							name="circum_order_name" id="circum_order_name"
+							class="single-input col-sm-7" placeholder="Họ tên">
+					</div>
+					
+					<div class="mt-10 form-group">
+						<label class="col-sm-3">Địa chỉ Email</label> <input type="email"
+							name="circum_order_mail" id="circum_order_mail"
+							placeholder="Địa chỉ Email" class="single-input col-sm-7">
+					</div>
+					<div class="mt-10 form-group">
+						<label class="col-sm-3 ">Số điện thoại</label> <input type="text"
+							name="circum_order_phone" id="circum_order_phone"
+							class="single-input col-sm-7" placeholder="Số điện thoại">
+					</div>
+					
+	
+					<div class="mt-10 form-group">
+						<label class="col-sm-3 ">Tài khoản ngân hàng</label> <input
+							type="text" name="circum_order_bank" id="circum_order_bank"
+							class="single-input col-sm-7" placeholder="Tài khoản ngân hàng">
+					</div>
+					<div class="mt-10 form-group">
+						<label class="col-sm-3 ">Tên ngân hàng</label> <input type="text"
+							name="circum_order_bankname" id="circum_order_bankname"
+							class="single-input col-sm-7" placeholder="Tên ngân hàng">
+					</div>
+					<div class="mt-10 form-group">
+						<label class="col-sm-3 ">Địa chỉ</label> <input type="text"
+							name="circum_order_address" id="circum_order_address"
+							class="single-input col-sm-7" placeholder="Địa chỉ">
+					</div>
+				</security:authorize>
+				<security:authorize access="isAuthenticated()">
+					<div class="mt-10 form-group">
+						<label class="col-sm-3 ">Username</label> <input type="text"
+							name="circum_order_name" id="circum_order_name"
+							class="single-input col-sm-7" placeholder="Họ tên"
+							value="${accountDetails.account_name }">
+					</div>
+					<div class="mt-10 form-group">
+						<label class="col-sm-3">Địa chỉ Email</label> <input type="email"
+							name="circum_order_mail" id="circum_order_mail"
+							placeholder="Địa chỉ Email" class="single-input col-sm-7"
+							value="${accountDetails.account_mail}">
+					</div>
+					<div class="mt-10 form-group">
+						<label class="col-sm-3 ">Số điện thoại</label> <input type="text"
+							name="circum_order_phone" id="circum_order_phone"
+							class="single-input col-sm-7" placeholder="Số điện thoại"
+							value="${accountDetails.account_phone}">
+					</div>
+					<input type="hidden" name="circum_order_amount"
+						id="circum_order_amount" class="single-input col-sm-7">
+	
+					<div class="mt-10 form-group">
+						<label class="col-sm-3 ">Tài khoản ngân hàng</label> <input
+							type="text" name="circum_order_bank" id="circum_order_bank"
+							class="single-input col-sm-7" placeholder="Tài khoản ngân hàng"
+							value="${accountDetails.account_bank}">
+					</div>
+					<div class="mt-10 form-group">
+						<label class="col-sm-3 ">Tên ngân hàng</label> <input type="text"
+							name="circum_order_bankname" id="circum_order_bankname"
+							class="single-input col-sm-7" placeholder="Tên ngân hàng"
+							value="${accountDetails.account_bankname}">
+					</div>
+					<div class="mt-10 form-group">
+						<label class="col-sm-3 ">Địa chỉ</label> <input type="text"
+							name="circum_order_address" id="circum_order_address"
+							class="single-input col-sm-7" placeholder="Địa chỉ"
+							value="${accountDetails.account_address}">
+					</div>
+				</security:authorize>
 				<div class="mt-10 form-group">
 
 					<div class="col-10 mt-4">

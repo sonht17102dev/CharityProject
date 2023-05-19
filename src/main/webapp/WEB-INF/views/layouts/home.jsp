@@ -3,10 +3,10 @@
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
 <%@ include file="/WEB-INF/views/user/taglib.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Charifit</title>
     <meta name="description" content="">
@@ -45,10 +45,12 @@
 	<decorator:body />
 
 	<%@include file="/WEB-INF/views/layouts/user/footer.jsp"%>
-
-
 	   <!-- JS here -->
 	<script>
+		var img = document.querySelector("#thumb img");
+		if(img.hasAttribute("style")){
+			img.removeAttribute("style");
+		}
 		// Get the modal
 		var modalLogin = document.getElementById('id-login');
 		var modalSignup = document.getElementById('id-signup');

@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -43,11 +46,25 @@ public class NewsController extends BaseController{
 		}
 		int size = newsService.getAllNews().size();
 		_mvShare.addObject("listTop3Circum", list);
+		_mvShare.addObject("category", category);
 		_mvShare.addObject("size", size);
 		_mvShare.setViewName("user/news/news");
 		return _mvShare;
 	}
-
+	@RequestMapping(value = "/tin-tuc-chi-tiet", method = RequestMethod.GET)
+	public ModelAndView newsDetails (@RequestParam("id") int id) {
+		List<Circum> listC = circumService.getTop3Circums();
+		for (Circum circum : listC) {
+			String[] banner_img = circum.getCircum_image().split(",");
+			circum.setCircum_image(banner_img[0]);
+		}
+		News news = newsService.getNewsById(id);
+		_mvShare.addObject("news", news);
+		_mvShare.addObject("category", category);
+		_mvShare.addObject("listCircum", listC);
+		_mvShare.setViewName("user/news/news_detail");
+		return _mvShare; 
+	}
 	@RequestMapping(value = "/loadmore", method = RequestMethod.GET)
 	@ResponseBody
 	public String loadMore(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -58,19 +75,17 @@ public class NewsController extends BaseController{
 		String content = "";
 		for (News news : list) {
 			content += "<div class=\"news_st news_wrapper\">\r\n"
-					+ "	<div>\r\n"
-					+ "		<a type=\"button\"\r\n"
-					+ "			onclick=\"document.getElementById('id-news-"+news.getNews_id()+"').style.display='block'\"\r\n"
-					+ "			style=\"width: 100%;\"><img src=\""+news.getNews_img_banner()+"\"></a>\r\n"
+					+ "	<div class=\"news_items_banner\">\r\n"
+					+ "		<a href=\"tin-tuc-chi-tiet?id="+news.getNews_id()+"\"\r\n"
+					+ "							style=\"width: 100%;\"><img src=\""+news.getNews_img_banner()+"\"></a>"
 					+ "	</div>\r\n"
-					+ "	<div>\r\n"
+					+ "	<div class=\"news_items_date\">\r\n"
 					+ "		<span>"+news.getNews_post_date()+"</span>\r\n"
 					+ "	</div>\r\n"
-					+ "	<div>\r\n"
+					+ "	<div class=\"news_items_des\">\r\n"
 					+ "		<h4>\r\n"
-					+ "			<a type=\"button\"\r\n"
-					+ "				onclick=\"document.getElementById('id-news-"+news.getNews_id()+"').style.display='block'\"\r\n"
-					+ "				style=\"width: 100%;\">"+news.getNews_description()+"</a>\r\n"
+					+ "			<a href=\"tin-tuc-chi-tiet?id="+news.getNews_id()+"\"\r\n"
+					+ "								style=\"width: 100%;\">"+news.getNews_description()+"</a>	"
 					+ "		</h4>\r\n"
 					+ "	</div>\r\n"
 					+ "</div>";

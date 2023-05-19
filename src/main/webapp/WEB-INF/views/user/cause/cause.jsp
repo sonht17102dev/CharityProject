@@ -15,15 +15,36 @@
         </div>
     </div>
     <!-- bradcam_area_end  -->
+    <!-- menu-start -->
+<div class="container mt-4">
+	<div class="menu_type">
+		<div class="menu_type_items">
+			<a href="#" class="active">Mới nhất</a>
+		</div>
+		<c:forEach var="c" items="${category}">
+			<div class="menu_type_items">
+				<a href="search?type=${c}">${c}</a>
+			</div>
+		</c:forEach>
+	</div>
+</div>
+<!-- menu-end -->
+    <hr>
 <!-- popular_causes_area_start  -->
-<div class="popular_causes_area pt-120">
+<div class="popular_causes_area ">
 	<div class="container">
-		<div class="row">
+		<c:if test="${message != null}">
+			<div class="row">
+				<h2 class="col-lg-12 text-center error">${message}</h2>
+				<a class="col-lg-12 text-center error" href="trang-chu">Trở về trang chủ</a>
+			</div>
+		</c:if>
+		<div class="row ">
 			<c:forEach items="${listTop6Circum}" var="o">
 				<c:set var="percent"
 					value="${o.circum_target / o.circum_raise * 100}" />
-				<div class="single_cause box-cause">
-					<div class="thumb">
+				<div class="single_cause col-xl-4 box-height">
+					<div class="thumb" id="thumb">
 						${o.circum_image}
 					</div>
 					<div class="causes_content">
@@ -66,8 +87,7 @@
 								<span><fmt:formatNumber type="number"
 											maxFractionDigits="3" value="${percent}" />%</span></li>
 								<c:if test="${percent >=100}">
-									<li><a href="#" class="btn-Donate">Đạt
-											mục tiêu</a></li>
+									<li><a href="#" class="btn-Donate">Kết thúc</a></li>
 								</c:if>
 								<c:if test="${percent < 100}">
 									<li><a href="quyen-gop?id=${o.circum_id}" class="btn-Donate">Quyên góp</a></li>
@@ -79,21 +99,17 @@
 					</div>
 				</div>
 			</c:forEach>
-			<div class="pagination col-lg-6">
-				<a class="${(tag==null||tag==1) ? "
-					hidden" : "" }" href="nhung-hoan-canh?trang=${tag - 1}">&laquo;</a>
-				<c:forEach begin="1" end="${endPage}" var="i">
-					<a class='${tag == i ? "active" : ""}' href="nhung-hoan-canh?trang=${i}">${i}</a>
-				</c:forEach>
-				<a class='${tag==endPage ? "hidden" : "" }' href="nhung-hoan-canh?trang=${tag + 1}">&raquo;</a>
-				<%-- 
-				 <ul class="pagination" id="pagination"></ul>
-				--%>
-			
+			<div class="col-xl-12 d-flex justify-content-center align-items-center">
+				<div class="pagination">
+					<a class='${(tag==null||tag==1) ? "hidden" : "" }' 
+					href="nhung-hoan-canh?trang=${tag - 1}">&laquo;</a>
+					<c:forEach begin="1" end="${endPage}" var="i">
+						<a class='${tag == i ? "active" : ""}' href="nhung-hoan-canh?trang=${i}">${i}</a>
+					</c:forEach>
+					<a class='${tag==endPage ? "hidden" : "" }' href="nhung-hoan-canh?trang=${tag + 1}">&raquo;</a>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
 <!-- popular_causes_area_end  -->
-<script>
-</script>

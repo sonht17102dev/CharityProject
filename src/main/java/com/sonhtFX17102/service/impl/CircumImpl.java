@@ -63,12 +63,6 @@ public class CircumImpl implements ICircumService {
 		return circumDao.getCircumById(index);
 	}
 
-	@Override
-	public void insertCircum(int partner_id, String name, String type, String content, String image, String des,
-			int donations, long target, long raise, int time_end, String start_donate) {
-		circumDao.insertCircum(partner_id, name, type, content, image, des, donations, target, raise, time_end,
-				start_donate);
-	}
 
 	@Override
 	public Circum checkCircumByNameExist(String name) {
@@ -107,6 +101,12 @@ public class CircumImpl implements ICircumService {
 		circumDao.updateStatus(id, status);
 	}
 
+	@Override
+	public void insertCircum(int partner_id, String name, String type, String content, String image, String des,
+			int donations, long target, long raise, int time_end, String start_donate, String status) {
+		circumDao.insertCircum(
+				partner_id, name, type, content, image, des, donations, target, raise, time_end, start_donate, status);
+	}
 	@Override
 	public void upDateCircum(int circum_id, int partner_id, String name, String type, String content, String image,
 			String des, int donations, long target, long raise, int time_end, String start_donate, String status) {

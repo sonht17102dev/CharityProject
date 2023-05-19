@@ -24,6 +24,8 @@ public class MapperAccountDetailsDTO implements RowMapper<AccountDetailsDTO>{
 		account.setAccount_address(rs.getString("account_address"));
 		account.setAccount_birthday(rs.getString("account_birthday"));
 		account.setAccount_organization(rs.getString("account_organization"));
+		account.setAccount_bank(rs.getString("account_bank"));
+		account.setAccount_bankname(rs.getString("account_bankname"));
 		return account;
 	}
 

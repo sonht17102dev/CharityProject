@@ -1,22 +1,21 @@
 package com.sonhtFX17102.controller.user;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sonhtFX17102.DTO.AccountDetailsDTO;
 import com.sonhtFX17102.controller.BaseController;
+import com.sonhtFX17102.entities.Account;
 import com.sonhtFX17102.entities.Circum;
-import com.sonhtFX17102.entities.CircumOrder;
+import com.sonhtFX17102.service.impl.AccountImpl;
 import com.sonhtFX17102.service.impl.CircumImpl;
 import com.sonhtFX17102.service.impl.PartnerImpl;
 import com.sonhtFX17102.service.impl.PayImpl;
@@ -27,16 +26,25 @@ public class PayController extends BaseController{
 	CircumImpl circumService;
 	@Autowired
 	PartnerImpl partnerService;
+	
 	@Autowired
 	PayImpl payService;
+	@Autowired
+	AccountImpl accountService;
 	
 	@RequestMapping(value = "quyen-gop", method = RequestMethod.GET)
-	public ModelAndView cart(@RequestParam("id") int id) {
+	public ModelAndView cart(@RequestParam("id") int id, Authentication authentication) {
 		Circum circum = circumService.getCircumById(id);
-		String logoPartner = partnerService.getPartnerById(id).getPartner_logo();
-		
+		String logoPartner = partnerService.getPartnerById(circum.getPartner_id()).getPartner_logo();
+		if (authentication != null) {
+			String username = authentication.getName();
+			System.out.println(username);
+				AccountDetailsDTO account = accountService.getAccountDetailsByUsername(username);
+				_mvShare.addObject("accountDetails", account);
+		}
 		_mvShare.addObject("circum", circum);
 		_mvShare.addObject("logoPartner", logoPartner);
+		_mvShare.addObject("category", category);
 		_mvShare.setViewName("user/cart/cart");
 		return _mvShare;
 	}
@@ -53,17 +61,18 @@ public class PayController extends BaseController{
 		String bankName = request.getParameter("circum_order_bankname");
 		String address = request.getParameter("circum_order_address");
 		String date = request.getParameter("circum_order_date");
+		String circumName = request.getParameter("circum_name");
 		try {
 			cId = Integer.parseInt(cIdString);
 			amount = Integer.parseInt(amountS);
 //			CircumOrder c = new CircumOrder(cId, name, mail, phone, bank, bankName, address, amount, date);
 //			System.out.println(c.toString());
-			payService.insertPayInfo(cId, name, mail, phone, bank, bankName, address, amount, date);
+			payService.insertPayInfo(cId, name, mail, phone, bank, bankName, address, amount, date, circumName);
 			return "redirect:/";
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			session.setAttribute("message", "Fail");
+			session.setAttribute("messageDonated", "Fail");
 			return "redirect:quyen-gop?id="+cId;
 		}
 	}

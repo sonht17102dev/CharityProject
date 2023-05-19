@@ -157,13 +157,13 @@ public class AccountDAO extends BaseDao {
 	}
 //	public Account getAccountDetailsByMail(int id, String name, String mail, String phone, String address, String fName, 
 //			 String lName, String img, String birth, String org, long totalDonate) {
-		public AccountDetailsDTO getAccountDetailsByMail(String mail) {
+		public AccountDetailsDTO getAccountDetailsByUsername(String name) {
 		String sql = "select a.account_id, account_name, account_mail, account_phone, account_address,"
 				+ " account_firstName, account_lastName, account_image, account_birthday,"
-				+ " account_organization, total_donated from account a\r\n"
+				+ " account_organization, total_donated, account_bank, account_bankname from account a\r\n"
 				+ " inner join ACCOUNTDETAILS ad\r\n "
 				+ " on a.account_id = ad.account_id\r\n "
-				+ " where account_mail = '"+ mail +"';" ;
+				+ " where account_name = '"+ name +"';" ;
 		List<AccountDetailsDTO> list = _jdbcTemplate.query(sql, new MapperAccountDetailsDTO()); 
 		return list.get(0);
 	}
@@ -178,7 +178,7 @@ public class AccountDAO extends BaseDao {
 	public void updateAccountDetailsByUser(
 			int account_id, String account_firstName, String account_lastName,
 			String account_address, String account_birthday, String account_organization,
-			String account_name, String account_phone) {
+			String account_name, String account_phone, String account_bank, String account_bankname) {
 //		int id = getAccountByID(account_id)
 		String sql = "Update account "
 				+ "Set "
@@ -191,7 +191,9 @@ public class AccountDAO extends BaseDao {
 				+ "account_lastName = N'"+ account_lastName + "', "
 				+ "account_address = N'"+ account_address + "', "
 				+ "account_birthday = N'"+ account_birthday + "', "
-				+ "account_organization = N'"+ account_organization + "' "
+				+ "account_organization = N'"+ account_organization + "', "
+				+ "account_bank = N'"+ account_bank + "', "
+				+ "account_bankname = N'"+ account_bankname + "' "
 				+ "where account_id = " + account_id + "; ";
 		_jdbcTemplate.update(sql);		
 		_jdbcTemplate.update(sqlAddAccountDetail);		

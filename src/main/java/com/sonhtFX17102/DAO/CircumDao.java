@@ -113,36 +113,38 @@ public class CircumDao extends BaseDao {
 		_jdbcTemplate.update(sql);
 	}
 	public void insertCircum(int partner_id, String name, String type, String content, String image, String des,
-			int donations, long target, long raise, int time_end, String start_donate) {
+			int donations, long target, long raise, int time_end, String start_donate, String status) {
 		String sql = "INSERT INTO CIRCUM("
 				+ "    partner_id,"
 				+ "    circum_name,"
 				+ "    circum_type ,"
 				+ "    circum_content ,"
 				+ "    circum_image , "
-				+ "    circum_des,"
+				+ "    circum_des , "
 				+ "    circum_donations , "
 				+ "    circum_target ,"
 				+ "    circum_raise ,"
 				+ "    circum_time_end ,"
-				+ "    circum_start_donate "
+				+ "    circum_start_donate, "
+				+ "    circum_status "
 				+ ") values ("
 				+ partner_id + ", "
 				+ "N'"+ name + "', "
 				+ "N'"+ type + "', "
 				+ "N'"+ content + "', "
 				+ "N'"+ image + "', "
-				+ "N'"+ des + "',"
+				+ "N'"+ des + "', "
 				+ donations + ","
 				+ target + ","
 				+ raise + ","
 				+ time_end + ","
-				+ "'"+ start_donate + "'"
+				+ "'"+ start_donate + "',"
+				+ "'"+ status + "'"
 				+ ")";
 		_jdbcTemplate.update(sql);
 	}
-	public void upDateCircum(int circum_id, int partner_id, String name, String type, String content, String image, String des,
-			int donations, long target, long raise, int time_end, String start_donate, String status) {
+	public void upDateCircum(int circum_id, int partner_id, String name, String type, String content, String image,
+			String des, int donations, long target, long raise, int time_end, String start_donate, String status) {
 		String sql = "UPDATE CIRCUM\r\n"
 				+ "SET\r\n"
 				+ "partner_id = " + partner_id+",\r\n"
@@ -150,7 +152,7 @@ public class CircumDao extends BaseDao {
 				+ "circum_type = N'"+ type +"',\r\n"
 				+ "circum_content = N'"+ content +"',\r\n"
 				+ "circum_image = N'"+ image + "', \r\n"
-				+ "circum_des = N'"+ des +"',\r\n"
+				+ "circum_des = N'"+ des + "', \r\n"
 				+ "circum_donations = "+ donations +", \r\n"
 				+ "circum_target = "+target +" ,\r\n"
 				+ "circum_raise = "+ raise +",\r\n"

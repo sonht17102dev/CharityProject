@@ -22,11 +22,20 @@ import com.sonhtFX17102.service.impl.PartnerImpl;
 public class PartnerController extends BaseController{
 	@Autowired
 	private PartnerImpl partnerService;
+	@Autowired
+	private CircumImpl circumService;
 	
 	@RequestMapping(value = "doi-tac", method = RequestMethod.GET)
 	public ModelAndView partner() {
 		List<PartnerDTO> list = partnerService.getAllPartners();
+		List<Circum> listCircums = circumService.getTop3Circums();
+		for (Circum circum : listCircums) {
+			String[] banner_img = circum.getCircum_image().split(",");
+			circum.setCircum_image(banner_img[0]);
+		}
+		_mvShare.addObject("listTop3Circum", listCircums);
 		_mvShare.addObject("listPartner", list);
+		_mvShare.addObject("category", category);
 		_mvShare.setViewName("user/partner/partner");
 		return _mvShare;
 	}

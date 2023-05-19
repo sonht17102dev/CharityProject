@@ -14,13 +14,10 @@
 							 </a>
 						</div>
 						
-						<p class="address_text">Địa chỉ: Tầng M, Tòa nhà Victory
-							Tower, Số 12 Tân Trào, Phường Tân Phú, Quận 7, Thành phố Hồ Chí
-							Minh.</p>
-						<p class="address_text">Hotline: 1900 5454 41 (1000 đ/phút).</p>
-						<p class="address_text">Email: hotro@momo.vn</p>
-						<p class="address_text">Tổng đài gọi ra: 028.7306.5555 -
-							028.9999.5555.</p>
+						<p class="address_text">Địa chỉ: 572 Âu Cơ, Phường 10, Quận Tân Bình, TPHCM.</p>
+						<p class="address_text">Tổng đài: 1900 5454 41 (1000 đ/phút).</p>
+						<p class="address_text">Email: sonfx17102@funix.edu.vn</p>
+						<p class="address_text">Hotline: 0787.668.828.</p>
 						<div class="socail_links">
 							<ul>
 								<li><a href="#"> <i class="ti-facebook"></i>
@@ -36,17 +33,17 @@
 
 					</div>
 				</div>
-				<div class="col-xl-2 col-md-6 col-lg-2">
+				<div class="col-xl-4 col-md-6 col-lg-4">
 					<div class="footer_widget">
 						<h3 class="footer_title">Hoàn cảnh quyên góp</h3>
 						<ul class="links">
 							<c:forEach var="c" items="${category}">
-								<li><a href="search?type=${c}">${c}</a></li>
+								<li><a href="${pageContext.request.contextPath}/search?type=${c}">${c}</a></li>
 							</c:forEach>
 						</ul>
 					</div>
 				</div>
-				<div class="col-xl-3 col-md-6 col-lg-3">
+				<div class="col-xl-4 col-md-6 col-lg-4">
 					<div class="footer_widget">
 						<h3 class="footer_title">Blog Cuộc Sống</h3>
 						<div class="contacts">
@@ -65,35 +62,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-xl-3 col-md-6 col-lg-3">
-					<div class="footer_widget">
-						<h3 class="footer_title">Top News</h3>
-						<ul class="news_links">
-							<li>
-								<div class="thumb">
-									<a href="#"> <img src="<c:url value="/resources/img/news/news_1.png"/>" alt="">
-									</a>
-								</div>
-								<div class="info">
-									<a href="#">
-										<h4>School for African Childrens</h4>
-									</a> <span>Jun 12, 2019</span>
-								</div>
-							</li>
-							<li>
-								<div class="thumb">
-									<a href="#"> <img src="<c:url value="/resources/img/news/news_2.png"/>" alt="">
-									</a>
-								</div>
-								<div class="info">
-									<a href="#">
-										<h4>School for African Childrens</h4>
-									</a> <span>Jun 12, 2019</span>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -101,7 +69,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="bordered_1px "></div>
-				<div class="col-xl-12">
+				<div class="col-xl-12 d-flex justify-content-center align-items-center">
 					<p class="copy_right text-center">
 					<p>
 						<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->

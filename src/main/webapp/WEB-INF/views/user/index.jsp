@@ -21,39 +21,49 @@
 
 <!-- latest_activites_area_start  -->
 
-<div class="latest_activites_area ">
-	<div
-		class=" video_bg_1 video_activite  d-flex align-items-center justify-content-center">
-		<a class="popup-video"
-			href="https://www.youtube.com/watch?v=uUsGgRX0zOw"> <i
-			class="flaticon-ui"></i>
-		</a>
-	</div>
-	<div class="container">
 
-		<div class="row justify-content-end">
-			<div class="col-lg-7">
+
+<div class="popular_causes_area section_padding">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 video_bg_1 introduce-height">
+				<div
+					class="d-flex justify-content-center align-items-center h-100 video-intro">
+					<a class="popup-video"
+						href="https://www.youtube.com/watch?v=uUsGgRX0zOw"> <i
+						class="flaticon-ui"></i>
+					</a>
+				</div>
+			</div>
+			<div
+				class="col-lg-6 col-md-6 d-flex justify-content-center align-items-center introduce-height mt-5">
 				<div class="activites_info">
 					<div class="section_title">
 						<h3>
-							<span>Nền tảng quyên góp từ thiện </span><br> Trái tim MoMo
+							<span>Nền tảng quyên góp từ thiện </span><br> Charifit
 						</h3>
+						<p class="para_1">Charifit là nền tảng giúp bạn dễ dàng chung
+							tay quyên góp tiền cùng hàng triệu người, giúp đỡ các hoàn cảnh
+							khó khăn trên khắp cả nước.</p>
 					</div>
-					<p class="para_1">Trái Tim MoMo là nền tảng giúp bạn dễ dàng
-						chung tay quyên góp tiền cùng hàng triệu người, giúp đỡ các hoàn
-						cảnh khó khăn trên khắp cả nước.</p class="para_1">
-					<div class="small_info">
+					<div class="small_info mt-4">
 						<div class="small_info_details">
 							<h4>404</h4>
-							<p>dự án đã được gây quỹ thành công</p>
+							<p>
+								<small>dự án đã được gây quỹ thành công</small>
+							</p>
 						</div>
 						<div class="small_info_details">
 							<h4>55+ tỷ</h4>
-							<p>đồng được quyên góp</p>
+							<p>
+								<small>đồng được quyên góp</small>
+							</p>
 						</div>
 						<div class="small_info_details">
 							<h4>14+ triệu</h4>
-							<p>lượt quyên góp</p>
+							<p>
+								<small>lượt quyên góp</small>
+							</p>
 						</div>
 					</div>
 				</div>
@@ -61,10 +71,8 @@
 		</div>
 	</div>
 </div>
-
+<hr>
 <!-- latest_activites_area_end  -->
-
-<!-- popular_causes_area_start  -->
 <div class="popular_causes_area section_padding">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -77,76 +85,77 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-12">
-				<c:forEach items="${list6Circum}" var="o">
-					<c:set var="percent"
-						value="${o.circum_target / o.circum_raise * 100}" />
-					<div class="single_cause box-cause">
-						<div class="thumb">${o.circum_image}</div>
-						<div class="causes_content">
-							<div class="custom_progress_bar">
-								<div class="progress">
-									<c:if test="${percent >= 100}">
-										<div class="progress-bar" role="progressbar"
-											style="width: 100%;" aria-valuenow="30" aria-valuemin="0"
-											aria-valuemax="100">
-											<span class="progres_count"> ${percent}% </span>
-										</div>
-									</c:if>
+			<c:forEach items="${list6Circum}" var="o">
+				<c:set var="percent"
+					value="${o.circum_target / o.circum_raise * 100}" />
+				<div class="single_cause box-cause">
+					<div class="thumb" id="thumb"><a href="quyen-gop?id=${o.circum_id}">${o.circum_image}</a></div>
+					<div class="causes_content">
+						<div class="custom_progress_bar">
+							<div class="progress">
+								<c:if test="${percent >= 100}">
+									<div class="progress-bar" role="progressbar"
+										style="width: 100%;" aria-valuenow="30" aria-valuemin="0"
+										aria-valuemax="100">
+										<span class="progres_count"> ${percent}% </span>
+									</div>
+								</c:if>
 
-									<c:if test="${percent < 100}">
-										<div class="progress-bar" role="progressbar"
-											style="width: ${percent}%;" aria-valuenow="30"
-											aria-valuemin="0" aria-valuemax="100">
-											<span class="progres_count"> <fmt:formatNumber
-													type="percent" maxIntegerDigits="2" value="${percent}" />
-											</span>
-										</div>
-									</c:if>
+								<c:if test="${percent < 100}">
+									<div class="progress-bar" role="progressbar"
+										style="width: ${percent}%;" aria-valuenow="30"
+										aria-valuemin="0" aria-valuemax="100">
+										<span class="progres_count"> <fmt:formatNumber
+												type="percent" maxIntegerDigits="2" value="${percent}" />
+										</span>
+									</div>
+								</c:if>
 
-								</div>
 							</div>
-							<div
-								class="balance d-flex justify-content-between align-items-center">
-								<span>Raised: <fmt:formatNumber type="number"
-										value="${o.circum_target}" />đ
-								</span> <span>Goal: <fmt:formatNumber type="number"
-										value="${o.circum_raise}" />đ
-								</span>
-							</div>
-							<h4>${o.circum_name}</h4>
-							<div class="infomation">
-								<ul>
-									<li>Lượt quyên góp <br> <span><fmt:formatNumber
-												type="number" value="${o.circum_donations}" /></span></li>
-									<li>Đạt được <br> <span><fmt:formatNumber
-												type="number" maxFractionDigits="3" value="${percent}" />%</span></li>
-									<c:if test="${percent >=100}">
-										<li><a href="#" class="btn-Donate">Đạt mục tiêu</a></li>
-									</c:if>
-									<c:if test="${percent < 100}">
-										<li><a href="quyen-gop?id=${o.circum_id}"
-											class="btn-Donate">Quyên góp</a></li>
-									</c:if>
-								</ul>
-							</div>
-
-							<a class="read_more" href="hoan-canh-chi-tiet?id=${o.circum_id}">Đọc
-								thêm </a>
 						</div>
+						<div
+							class="balance d-flex justify-content-between align-items-center">
+							<span>Đạt: <fmt:formatNumber type="number"
+									value="${o.circum_target}" />đ
+							</span> <span>Mục tiêu: <fmt:formatNumber type="number"
+									value="${o.circum_raise}" />đ
+							</span>
+						</div>
+						<h4>${o.circum_name}</h4>
+						<div class="infomation">
+							<ul>
+								<li>Lượt quyên góp <br> <span><fmt:formatNumber
+											type="number" value="${o.circum_donations}" /></span></li>
+								<li>Đạt được <br> <span><fmt:formatNumber
+											type="number" maxFractionDigits="3" value="${percent}" />%</span></li>
+								<c:if test="${percent >=100}">
+									<li><a href="#" class="btn-Donate">Đạt mục tiêu</a></li>
+								</c:if>
+								<c:if test="${percent < 100}">
+									<li><a href="quyen-gop?id=${o.circum_id}"
+										class="btn-Donate">Quyên góp</a></li>
+								</c:if>
+							</ul>
+						</div>
+
+						<a class="read_more" href="hoan-canh-chi-tiet?id=${o.circum_id}">Đọc
+							thêm </a>
 					</div>
-				</c:forEach>
-			</div>
-
-
-
-
+				</div>
+			</c:forEach>
 		</div>
+		<div class="row">
+				<div class="col-12 mt-4">
+					<div class="donate_now_btn text-center">
 
+						<a href="nhung-hoan-canh" class="boxed-btn4">Xem thêm >></a>
+					</div>
+				</div>
+			</div>
 	</div>
 </div>
 <!-- popular_causes_area_end  -->
-
+<hr>
 <!-- counter_area_start  -->
 <div class="counter_area">
 	<div class="container">
@@ -159,8 +168,8 @@
 							<i class="flaticon-calendar"></i>
 						</div>
 						<div class="events">
-							<h3 class="counter">120</h3>
-							<p>Finished Event</p>
+							<h3 class="counter">423</h3>
+							<p>Giúp đỡ hoàn cảnh khó khăn</p>
 						</div>
 					</div>
 				</div>
@@ -171,8 +180,8 @@
 							<i class="flaticon-heart-beat"></i>
 						</div>
 						<div class="events">
-							<h3 class="counter">120</h3>
-							<p>Finished Event</p>
+							<h3 class="counter">145</h3>
+							<p>Giúp đỡ bệnh hiễm nghèo</p>
 						</div>
 					</div>
 				</div>
@@ -183,8 +192,8 @@
 							<i class="flaticon-in-love"></i>
 						</div>
 						<div class="events">
-							<h3 class="counter">120</h3>
-							<p>Finished Event</p>
+							<h3 class="counter">384</h3>
+							<p>Cơ sở vật chất mới</p>
 						</div>
 					</div>
 				</div>
@@ -195,8 +204,8 @@
 							<i class="flaticon-hug"></i>
 						</div>
 						<div class="events">
-							<h3 class="counter">120</h3>
-							<p>Finished Event</p>
+							<h3 class="counter">1250</h3>
+							<p>Học sinh được đến trường</p>
 						</div>
 					</div>
 				</div>
@@ -205,7 +214,7 @@
 	</div>
 </div>
 <!-- counter_area_end  -->
-
+<hr>
 <!-- our_volunteer_area_start  -->
 <div class="whole-wrap">
 	<div class="container box_1170">
@@ -224,11 +233,13 @@
 			<div class="row">
 				<c:forEach items="${list6Partner}" var="p">
 					<div class="col-md-4 our-partner">
-						<div>
-							<img src="<c:url value="${p.partner_logo}"/>">
+						<div class="mr-2">
+							<a href="doi-tac-chi-tiet?id=${p.partner_id}">
+							<img src="<c:url value="${p.partner_logo}"/>"></a>
 						</div>
 						<div class="single-defination">
-							<h4 class="mb-20" style="color: deeppink;">${p.partner_name}</h4>
+							<h4 class="mb-20 deepPink">
+							<a href="doi-tac-chi-tiet?id=${p.partner_id}">${p.partner_name}</a></h4>
 							<p>${p.partner_slogan}</p>
 							<p>
 								<a href="doi-tac-chi-tiet?id=${p.partner_id}">Xem chi tiết
@@ -250,7 +261,7 @@
 
 	</div>
 </div>
-
+<hr>
 
 <!-- news__area_start  -->
 <div class="news__area section_padding">
@@ -297,3 +308,119 @@
 	</div>
 </div>
 <!-- news__area_end  -->
+<hr>
+<!-- questions_start -->
+<section class="container">
+	<div class="row">
+		<div class="col-xl-4 head_question">
+			<h2 class="deepPink">Câu hỏi thường gặp</h2>
+		</div>
+		<div class="col-xl-8 questions_container pb-4">
+			<div class="question_items">
+				<div class="question">
+						<a class="" data-toggle="collapse" href="#collapseExample1"
+							role="button" aria-expanded="false"
+							aria-controls="#collapseExample1"> Charifit là gì? 
+							</a>
+						<a class="" data-toggle="collapse" href="#collapseExample1"
+							role="button" aria-expanded="false"
+							aria-controls="#collapseExample1"> <i class="ti-angle-down"></i>
+							</a>
+						
+				</div>
+				<div class="collapse answer" id="collapseExample1">
+					<div class="card card-body">Charifit là tính năng gây quỹ từ
+						thiện của MoMo. Các dự án được đăng tải trong Charifit đều là
+						những dự án đã được lựa chọn cẩn trọng, và được bảo trợ bởi các tổ
+						chức uy tín.</div>
+				</div>
+			</div>
+			<div class="question_items">
+				<div class="question">
+						<a class="" data-toggle="collapse" href="#collapseExample2"
+							role="button" aria-expanded="false"
+							aria-controls="#collapseExample2"> Charifit có thu lợi nhuận
+							từ việc gây quỹ không? </a>
+						<a class="" data-toggle="collapse" href="#collapseExample2"
+							role="button" aria-expanded="false"
+							aria-controls="#collapseExample2"> <i class="ti-angle-down"></i> </a>
+						
+				</div>
+				<div class="collapse answer" id="collapseExample2">
+					<div class="card card-body">Charifit hoàn toàn không thu lợi
+						nhuận từ việc gây quỹ. Ngoại trừ phí chuyển khoản ngân hàng, 100%
+						số tiền của người dùng được chuyển tới cho các tổ chức bảo trợ.</div>
+				</div>
+			</div>
+			<div class="question_items">
+				<div class="question">
+						<a class="" data-toggle="collapse" href="#collapseExample3"
+							role="button" aria-expanded="false"
+							aria-controls="collapseExample3"> Sau bao lâu từ khi quyên
+							góp, tiền sẽ được chuyển đến tay hoàn cảnh? </a>
+						<a class="" data-toggle="collapse" href="#collapseExample3"
+							role="button" aria-expanded="false"
+							aria-controls="collapseExample3"> <i class="ti-angle-down"></i> </a>
+							
+				</div>
+				<div class="collapse answer" id="collapseExample3">
+					<div class="card card-body">Trong vòng 1 tuấn kể từ khi dự án
+						quyên góp thành công, tiền sẽ được chuyển tới đối tác. Trong những
+						trường hợp khẩn cấp, chúng tôi có thể chuyển sớm hơn.</div>
+				</div>
+			</div>
+			<div class="question_items">
+				<div class="question">
+						<a class="" data-toggle="collapse" href="#collapseExample4"
+							role="button" aria-expanded="false"
+							aria-controls="collapseExample4"> Ai có thể gây quỹ trên
+							Charifit? </a>
+						<a class="" data-toggle="collapse" href="#collapseExample4"
+							role="button" aria-expanded="false"
+							aria-controls="collapseExample4"> <i class="ti-angle-down"></i> </a>
+						
+				</div>
+				<div class="collapse answer" id="collapseExample4">
+					<div class="card card-body">Để có thể gây quỹ trên Charifit,
+						hoàn cảnh cần được bảo trợ bởi một tổ chức có pháp nhân là Quỹ, tổ
+						chức phi chính phủ, Doanh nghiệp xã hội hoặc một cơ quan nhà nước
+						có chức năng tiếp nhận tài trợ.</div>
+				</div>
+			</div>
+			<div class="question_items">
+				<div class="question">
+						<a class="" data-toggle="collapse" href="#collapseExample5"
+							role="button" aria-expanded="false"
+							aria-controls="collapseExample5"> Nếu hoàn cảnh gây quỹ không
+							thành công thì sao? </a>
+						<a class="" data-toggle="collapse" href="#collapseExample5"
+							role="button" aria-expanded="false"
+							aria-controls="collapseExample5"> <i class="ti-angle-down"></i> </a>
+				</div>
+				<div class="collapse answer" id="collapseExample5">
+					<div class="card card-body">Nhà tài trợ vẫn sẽ chuyển số tiền
+						tương ứng với số Heo Vàng đã quyên góp. Trong một số trường hợp,
+						chúng tôi sẽ kéo dài thêm thời gian gây quỹ</div>
+				</div>
+			</div>
+			<div class="question_items">
+				<div class="question">
+						<a class="" data-toggle="collapse" href="#collapseExample6"
+							role="button" aria-expanded="false"
+							aria-controls="collapseExample6"> Làm thế nào để liên hệ và
+							gửi hoàn cảnh tới Charifit? </a>
+						<a class="" data-toggle="collapse" href="#collapseExample6"
+							role="button" aria-expanded="false"
+							aria-controls="collapseExample6"> <i class="ti-angle-down"></i> </a>
+				</div>
+				<div class="collapse answer" id="collapseExample6">
+					<div class="card card-body">Tổ chức đủ điều kiện vui lòng gửi
+						email thông tin của tổ chức tới địa chỉ donation@mservice.com.vn
+						để được nhận hướng dẫn.</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</section>
+<!-- questions_end -->

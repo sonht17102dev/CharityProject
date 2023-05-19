@@ -41,7 +41,7 @@ public class HomeController extends BaseController {
 		_mvShare.addObject("list6Circum", list);
 		_mvShare.addObject("category", category);
 		_mvShare.setViewName("user/index");
-		//session.removeAttribute("message");
+		session.removeAttribute("messageDonated");
 		return _mvShare;
 	}
 	

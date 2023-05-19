@@ -67,13 +67,47 @@ body {
   font-style: normal;
 }
 
-/* line 13, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_theme-default.scss */
+#content .news_st .news_items_des{
+	font-family: "Yeseva One", cursive;
+}
+.container .menu_type{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	gap: 20px;
+	
+}
+.container .menu_type > .menu_type_items {
+	flex: 1 0 auto;
+}
+.deepPink {
+	color: deeppink;
+}
+.show-acticle {
+	overflow : visible;
+}
+.hide-acticle {
+	height: 800px;
+	overflow: hidden;	
+}
+.show-partner {
+	overflow : visible;
+}
+.hide-partner {
+	height: 550px;
+	overflow : hidden;
+}
 .img {
   max-width: 100%;
   -webkit-transition: 0.3s;
   -moz-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
+}
+.thumb img {
+	height:306px; 
+	width:575px;
 }
 .img-cause p{
   font-size: 15px !important;
@@ -91,15 +125,11 @@ body {
 .causes {
   padding: 30px 150px;
 }
-.companion_partners {
-  padding: 30px 100px;
-}
 .img-cause img{
   width: 100%;
 }
 .sidebar_right{
-  padding-left: 30px;
-  padding-top: 30px;
+  /*padding-top: 30px;*/
   padding-right: 0px;
   line-height: 30px !important;
 }
@@ -174,20 +204,9 @@ body {
   left: 50%;
   
 }
-.our-partner-page{
-  display: flex;
-  padding-top: 30px;
-  padding-left: 10%;
-}
-.our-partner-page img {
-  width: 70px;
-  height: 70px;
-}
 .our-partner{
   display: flex;
-  padding: 10px 5px;
-  border: 1px solid lightgrey;
-  
+  gap: 20px;
 }
 .our-partner img {
   width: 70px;
@@ -214,11 +233,13 @@ body {
 .pagination a:hover:not(.active) {background-color: #ddd;}
 /* Paging page end */
 
-.banner_news img{
-  width: 100% !important;
-  margin-bottom: 20px;
-  height: 400px;
-  padding: 20px;
+.banner_news {
+  display:flex;
+ flex-direction: column;
+  gap: 10px;
+}
+.banner_items a img {
+	width: 100%;
 }
 .border-left {
   border-left: 1px solid lightgray;
@@ -239,10 +260,16 @@ body {
 .small_info {
   display: flex;
   width: 100%;
+  gap:15px;
+  flex-direction: row;
 }
 .small_info_details {
-  width: 33.33%;
+	width: 33.33%;
 }
+.small_info_details p small {
+	font-weight: 800 ;
+}
+
 .small_info_details h4{
   border-left: 1px solid #f45197;
   padding-left: 5px;
@@ -268,8 +295,18 @@ body {
   float: left;
   padding-left: 5px;
   padding-right: 5px;
+  height: 640px;
 }
 
+.box-height .causes_content h4{
+	height: 119.97px;
+	
+}
+.clearfix::after{
+	content:"";
+	clear: both;
+	display:table;
+}
 .num_info_partner{
   margin-top: 20px;
   margin-bottom: 20px;
@@ -284,6 +321,31 @@ body {
   list-style-type: circle;
   padding-top: 5px;
   padding-bottom: 5px;
+}
+.head_question {
+	padding-top: 10px;
+}
+.questions_container .question_items .question {
+	line-height: 3;
+	font-size: larger;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid gray;
+}
+.questions_container .question_items .question a {
+	color: gray;
+	
+}
+.questions_container .question_items .question a:hover {
+	color: black;
+}
+.questions_container .question_items .question a i {
+	color: gray;
+	display: inline-block;
+}
+.questions_container .question_items .question a i:hover {
+	color: blue;
 }
 .content_partner h1 {
   text-align: center;
@@ -342,6 +404,36 @@ body {
   max-width: 100%;
   
   padding-top: 70px;
+}
+
+.content-main p img {
+	width: 100%;
+	height: 800px;
+	overflow: hidden;	
+}
+.button-center {
+	
+}
+.introduce-height {
+	height: 470px;
+}
+.popular_causes_area .video-intro a {
+	font-size: 70px;
+    color: #fff;
+    position: relative;
+    z-index: 12;
+    width: 150px;
+    height: 150px;
+    background: deeppink;
+    text-align: center;
+    line-height: 150px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+.video-intro a i {
+	width:100px !important;
+	height:100px !important;
 }
     /* Full-width input fields */
     input[type=text], input[type=password], input[type=email] {
@@ -554,9 +646,9 @@ p {
 
 /* line 68, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_theme-default.scss */
 label {
-  color: #7e7e7e;
+  color: #5f9fff;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 18px;
   font-weight: 400;
 }
 
@@ -1694,11 +1786,6 @@ h3 {
   }
 }
 
-/* line 158, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
-.header-area .main-header-area .main-menu ul li a:hover {
-  color: #222;
-}
-
 /* line 162, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
 .header-area .main-header-area .main-menu ul li .submenu {
   position: absolute;
@@ -1877,7 +1964,7 @@ h3 {
 
 /* line 1, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_slider.scss */
 .slider_bg_1 {
-  background-image: url(../img/banner/banner-index.jpg);
+  background-image: url(../img/banner/banner.png);
 }
 
 /* line 4, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_slider.scss */
@@ -3529,7 +3616,10 @@ h3 {
   background-color: #3CC78F;
   position: relative;
 }
-
+.causes_content .custom_progress_bar .progress .progress-bar .progres_count {
+	font-size: 15px;
+	background-color: deeppink;
+	}
 /* line 32, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_causes.scss */
 .popular_causes_area.cause_details .single_cause .causes_content .custom_progress_bar .progress .progress-bar .progres_count {
   position: absolute;
@@ -3539,7 +3629,7 @@ h3 {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  font-size: 35px;
+  font-size: 30px;
   background: #3CC78F;
   line-height: 100px;
 }

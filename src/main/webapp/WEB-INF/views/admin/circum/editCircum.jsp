@@ -143,6 +143,10 @@
 							</div>
 						</div>
 						<br /> <br />
+						<c:set var = "string1" value = "${images}"/>
+						<c:set var = "string1length" value = "${fn:length(string1)}"/>
+						
+      					<c:set var = "string2" value = "${fn:substring(string1, 1, string1length-1)}" />
 						<div class="form-group">
 							<label class="col-sm-3 control-label no-padding-right">Hình
 								ảnh</label>

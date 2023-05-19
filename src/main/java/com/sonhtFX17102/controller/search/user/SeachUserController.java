@@ -3,6 +3,9 @@ package com.sonhtFX17102.controller.search.user;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +27,7 @@ public class SeachUserController extends BaseController{
 	}
 
 	@RequestMapping(value = "/search") 
-	public ModelAndView findByCategoryCircum(@RequestParam("type") String type) {
+	public ModelAndView findByCategoryCircum(@RequestParam("type") String type, HttpServletRequest request) {
 		List<Circum> list = new ArrayList<>();
 		if(type != null && type.equalsIgnoreCase(category[0].trim())) {
 			list = circumService.findByCategory(type);
@@ -49,6 +52,14 @@ public class SeachUserController extends BaseController{
 		}
 		else if(type != null && type.equalsIgnoreCase(category[7].trim())) {
 			list = circumService.findByCategory(type);
+		}
+		for (Circum circum : list) {
+			String[] banner_img = circum.getCircum_image().split(",");
+			circum.setCircum_image(banner_img[0]);
+		}
+		if(list.isEmpty()) {
+			request.setAttribute("message", "Danh sách đang được cập nhật vui lòng trở lại sau !");
+			
 		}
 		_mvShare.addObject("listTop6Circum", list);
 		_mvShare.addObject("category", category);

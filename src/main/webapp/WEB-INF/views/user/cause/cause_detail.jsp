@@ -8,7 +8,7 @@
 <div class="section-top-border">
 	<div class="row">
 		<div class="col-lg-12 causes">
-			<h2>
+			<h2 class="deepPink">
 				<c:out value="${circumDetail.circum_name}" />
 			</h2>
 			<p>
@@ -40,7 +40,91 @@
 	</div>
 </div>
 <!-- bradcam_area_end -->
+<!-- popular_causes_area_start  -->
+<div class="section-top-border">
+	<div class="row">
+		<div class="col-lg-9 col-md-8 causes">
+			<article class="content-main " id="article">
+			${circumDetail.circum_content}
+			</article>
+			<div class="row">
+				<div class="col-12">
+					<div class="donate_now_btn text-center mt-4">
+						<button type="button" class="boxed-btn4" 
+						id="showMoreButton" onclick="showMore()">Xem thêm >></button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-4 mt-sm-30 sidebar_right">
+			<div class="single-element-widget ">
 
+				<div class="causes_content">
+					<h2 class="mb-30">Thông tin quyên góp</h2>
+					<div
+						class="balance d-flex justify-content-between align-items-center">
+						<span><fmt:formatNumber type="number"
+								value="${circumDetail.circum_target}" /> đ / <fmt:formatNumber
+								type="number" value="${circumDetail.circum_raise}" />đ </span>
+						
+					</div>
+					<div class="custom_progress_bar">
+						<c:if test="${percent >= 100}">
+							<div class="progress-bar" role="progressbar" style="width: 100%;"
+								aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
+								<span class="progres_count"> ${percent}% </span>
+							</div>
+						</c:if>
+
+						<c:if test="${percent < 100}">
+							<div class="progress-bar" role="progressbar"
+								style="width: ${percent}%;" aria-valuenow="30" aria-valuemin="0"
+								aria-valuemax="100">
+								<span class="progres_count"> <fmt:formatNumber
+										type="number" maxFractionDigits = "1" value="${percent}" /> %
+								</span>
+							</div>
+						</c:if>
+					</div>
+
+					<div class="infomation">
+						<ul>
+							<li>Lượt quyên góp <br> <span><fmt:formatNumber
+										type="number" value="${circumDetail.circum_donations}" /></span></li>
+							<li>Đạt được <br> <span><fmt:formatNumber
+										type="number" maxFractionDigits="1" value="${percent}" />%</span></li>
+							<li>Thời gian còn <br>${circumDetail.circum_time_end}
+								Ngày<span></span>
+							</li>
+
+						</ul>
+					</div>
+					<div class="">
+						<a href="quyen-gop?id=${circumDetail.circum_id}" class="btn-Donate-sidebar">Quyên góp</a>
+						<p class="mt-4">Đồng hành cùng dự án</p>
+
+						<div class="partner">
+
+							<div class="partner_img">
+								<a href="doi-tac-chi-tiet?id=${circumDetail.partner_id}">
+								<img src="<c:url value="${circumDetail.partner_logo}"/>"></a>
+							</div>
+							<div class="partner_content">
+								<p class="mb-20">
+								<a href="doi-tac-chi-tiet?id=${circumDetail.partner_id}" class="deepPink">
+								${circumDetail.partner_name}</a></p>
+								<p>
+									<a href="doi-tac-chi-tiet?id=${circumDetail.partner_id}">Tìm hiểu thêm >></a>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+</div>
 <div class="popular_causes_area section_padding">
 	<div class="container">
 		<div class="row justify-content-center">
@@ -58,7 +142,7 @@
 					<c:set var="percentTop3"
 						value="${o.circum_target / o.circum_raise * 100}" />
 					<div class="single_cause box-cause">
-						<div class="thumb">
+						<div class="thumb" id="thumb">
 							${o.circum_image}
 						</div>
 						<div class="causes_content">
@@ -118,8 +202,19 @@
 						</div>
 					</div>
 				</c:forEach>
+				
 			</div>
 		</div>
 	</div>
 </div>
 <!-- popular_causes_area_end  -->
+<script>
+	var article = document.getElementById('article');
+	article.classList.add("hide-acticle") 
+	article.classList.remove("show-acticle") 
+	function showMore() {
+		article.classList.remove("hide-acticle") 
+		article.classList.add("show-acticle") 
+		document.getElementById('showMoreButton').style.display = 'none';  // Ẩn nút "Xem thêm"
+	}
+</script>

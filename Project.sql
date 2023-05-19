@@ -131,22 +131,14 @@ create table CIRCUM_ORDER (
     circum_order_bankname [nvarchar] (20) NOT NULL,
     circum_order_address [nvarchar] (255) NOT NULL,
     circum_order_amount [int] NOT NULL,
-    circum_order_date varchar (20) NOT NULL
+    circum_order_date varchar (20) NOT NULL,
+    circum_name [nvarchar] (255) NOT NULL
 );	
 ALTER TABLE [dbo].[CIRCUM_ORDER] ADD  DEFAULT (getdate()) FOR [circum_order_date]
 GO
 
-ALTER TABLE [dbo].[CIRCUM]  ADD FOREIGN KEY([partner_id])
-REFERENCES [dbo].[PARTNER] ([partner_id])
-GO
 
-ALTER TABLE [dbo].[CIRCUM_ORDER_DETAILS]  ADD FOREIGN KEY([circum_order_id])
-REFERENCES [dbo].[CIRCUM_ORDER] ([circum_order_id])
-GO
 
-ALTER TABLE [dbo].[CIRCUM_ORDER_DETAILS]  ADD FOREIGN KEY([circum_id])
-REFERENCES [dbo].[circum] ([circum_id])
-GO
 
 CREATE TABLE ACCOUNTDETAILS (
     [account_id] [int] NOT NULL PRIMARY KEY,

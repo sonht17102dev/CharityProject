@@ -14,10 +14,12 @@
      
       <p class="text-center error">${mess}</p>
        </c:if>
+       <!-- 
       <p>
         <a href="" class="btn btn-block btn-twitter"> <i class="fab fa-twitter"></i>  Đăng nhập Twitter</a>
         <a href="" class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Đăng nhập facebook</a>
       </p>
+        -->
       <p class="divider-text">
         <span class="bg-light">OR</span>
       </p>

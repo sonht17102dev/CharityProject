@@ -105,10 +105,10 @@ public class AccountImpl implements IAccountService {
 	@Override
 	public void updateAccountDetailsByUser(int account_id, String account_firstName, String account_lastName,
 			String account_address, String account_birthday, String account_organization, String account_name,
-			String account_phone) {
+			String account_phone,String account_bank, String account_bankname) {
 		// TODO Auto-generated method stub
 		accountDAO.updateAccountDetailsByUser(account_id, account_firstName, account_lastName, account_address,
-				account_birthday, account_organization, account_name, account_phone);
+				account_birthday, account_organization, account_name, account_phone, account_bank, account_bankname);
 	}
 
 	@Override
@@ -118,9 +118,9 @@ public class AccountImpl implements IAccountService {
 	}
 
 	@Override
-	public AccountDetailsDTO getAccountDetailsByMail(String mail) {
+	public AccountDetailsDTO getAccountDetailsByUsername(String username) {
 		// TODO Auto-generated method stub
-		return accountDAO.getAccountDetailsByMail(mail);
+		return accountDAO.getAccountDetailsByUsername(username);
 	}
 
 	@Override

@@ -27,7 +27,7 @@
                         </ul>
                     </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" >
                        <img src="${partnerDetail.partner_banner}">
                     </div>
                 </div>
@@ -51,8 +51,8 @@
                     <c:forEach items="${listCircumOfPartner}" var="circumsOfPartner">
                     <c:set var = "percent" value = "${circumsOfPartner.circum_target / circumsOfPartner.circum_raise * 100}"/>
                 	<div class="single_cause box-cause">
-                            <div class="thumb">
-                                <img src="${circumsOfPartner.circum_image}" alt="">
+                            <div class="thumb" id="thumb">
+                                ${circumsOfPartner.circum_image}
                             </div>
                             <div class="causes_content">
                                 <div class="custom_progress_bar">

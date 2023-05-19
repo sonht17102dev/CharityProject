@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/user/taglib.jsp"%>
-<div class="container-xl px-4 mt-4" style="margin-top: 50px !important;">
+<div class="container-xl px-4 mt-4" style="margin-top: 70px !important;">
 	<%@ include file="/WEB-INF/views/user/manageUser/menu.jsp"%>
 	<div class="row">
 		<div class="col-lg-8">
@@ -40,6 +40,7 @@
 			</div>
 
 		</div>
+		<!--  
 		<div class="col-lg-4">
 
 			<div class="card mb-4">
@@ -78,6 +79,7 @@
 				</div>
 			</div>
 		</div>
+		-->
 	</div>
 </div>
 <script>

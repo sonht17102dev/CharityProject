@@ -30,7 +30,6 @@ import com.sonhtFX17102.service.impl.CircumImpl;
 public class ManageCircumController extends BaseController {
 	@Autowired
 	private CircumImpl circumService;
-	
 
 	@RequestMapping(value = "quan-ly-quyen-gop", method = RequestMethod.GET)
 	public ModelAndView manageCircum(HttpServletRequest request) {
@@ -58,11 +57,11 @@ public class ManageCircumController extends BaseController {
 			circumService.updateStatus(idd, "inactive");
 		}
 		if (action != null && action.equals("deleteCircum") && status.equals("inactive")) {
-			//String id = request.getParameter("id");
+			// String id = request.getParameter("id");
 			idd = Integer.parseInt(id);
 			circumService.updateStatus(idd, "active");
 		}
-		
+
 		List<Circum> listInactive = circumService.findCircumsInactive("inactive");
 		_mvShareAdmin.addObject("listInactive", listInactive);
 		_mvShareAdmin.addObject("listTop10Circum", list);
@@ -71,16 +70,15 @@ public class ManageCircumController extends BaseController {
 		_mvShareAdmin.addObject("category", category);
 		return _mvShareAdmin;
 	}
-	
+
 	@RequestMapping(value = "cap-nhat-quyen-gop", method = RequestMethod.GET)
 	public ModelAndView editCircum(HttpServletRequest request) {
 		String idS = request.getParameter("id");
 		int id = Integer.parseInt(idS);
 		Circum circum = circumService.getCircumById(id);
 		String[] images = circum.getCircum_image().split(",");
+		
 		List<String> listImages = Arrays.asList(images);
-
-		// List<String> listCategories = Arrays.asList(category);
 		_mvShareAdmin.addObject("category", category);
 		_mvShareAdmin.addObject("images", listImages);
 		_mvShareAdmin.addObject("circum", circum);
@@ -104,8 +102,21 @@ public class ManageCircumController extends BaseController {
 		String splitString = img.substring(3, img.length() - 6);
 		String content = request.getParameter("circum_content");
 		String status = request.getParameter("circum_status");
-		circumService.upDateCircum(Integer.parseInt(id), Integer.parseInt(pId), name, type, content, splitString, des, 
-					Integer.parseInt(donation), Long.parseLong(target), Long.parseLong(raise), Integer.parseInt(end), start, status);
+		System.out.println(splitString);
+		if(splitString.contains("[") || splitString.contains("]")) {
+			String images = splitString.substring(1, splitString.length()-1);
+			//System.out.println(images);
+			circumService.upDateCircum(Integer.parseInt(id), Integer.parseInt(pId), name, type, content, images, des,
+					Integer.parseInt(donation), Long.parseLong(target), Long.parseLong(raise), Integer.parseInt(end), start,
+					status);
+		} else {
+			//System.out.println(splitString);
+			circumService.upDateCircum(Integer.parseInt(id), Integer.parseInt(pId), name, type, content, splitString, des,
+					Integer.parseInt(donation), Long.parseLong(target), Long.parseLong(raise), Integer.parseInt(end), start,
+					status);
+			
+		}
+		
 		return "redirect:quan-ly-quyen-gop";
 	}
 
@@ -137,13 +148,13 @@ public class ManageCircumController extends BaseController {
 		String content = request.getParameter("circum_content");
 		String splitString = images.substring(3, images.length() - 6); // cắt chuỗi bỏ qua thẻ <p> và </p> do mặc định
 																		// ckeditor
-
-		Circum circum = new Circum(idP, title, type, content, splitString, des, d, t, r, te, start_donate,"active");
+		Circum circum = new Circum(idP, title, type, content, splitString, des, d, t, r, te, start_donate, "active");
 		circum = circumService.checkCircumByNameExist(title);
 		if (circum == null) {
 			try {
-				circumService.insertCircum(idP, title, type, content, splitString, des, d, t, r, te, start_donate);
-				_mvShareAdmin.setViewName("admin/circum/manageCircum");
+				circumService.insertCircum(idP, title, type, content, splitString, des, d, t, r, te, start_donate,
+						"active");
+				_mvShareAdmin.setViewName("redirect:quan-ly-quyen-gop");
 
 			} catch (Exception e) {
 				request.setAttribute("message", "Thêm mới thất bại - Tiêu đề đã tồn tại vui lòng thử lại !!!");

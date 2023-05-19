@@ -43,10 +43,10 @@
 		<div class="form-group">
 			<button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
 		</div>
-		<div class="clearfix">
-			<label class="float-left form-check-label"><input
-				type="checkbox"> Ghi nhớ đăng nhập</label> 
-			<button type="button" onclick="showForgotPasswordForm()" class="float-right">Quên mật khẩu</button>
+		<div class="clearfix d-flex justify-content-center align-items-center ">
+			<!--  <label class="float-left form-check-label"><input
+				type="checkbox"> Ghi nhớ đăng nhập</label> -->
+			<button type="button" onclick="showForgotPasswordForm()" class="btn btn-secondary">Quên mật khẩu</button>
 		</div>
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />

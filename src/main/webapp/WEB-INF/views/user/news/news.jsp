@@ -4,103 +4,39 @@
 
 <c:set value="${latest_news.get(0)}" var="latest_news" />
 
-<!-- news_model_start  -->
-<div id="id-news-${latest_news.news_id}" class="modalLogin">
-	<div class="container-news">
-		<div class="row">
-			<span
-				onclick="document.getElementById('id-news-${latest_news.news_id}').style.display='none'"
-				class="close " title="Close Modal">&times;</span>
-			<div class="col-lg-12 col-md-8">
-				<h2>Cập nhật các tin tức quyên góp mới nhất</h2>
-				<div class="banner_news">
-					<img src="${latest_news.news_img_banner}">
-					<h3>${latest_news.news_description}</h3>
-				</div>
-				${latest_news.news_content}
-
-			</div>
-			<div class="row">
-				<div class="col-12">
-					<div class="donate_now_btn text-center">
-						<a href="#" class="boxed-btn4">Xem thêm</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-</div>
-<!-- news_model_end  -->
-<c:forEach items="${listAllNews}" var="news_sub">
-	<!-- news_model_start  -->
-	<div id="id-news-${news_sub.news_id}" class="modalLogin">
-		<div class="container">
-			<div class="row">
-				<span
-					onclick="document.getElementById('id-news-${news_sub.news_id}').style.display='none'"
-					class="close " title="Close Modal">&times;</span>
-				<div class="col-lg-12 col-md-8">
-					<h2>Cập nhật các tin tức quyên góp mới nhất</h2>
-					<div class="banner_news">
-						<img src="${news_sub.news_img_banner}">
-						<h3>${news_sub.news_description}</h3>
-					</div>
-					${news_sub.news_content}
-
-				</div>
-				<div class="row">
-					<div class="col-12">
-						<div class="donate_now_btn text-center">
-							<a href="#" class="boxed-btn4">Xem thêm</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-	</div>
-</c:forEach>
-<!-- news_model_end  -->
-<!-- news_start  -->
-
-<div class="section-top-border">
+<div class="section-top-border mt-4">
 	<div class="row">
-		<div class="col-lg-9 col-md-8 companion_partners">
-			<h2 class="deep-pink">Cập nhật các tin tức quyên góp mới nhất</h2>
+		<div class="col-lg-8 col-md-8 ">
+			<h2 class="deepPink">Cập nhật các tin tức quyên góp mới nhất</h2>
 			<div class="banner_news">
-				<div>
-					<a type="button"
-						onclick="document.getElementById('id-news-${latest_news.news_id}').style.display='block'"
+				<div class="banner_items">
+					<a href="tin-tuc-chi-tiet?id=${latest_news.news_id}"
 						style="width: 100%;"><img src="${latest_news.news_img_banner}"></a>
 				</div>
-				<div>
+				<div class="banner_items">
 					<span>${latest_news.news_post_date}</span>
 				</div>
-				<div>
-					<h4>
-						<a type="button"
-							onclick="document.getElementById('id-news-${latest_news.news_id}').style.display='block'"
+				<div class="banner_items">
+					<h3>
+						<a href="tin-tuc-chi-tiet?id=${latest_news.news_id}"
 							style="width: 100%;">${latest_news.news_description}</a>
-					</h4>
+					</h3>
 				</div>
 			</div>
 			<div id="content" class="row">
 			<c:forEach items="${listAllNews}" var="o">
 
 				<div class="news_st news_wrapper">
-					<div>
-						<a type="button"
-							onclick="document.getElementById('id-news-${o.news_id}').style.display='block'"
+					<div class="news_items_banner">
+						<a href="tin-tuc-chi-tiet?id=${o.news_id}"
 							style="width: 100%;"><img src="${o.news_img_banner}"></a>
 					</div>
-					<div>
+					<div class="news_items_date">
 						<span>${o.news_post_date}</span>
 					</div>
-					<div>
+					<div class="news_items_des">
 						<h4>
-							<a type="button"
-								onclick="document.getElementById('id-news-${o.news_id}').style.display='block'"
+							<a href="tin-tuc-chi-tiet?id=${o.news_id}"
 								style="width: 100%;">${o.news_description}</a>
 						</h4>
 					</div>
@@ -116,22 +52,22 @@
 			</div>
 		</div>
 
-		<div class="col-lg-3 col-md-4 mt-sm-30 sidebar_right">
+		<div class="col-lg-4 col-md-4 mt-sm-30 sidebar_right">
 
 			<div class="single-element-widget border-left">
-				<h2 class="mb-30">Hoàn cảnh quyên góp mới nhất</h2>
+				<h2 class="mb-30 deepPink">Hoàn cảnh quyên góp mới nhất</h2>
 				<c:forEach items="${listTop3Circum}" var="o">
 					<c:set var="percent"
 						value="${o.circum_target / o.circum_raise * 100}" />
 					<div class="causes_content">
-						<div class="img-cause">
+						<div class="img-cause" id="thumb">
 							${o.circum_image}
 							<p>${o.circum_name}</p>
 						</div>
 						<div
 							class="balance d-flex justify-content-between align-items-center">
 							<span><fmt:formatNumber type="number"
-									value="${o.circum_target}" />đ quyên góp / <fmt:formatNumber
+									value="${o.circum_target}" />đ / <fmt:formatNumber
 									type="number" value="${o.circum_raise}" />đ </span>
 						</div>
 						<div class="custom_progress_bar">

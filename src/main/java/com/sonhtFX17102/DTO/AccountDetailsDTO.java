@@ -11,25 +11,11 @@ public class AccountDetailsDTO {
 	private String account_mail;
 	private String account_name;
 	private String account_phone;
+	private String account_bank;
+	private String account_bankname;
 
 	public AccountDetailsDTO() {
 
-	}
-
-	public AccountDetailsDTO(int account_id, String account_firstName, String account_lastName, String account_image,
-			String account_address, String account_birthday, String account_organization,
-			String account_mail, String account_name, String account_phone) {
-		super();
-		this.account_id = account_id;
-		this.account_firstName = account_firstName;
-		this.account_lastName = account_lastName;
-		this.account_image = account_image;
-		this.account_address = account_address;
-		this.account_birthday = account_birthday;
-		this.account_organization = account_organization;
-		this.account_mail = account_mail;
-		this.account_name = account_name;
-		this.account_phone = account_phone;
 	}
 
 	public int getAccount_id() {
@@ -88,7 +74,6 @@ public class AccountDetailsDTO {
 		this.account_organization = account_organization;
 	}
 
-
 	public String getAccount_mail() {
 		return account_mail;
 	}
@@ -113,13 +98,66 @@ public class AccountDetailsDTO {
 		this.account_phone = account_phone;
 	}
 
+	public String getAccount_bank() {
+		return account_bank;
+	}
+
+	public void setAccount_bank(String account_bank) {
+		this.account_bank = account_bank;
+	}
+
+	public String getAccount_bankname() {
+		return account_bankname;
+	}
+
+	public void setAccount_bankname(String account_bankname) {
+		this.account_bankname = account_bankname;
+	}
+
 	@Override
 	public String toString() {
 		return "AccountDetailsDTO [account_id=" + account_id + ", account_firstName=" + account_firstName
 				+ ", account_lastName=" + account_lastName + ", account_image=" + account_image + ", account_address="
 				+ account_address + ", account_birthday=" + account_birthday + ", account_organization="
-				+ account_organization + ", account_mail=" + account_mail
-				+ ", account_name=" + account_name + ", account_phone=" + account_phone + "]";
+				+ account_organization + ", account_mail=" + account_mail + ", account_name=" + account_name
+				+ ", account_phone=" + account_phone + ", account_bank=" + account_bank + ", account_bankname="
+				+ account_bankname + "]";
 	}
 
+	public AccountDetailsDTO(int account_id, String account_firstName, String account_lastName, String account_image,
+			String account_address, String account_birthday, String account_organization, String account_mail,
+			String account_name, String account_phone, String account_bank, String account_bankname) {
+		super();
+		this.account_id = account_id;
+		this.account_firstName = account_firstName;
+		this.account_lastName = account_lastName;
+		this.account_image = account_image;
+		this.account_address = account_address;
+		this.account_birthday = account_birthday;
+		this.account_organization = account_organization;
+		this.account_mail = account_mail;
+		this.account_name = account_name;
+		this.account_phone = account_phone;
+		this.account_bank = account_bank;
+		this.account_bankname = account_bankname;
+	}
+
+	public AccountDetailsDTO(String account_firstName, String account_lastName, String account_image,
+			String account_address, String account_birthday, String account_organization, String account_mail,
+			String account_name, String account_phone, String account_bank, String account_bankname) {
+		super();
+		this.account_firstName = account_firstName;
+		this.account_lastName = account_lastName;
+		this.account_image = account_image;
+		this.account_address = account_address;
+		this.account_birthday = account_birthday;
+		this.account_organization = account_organization;
+		this.account_mail = account_mail;
+		this.account_name = account_name;
+		this.account_phone = account_phone;
+		this.account_bank = account_bank;
+		this.account_bankname = account_bankname;
+	}
+	
+	
 }
