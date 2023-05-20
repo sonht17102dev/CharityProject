@@ -41,8 +41,9 @@ public class NewsController extends BaseController{
 		_mvShare.addObject("listAllNews", listNews);
 		List<Circum> list = circumService.getTop3Circums();
 		for (Circum circum : list) {
-			String[] banner_img = circum.getCircum_image().split(",");
-			circum.setCircum_image(banner_img[0]);
+			String[] imgs = {splitImage(circum.getCircum_image()) };
+			String imgNotStyle = removeStyle(imgs[0]);
+			circum.setCircum_image(imgNotStyle);
 		}
 		int size = newsService.getAllNews().size();
 		_mvShare.addObject("listTop3Circum", list);
@@ -55,8 +56,9 @@ public class NewsController extends BaseController{
 	public ModelAndView newsDetails (@RequestParam("id") int id) {
 		List<Circum> listC = circumService.getTop3Circums();
 		for (Circum circum : listC) {
-			String[] banner_img = circum.getCircum_image().split(",");
-			circum.setCircum_image(banner_img[0]);
+			String[] imgs = {splitImage(circum.getCircum_image()) };
+			String imgNotStyle = removeStyle(imgs[0]);
+			circum.setCircum_image(imgNotStyle);
 		}
 		News news = newsService.getNewsById(id);
 		_mvShare.addObject("news", news);

@@ -118,13 +118,13 @@
 						<label class="col-sm-3 ">Username</label> <input type="text"
 							name="circum_order_name" id="circum_order_name"
 							class="single-input col-sm-7" placeholder="Họ tên"
-							value="${accountDetails.account_name }">
+							value="${accountDetails.account_name }" readonly>
 					</div>
 					<div class="mt-10 form-group">
 						<label class="col-sm-3">Địa chỉ Email</label> <input type="email"
 							name="circum_order_mail" id="circum_order_mail"
 							placeholder="Địa chỉ Email" class="single-input col-sm-7"
-							value="${accountDetails.account_mail}">
+							value="${accountDetails.account_mail}" readonly>
 					</div>
 					<div class="mt-10 form-group">
 						<label class="col-sm-3 ">Số điện thoại</label> <input type="text"
@@ -185,8 +185,8 @@
 			location.assign("/CharityApp/nhung-hoan-canh");
 		});
 		$("#reset").click(function(){
-			$("#circum_order_name").val('');
-			$("#circum_order_mail").val('');
+			//$("#circum_order_name").val('');
+			//$("#circum_order_mail").val('');
 			$("#circum_order_phone").val('');
 			$("#circum_order_bank").val('');
 			$("#circum_order_bankname").val('');

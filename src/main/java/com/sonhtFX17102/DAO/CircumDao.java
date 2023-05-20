@@ -34,7 +34,9 @@ public class CircumDao extends BaseDao {
 
 	public List<Circum> getPagingPage(int index) {
 		index = (index - 1) * 6;
-		String sql = "select * from circum\r\n" + "order by circum_id\r\n" + "OFFSET " + index
+		String sql = "select * from circum "
+				+ "where circum_status='active' " 
+				+ " order by circum_id desc\r\n" + "OFFSET " + index
 				+ " ROWS FETCH NEXT 6 ROWS ONLY";
 
 		List<Circum> list = _jdbcTemplate.query(sql, new MapperCircum());
@@ -67,13 +69,17 @@ public class CircumDao extends BaseDao {
 	}
 
 	public List<Circum> getTop6Circums() {
-		String sql = "select top 6 * from circum ";
+		String sql = "select top 6 * from circum "
+				+ "where circum_status='active' "
+				+ "order by circum_id desc";
 		List<Circum> list = _jdbcTemplate.query(sql, new MapperCircum());
 		return list;
 	}
 
 	public List<Circum> getTop3Circums() {
-		String sql = "select top 3 * from circum ";
+		String sql = "select top 3 * from circum "
+				+ "where circum_status = 'active'"
+				+ "order by circum_id desc ";
 		List<Circum> list = _jdbcTemplate.query(sql, new MapperCircum());
 		return list;
 	}
@@ -166,7 +172,8 @@ public class CircumDao extends BaseDao {
 	
 	public List<Circum> findByCategory(String type){
 		String sql = "select * from circum "
-				+ "where circum_type = N'"+ type +"'";
+				+ "where circum_type = N'"+ type +"' and circum_status='active' "
+				+ "order by circum_id desc";
 		List<Circum> list = _jdbcTemplate.query(sql, new MapperCircum());
 		return list;
 	}

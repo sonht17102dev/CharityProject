@@ -47,10 +47,6 @@
 	<%@include file="/WEB-INF/views/layouts/user/footer.jsp"%>
 	   <!-- JS here -->
 	<script>
-		var img = document.querySelector("#thumb img");
-		if(img.hasAttribute("style")){
-			img.removeAttribute("style");
-		}
 		// Get the modal
 		var modalLogin = document.getElementById('id-login');
 		var modalSignup = document.getElementById('id-signup');

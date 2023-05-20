@@ -30,8 +30,9 @@ public class HomeController extends BaseController {
 		
 		List<Circum> list = _homeService.getTop6Circums();
 		for (Circum circum : list) {
-			String[] banner_img = circum.getCircum_image().split(",");
-			circum.setCircum_image(banner_img[0]);
+			String[] imgs = {splitImage(circum.getCircum_image()) };
+			String imgNotStyle = removeStyle(imgs[0]);
+			circum.setCircum_image(imgNotStyle);
 		}
 		List<Partner> listPartners = _homeService.getTop6Partner();
 		List<News> listNews = _homeService.getTop2News();

@@ -44,5 +44,25 @@ public class BaseController {
 		this.emailSender.send(mailMessage);
 	}
 
+	public String splitImage(String input) {
+		String result = "";
+		// Tìm vị trí đầu tiên của thẻ <img>
+		int firstImgTagIndex = input.indexOf("<img");
+
+		// Tìm vị trí của ký tự '>' sau thẻ <img> đầu tiên
+		int closingBracketIndex = input.indexOf(">", firstImgTagIndex);
+
+		// Kiểm tra xem có tìm thấy thẻ <img> và ký tự '>' hay không
+		if (firstImgTagIndex != -1 && closingBracketIndex != -1) {
+		    // Lấy chuỗi con chứa thẻ <img> đầu tiên
+		    result = input.substring(firstImgTagIndex, closingBracketIndex + 1);
+		}    
+
+		    
+		return result;
+	}
 	
+	public String removeStyle(String input) {
+		return input.replaceAll("style=\"[^\"]*\"", "");
+	}
 }

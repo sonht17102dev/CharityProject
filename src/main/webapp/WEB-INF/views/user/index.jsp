@@ -48,19 +48,19 @@
 					</div>
 					<div class="small_info mt-4">
 						<div class="small_info_details">
-							<h4>404</h4>
+							<h4 class="deepPink">404</h4>
 							<p>
 								<small>dự án đã được gây quỹ thành công</small>
 							</p>
 						</div>
 						<div class="small_info_details">
-							<h4>55+ tỷ</h4>
+							<h4 class="deepPink">55+ tỷ</h4>
 							<p>
 								<small>đồng được quyên góp</small>
 							</p>
 						</div>
 						<div class="small_info_details">
-							<h4>14+ triệu</h4>
+							<h4 class="deepPink">14+ triệu</h4>
 							<p>
 								<small>lượt quyên góp</small>
 							</p>
@@ -121,7 +121,9 @@
 									value="${o.circum_raise}" />đ
 							</span>
 						</div>
-						<h4>${o.circum_name}</h4>
+						<div class="circum_name">
+							<h4>${o.circum_name}</h4>
+						</div>
 						<div class="infomation">
 							<ul>
 								<li>Lượt quyên góp <br> <span><fmt:formatNumber

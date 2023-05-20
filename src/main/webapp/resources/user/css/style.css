@@ -81,6 +81,7 @@ body {
 .container .menu_type > .menu_type_items {
 	flex: 1 0 auto;
 }
+
 .deepPink {
 	color: deeppink;
 }
@@ -95,7 +96,7 @@ body {
 	overflow : visible;
 }
 .hide-partner {
-	height: 550px;
+	height: 660px;
 	overflow : hidden;
 }
 .img {
@@ -302,6 +303,10 @@ body {
 	height: 119.97px;
 	
 }
+#banner-images img {
+	width:575px;
+	height:306px;
+}
 .clearfix::after{
 	content:"";
 	clear: both;
@@ -411,8 +416,12 @@ body {
 	height: 800px;
 	overflow: hidden;	
 }
-.button-center {
-	
+.causes_content .circum_name h4{
+  white-space: wrap; 
+  overflow: hidden;
+  max-width: 309.95px;
+  height: 71.98px;
+  text-overflow: ellipsis; 
 }
 .introduce-height {
 	height: 470px;

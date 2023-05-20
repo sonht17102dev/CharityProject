@@ -30,8 +30,9 @@ public class PartnerController extends BaseController{
 		List<PartnerDTO> list = partnerService.getAllPartners();
 		List<Circum> listCircums = circumService.getTop3Circums();
 		for (Circum circum : listCircums) {
-			String[] banner_img = circum.getCircum_image().split(",");
-			circum.setCircum_image(banner_img[0]);
+			String[] imgs = {splitImage(circum.getCircum_image()) };
+			String imgNotStyle = removeStyle(imgs[0]);
+			circum.setCircum_image(imgNotStyle);
 		}
 		_mvShare.addObject("listTop3Circum", listCircums);
 		_mvShare.addObject("listPartner", list);
@@ -46,6 +47,11 @@ public class PartnerController extends BaseController{
 		List<PartnerDTO> list = partnerService.getAllPartners();
 		_mvShare.addObject("listPartner", list);
 		List<Circum> listCircumOfPartner = partnerService.getAllCircumsOfPartner(id);
+		for (Circum circum : listCircumOfPartner) {
+			String[] imgs = {splitImage(circum.getCircum_image()) };
+			String imgNotStyle = removeStyle(imgs[0]);
+			circum.setCircum_image(imgNotStyle);
+		}
 		_mvShare.addObject("listCircumOfPartner", listCircumOfPartner);
 		_mvShare.setViewName("user/partner/partner_detail");
 		return _mvShare;

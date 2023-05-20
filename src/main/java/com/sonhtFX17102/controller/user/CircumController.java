@@ -38,8 +38,10 @@ public class CircumController extends BaseController {
 		}
 		List<Circum> list = circumService.getPagingPage(index);
 		for (Circum circum : list) {
-			String[] banner_img = circum.getCircum_image().split(",");
-			circum.setCircum_image(banner_img[0]);
+			String[] imgs = {splitImage(circum.getCircum_image())};
+			String imgNotStyle = removeStyle(imgs[0]);
+			circum.setCircum_image(imgNotStyle);
+			
 		}
 		_mvShare.addObject("endPage", endPage);
 		_mvShare.addObject("tag", index);
@@ -52,16 +54,15 @@ public class CircumController extends BaseController {
 	@RequestMapping(value = "/hoan-canh-chi-tiet")
 	public ModelAndView circum_detail(@RequestParam("id") int id) {
 		CircumDTO circumDetail = (CircumDTO) circumService.getCircumDetailsById(id);
-		String[] img = circumDetail.getCircum_image().split(",");
 		List<Circum> list = circumService.getTop3Circums();
 		for (Circum circum : list) {
-			String[] banner_img = circum.getCircum_image().split(",");
-			circum.setCircum_image(banner_img[0]);
+			String[] imgs = {splitImage(circum.getCircum_image()) };
+			String imgNotStyle = removeStyle(imgs[0]);
+			circum.setCircum_image(imgNotStyle);
 		}
-
+		
 		_mvShare.addObject("listTop3Circum", list);
 		_mvShare.addObject("circumDetail", circumDetail);
-		_mvShare.addObject("img", img);
 		_mvShare.setViewName("user/cause/cause_detail");
 		return _mvShare;
 	}

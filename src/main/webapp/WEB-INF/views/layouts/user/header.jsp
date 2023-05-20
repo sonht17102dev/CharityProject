@@ -68,8 +68,7 @@
 									<li><a href="${pageContext.request.contextPath}/doi-tac">Đối
 											tác</a></li>
 									<li><a href="${pageContext.request.contextPath}/tin-tuc">Tin
-											tức cộng đồng</a></li>
-									<li>
+											tức</a></li>
 									<security:authorize access="isAuthenticated()">
 										<security:authorize access="hasRole('USER')">
 											<li><a
@@ -86,10 +85,6 @@
 										<li><a href="${pageContext.request.contextPath}/register">
 												Đăng ký</a></li>
 									</security:authorize>
-									<security:authorize access="isAuthenticated()">
-										<li><a href="${pageContext.request.contextPath}/logout">
-												Đăng xuất</a></li>
-									</security:authorize>
 									<security:authorize access="hasRole('ADMIN')">
 										<li>
 											<!-- Add a link to point to /systems ... this is for the admins -->
@@ -99,8 +94,11 @@
 											</p>
 										</li>
 									</security:authorize>
+									<security:authorize access="isAuthenticated()">
+										<li><a href="${pageContext.request.contextPath}/logout">
+												Đăng xuất</a></li>
+									</security:authorize>
 
-									</li>
 								</ul>
 						</div>
 					</div>

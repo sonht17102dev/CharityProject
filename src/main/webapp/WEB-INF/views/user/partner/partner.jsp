@@ -6,13 +6,14 @@
         <div class="row">
             <div class="col-lg-8 col-md-8 companion_partners">
                 <h2 class="text text-center deepPink" >Các đối tác đồng hành</h2>
-                <div class="row" id="itemsPartner">
+                <div class="row ml-4 mt-4 " id="itemsPartner">
                 <c:forEach items="${listPartner}" var="o">
-                    <div class="col-md-6 our-partner-page " >
-                        <div class="mr-3">
-                            <a href="doi-tac-chi-tiet?id=${o.partner_id}"><img src="${o.partner_logo}"></a>
+                    <div class="row col-md-6  flex-md-row mr-2 mb-2" >
+                        <div class="col-md-4">
+                            <a href="doi-tac-chi-tiet?id=${o.partner_id}"><img src="${o.partner_logo}" 
+                            style="width:100%"></a>
                         </div>
-                        <div class="single-defination ">
+                        <div class="single-defination col-md-8">
                             <h4 class="mb-20 deepPink" >
                             <a href="doi-tac-chi-tiet?id=${o.partner_id}">${o.partner_name}</a></h4>
                             <p>${o.partner_slogan}</p>

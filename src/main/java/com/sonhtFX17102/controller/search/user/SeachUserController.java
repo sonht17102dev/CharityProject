@@ -54,8 +54,9 @@ public class SeachUserController extends BaseController{
 			list = circumService.findByCategory(type);
 		}
 		for (Circum circum : list) {
-			String[] banner_img = circum.getCircum_image().split(",");
-			circum.setCircum_image(banner_img[0]);
+			String[] imgs = {splitImage(circum.getCircum_image()) };
+			String imgNotStyle = removeStyle(imgs[0]);
+			circum.setCircum_image(imgNotStyle);
 		}
 		if(list.isEmpty()) {
 			request.setAttribute("message", "Danh sách đang được cập nhật vui lòng trở lại sau !");

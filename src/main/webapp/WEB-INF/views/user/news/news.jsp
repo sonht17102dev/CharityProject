@@ -104,7 +104,7 @@
 							</ul>
 						</div>
 						<div class="">
-							<a href="#" class="btn-Donate-sidebar">Quyên góp</a>
+							<a href="quyen-gop?id=${o.circum_id}" class="btn-Donate-sidebar">Quyên góp</a>
 						</div>
 						<div class="horizontal_line"></div>
 

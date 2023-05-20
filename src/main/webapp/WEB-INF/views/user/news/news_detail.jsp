@@ -78,7 +78,9 @@
 										value="${o.circum_raise}" />đ
 								</span>
 							</div>
-							<h4>${o.circum_name}</h4>
+							<div class="circum_name">
+								<h4>${o.circum_name}</h4>
+							</div>
 							<div class="infomation">
 								<ul>
 									<li>Lượt quyên góp <br> <span><fmt:formatNumber
@@ -87,8 +89,7 @@
 									<span><fmt:formatNumber
 													type="number" maxFractionDigits="1" value="${percentTop3}" />%</span></li>
 									<c:if test="${percentTop3 >=100}">
-										<li><a href="#" data-scroll-nav='1' class="btn-Donate">Đạt
-												mục tiêu</a></li>
+										<li><a href="#" data-scroll-nav='1' class="btn-Donate">Kết Thúc</a></li>
 									</c:if>
 									<c:if test="${percentTop3 < 100}">
 										<li><a href="quyen-gop?id=${o.circum_id}" 
