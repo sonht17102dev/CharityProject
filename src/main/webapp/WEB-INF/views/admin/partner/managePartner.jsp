@@ -19,7 +19,7 @@
 
 		<div class="page-content">
 			<div class="page-header">
-				<h1>
+				<h1 class="text-center">
 					Bảng thống kê các đối tác đồng hành
 				</h1>
 			</div>
@@ -116,45 +116,13 @@
 													</c:if>
 													<td class="center">${o.partner_number_donate} </td>
 													<td class="center">
-														<div class="hidden-sm hidden-xs action-buttons">
+														<div class="">
 															<a class="green" title="Chỉnh sửa"> <i
 																class="ace-icon fa fa-pencil bigger-130"></i>
 															</a> 
 															<a class="red delete_single" title="Xóa"> <i
 																class="ace-icon fa fa-trash-o bigger-130"></i>
 															</a>
-														</div>
-														<div class="hidden-md hidden-lg">
-															<div class="inline pos-rel">
-																<button
-																	class="btn btn-minier btn-yellow dropdown-toggle"
-																	data-toggle="dropdown" data-position="auto">
-																	<i
-																		class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-																</button>
-
-																<ul
-																	class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-																	<li><a href="#" class="tooltip-info"
-																		data-rel="tooltip" title="View"> <span
-																			class="blue"> <i
-																				class="ace-icon fa fa-search-plus bigger-120"></i>
-																		</span>
-																	</a></li>
-
-																	<li><a class="tooltip-success" data-rel="tooltip">
-																			<span class="green"> <i
-																				class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																		</span>
-																	</a></li>
-
-																	<li><a class="tooltip-error" data-rel="tooltip">
-																			<span class="red"> <i
-																				class="ace-icon fa fa-trash-o bigger-120"></i>
-																		</span>
-																	</a></li>
-																</ul>
-															</div>
 														</div>
 													</td>
 												</tr>

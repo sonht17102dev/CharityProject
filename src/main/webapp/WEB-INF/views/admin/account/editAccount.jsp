@@ -108,7 +108,7 @@
 const selectElement = document.querySelector("#mySelect"); // Lấy đối tượng thẻ <select> bằng ID
 const selectedOptionValue = selectElement.options[0].value; // Lấy giá trị của tùy chọn được chọn
 function myFunction() {
-	console.log(selectElement.value);
+	//console.log(selectElement.value);
 	if(selectElement.value === 'USER') {
 		alert('Admin không được phép cập nhật thành USER !')
 		selectElement.value = 'Chọn chức danh';
@@ -122,12 +122,9 @@ $(document).ready(function () {
 	
 	
 	$("#btnReset").click(function() {
-		 $("#account_role").val("Chọn chức danh");
-		 $("#account_mail").val("");
-		 $("#account_name").val("");
-		 $("#account_phone").val("");
-		 $("#account_password").val("");
-		 $("#account_status").val("Chọn trạng thái");
+		 $("#mySelect").val("${accountByID.account_role}");
+		 $("#account_name").val("${accountByID.account_name}");
+		 $("#account_phone").val("${accountByID.account_phone}");
 	});
 	
 	$("#formSubmit").validate({

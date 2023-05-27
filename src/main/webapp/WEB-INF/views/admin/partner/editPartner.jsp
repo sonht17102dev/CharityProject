@@ -108,7 +108,6 @@
 							<label class="col-sm-3 control-label no-padding-right">Giới thiệu ngắn</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="partner_introduce" 
-								
 								name="partner_introduce" value="${partner.partner_introduce}" />
 							</div>
 						</div>
@@ -147,11 +146,8 @@ $(document).ready(function () {
 	var editor = '';
 	$(document).ready(function() {
 		editor = CKEDITOR.replace('partner_content');
-		var defaultTextareaValue = editor.getData();
-		
-		$('#partner_content').data('default', defaultTextareaValue);
+		var defaultValue = editor.config.defaultData;
 		$("#btnReset").click(function() {
-			defaultTextareaValue = $('#textarea-id').data('default');
 			 $('#mySelect').val("${partner.partner_status}");
 			 $('#partner_name').val("${partner.partner_name}");
 			 $('#partner_slogan').val("${partner.partner_slogan}");
@@ -159,8 +155,7 @@ $(document).ready(function () {
 			 $('#partner_banner').val("${partner.partner_banner}");
 			 $('#partner_total_money').val("${partner.partner_total_money}");
 			 $('#partner_number_donate').val("${partner.partner_number_donate}");
-			 $('#partner_introduce').val("${partner.partner_introduce}");
-			 CKEDITOR.instances['partner_content'].setData(defaultTextareaValue);
+			 editor.setData(defaultValue);
 		});
 		$('input.cancle').on("click", function(event) {
 			location.assign("/CharityApp/admin/quan-ly-doi-tac");

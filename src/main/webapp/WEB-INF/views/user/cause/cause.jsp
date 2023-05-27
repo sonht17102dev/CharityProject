@@ -21,7 +21,7 @@
 <div class="container mt-4">
 	<div class="menu_type">
 		<c:forEach var="c" items="${category}">
-			<div class="menu_type_items">
+			<div class="menu_type_items ">
 				<a href="search?type=${c}" class="deepPink">${c}</a>
 			</div>
 		</c:forEach>
@@ -30,7 +30,7 @@
 <!-- menu-end -->
 <hr>
 <!-- popular_causes_area_start  -->
-<div class="popular_causes_area ">
+<div class="popular_causes_area section_padding">
 	<div class="container">
 		<c:if test="${message != null}">
 			<div class="row">
@@ -43,7 +43,7 @@
 			<c:forEach items="${listTop6Circum}" var="o">
 				<c:set var="percent"
 					value="${o.circum_target / o.circum_raise * 100}" />
-				<div class="single_cause col-xl-4 box-height">
+				<div class="col-lg-4 col-md-6 col-12 single_cause box-cause">
 					<div class="thumb" id="thumb">${o.circum_image} </div>
 					<div class="causes_content">
 						<div class="custom_progress_bar">
@@ -70,9 +70,9 @@
 						</div>
 						<div
 							class="balance d-flex justify-content-between align-items-center">
-							<span>Raised: <fmt:formatNumber type="number"
+							<span>Đạt được: <fmt:formatNumber type="number"
 									value="${o.circum_target}" />đ
-							</span> <span>Goal: <fmt:formatNumber type="number"
+							</span> <span>Mục tiêu: <fmt:formatNumber type="number"
 									value="${o.circum_raise}" />đ
 							</span>
 						</div>

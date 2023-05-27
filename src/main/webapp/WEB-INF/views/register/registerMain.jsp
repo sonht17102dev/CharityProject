@@ -10,9 +10,9 @@
     <article class="card-body mx-auto" style="max-width: 600px;">
       <h4 class="card-title mt-3 text-center">Đăng kí tài khoản</h4>
       <p class="text-center">Bắt đầu với tài khoản miễn phí của bạn</p>
-      <c:if test="${mess==null}">
+      <c:if test="${!messageRegister.isEmpty()}">
+	      <p class="text-center error">${messageRegister}</p>
      
-      <p class="text-center error">${mess}</p>
        </c:if>
        <!-- 
       <p>
@@ -21,7 +21,7 @@
       </p>
         -->
       <p class="divider-text">
-        <span class="bg-light">OR</span>
+        <span class="bg-light"></span>
       </p>
       <form id="formSubmit" action="${pageContext.request.contextPath}/register" method="post">
         <div class="form-group input-group">

@@ -111,15 +111,13 @@ $(document).ready(function () {
 	var editor = '';
 	$(document).ready(function() {
 		editor = CKEDITOR.replace('news_content');
-		var defaultTextareaValue = editor.getData();
-		console.log(defaultTextareaValue)
-		//$('#news_content').data('default', defaultTextareaValue);
+		var defaultValue = editor.config.defaultData;
 		$("#btnReset").click(function() {
 			 $('#mySelect').val("${news.news_status}");
 			 $('#news_description').val("${news.news_description}");
 			 $('#news_img_banner').val("${news.news_img_banner}");
 			 $('#news_post_date').val("${news.news_post_date}");
-			 CKEDITOR.instances['news_content'].setData(defaultTextareaValue);
+			 editor.setData(defaultValue);
 		});
 		$('input.cancle').on("click", function(event) {
 			location.assign("/CharityApp/admin/quan-ly-tin-tuc");

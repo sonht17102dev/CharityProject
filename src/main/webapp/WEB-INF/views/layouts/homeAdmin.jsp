@@ -63,6 +63,10 @@ label.error {
 		<!-- basic scripts -->
 	</div>
 	<!-- /.main-container -->
+	<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) 
+				document.write("<script src='<c:url value="/resources/admin/assets/js/jquery.mobile.custom.min.js"/>'>"+"<"+"/script>");
+		</script>
 	<script
 		src="<c:url value="/resources/admin/assets/js/bootstrap.min.js"/>"></script>
 
@@ -76,7 +80,7 @@ label.error {
 	<script src="<c:url value="/resources/admin/assets/js/ace.min.js"/>"></script>
 
 	<!-- inline scripts related to this page -->
-
+	
 
 
 </body>

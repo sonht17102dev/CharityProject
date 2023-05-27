@@ -76,7 +76,7 @@
 <div class="popular_causes_area section_padding">
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-lg-6">
+			<div class="col-lg-6 col-md-6 ">
 				<div class="section_title text-center mb-55">
 					<h3>
 						<span>Các hoàn cảnh Quyên góp</span>
@@ -88,7 +88,7 @@
 			<c:forEach items="${list6Circum}" var="o">
 				<c:set var="percent"
 					value="${o.circum_target / o.circum_raise * 100}" />
-				<div class="single_cause box-cause">
+				<div class="col-xl-4 col-lg-4 col-md-6 col-12 single_cause box-cause">
 					<div class="thumb" id="thumb"><a href="quyen-gop?id=${o.circum_id}">${o.circum_image}</a></div>
 					<div class="causes_content">
 						<div class="custom_progress_bar">
@@ -157,7 +157,6 @@
 	</div>
 </div>
 <!-- popular_causes_area_end  -->
-<hr>
 <!-- counter_area_start  -->
 <div class="counter_area">
 	<div class="container">
@@ -216,7 +215,6 @@
 	</div>
 </div>
 <!-- counter_area_end  -->
-<hr>
 <!-- our_volunteer_area_start  -->
 <div class="whole-wrap">
 	<div class="container box_1170">
@@ -234,7 +232,7 @@
 			</div>
 			<div class="row">
 				<c:forEach items="${list6Partner}" var="p">
-					<div class="col-md-4 our-partner">
+					<div class="col-lg-4 col-md-6 our-partner">
 						<div class="mr-2">
 							<a href="doi-tac-chi-tiet?id=${p.partner_id}">
 							<img src="<c:url value="${p.partner_logo}"/>"></a>
@@ -287,10 +285,11 @@
 								<img src="<c:url value="${n.news_img_banner}"/>" alt="">
 							</div>
 							<div class="newsinfo">
-								<span>${n.news_post_date}</span> <a
-									href="tin-tuc-chi-tiet?id=${n.news_id}">
-									<h3>${n.news_description }</h3>
-								</a> <a class="read_more" href="tin-tuc-chi-tiet?id=${n.news_id}">>>Xem
+								<span>${n.news_post_date}</span> 
+								<h3>
+									<a href="tin-tuc-chi-tiet?id=${n.news_id}">${n.news_description}</a>
+								</h3>
+								 <a class="read_more" href="tin-tuc-chi-tiet?id=${n.news_id}">>>Xem
 									chi tiết</a>
 							</div>
 						</div>

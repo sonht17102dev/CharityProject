@@ -5,7 +5,9 @@
 <security:authentication property="name" var="username" />
 
 <div id="navbar" class="navbar navbar-default">
-
+	<script type="text/javascript">
+		try{ace.settings.check('navbar' , 'fixed')}catch(e){}
+	</script>
 	<div class="navbar-container" id="navbar-container">
 		<button type="button" class="navbar-toggle menu-toggler pull-left"
 			id="menu-toggler" data-target="#sidebar">
@@ -42,7 +44,7 @@
 	}
 </script>
 
-<div id="sidebar" class="sidebar responsive">
+<div id="sidebar" class="sidebar responsive" >
 	<script type="text/javascript">
 		try {
 			ace.settings.check('sidebar', 'fixed')
@@ -51,8 +53,8 @@
 	</script>
 
 	<div class="sidebar-shortcuts" id="sidebar-shortcuts">
-		<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-			<span class="welcome active"> <security:authorize
+		<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large" style="background-color:white;">
+			<span class="welcome active" > <security:authorize
 					access="hasRole('ADMIN')">
 						 Welcome, ${username}
 						 </security:authorize>
@@ -69,12 +71,14 @@
 
 	<ul class="nav nav-list">
 		<li class="active"><a href="home"> <i
-				class="menu-icon fa fa-tachometer"></i> <span class="menu-text">
+				class="menu-icon fa fa-tachometer"></i> <span class="menu-text" 
+				style="background-color:white;">
 					Dashboard </span>
 		</a> <b class="arrow"></b></li>
 
-		<li class=""><a href="#" class="dropdown-toggle"> <i
-				class="menu-icon fa fa-list"></i> <span class="menu-text">
+		<li class=""><a href="#" class="dropdown-toggle" > <i
+				class="menu-icon fa fa-list"></i> <span class="menu-text"
+				style="background-color:white;">
 					Quản Lý </span> <b class="arrow fa fa-angle-down"></b>
 		</a> <b class="arrow"></b>
 

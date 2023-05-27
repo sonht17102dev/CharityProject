@@ -25,7 +25,7 @@
 
 		<div class="page-content">
 			<div class="page-header">
-				<h1>Bảng thống kê các đợt quyên góp</h1>
+				<h1 class="text-center">Bảng thống kê các đợt quyên góp</h1>
 			</div>
 			<!-- /.page-header -->
 
@@ -108,45 +108,13 @@
 															value="${o.circum_target}" />/<fmt:formatNumber
 															type="number" value="${o.circum_raise}" /></td>
 													<td class="center">
-														<div class="hidden-sm hidden-xs action-buttons">
+														<div class=" ">
 															<a class="green" title="Chỉnh sửa"> <i
 																class="ace-icon fa fa-pencil bigger-130"></i>
 															</a> 
 															<a class="red delete_single" title="Xóa"> <i
 																class="ace-icon fa fa-trash-o bigger-130"></i>
 															</a>
-														</div>
-														<div class="hidden-md hidden-lg">
-															<div class="inline pos-rel">
-																<button
-																	class="btn btn-minier btn-yellow dropdown-toggle"
-																	data-toggle="dropdown" data-position="auto">
-																	<i
-																		class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-																</button>
-
-																<ul
-																	class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-																	<li><a href="#" class="tooltip-info"
-																		data-rel="tooltip" title="View"> <span
-																			class="blue"> <i
-																				class="ace-icon fa fa-search-plus bigger-120"></i>
-																		</span>
-																	</a></li>
-
-																	<li><a class="tooltip-success" data-rel="tooltip">
-																			<span class="green"> <i
-																				class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																		</span>
-																	</a></li>
-
-																	<li><a class="tooltip-error" data-rel="tooltip">
-																			<span class="red"> <i
-																				class="ace-icon fa fa-trash-o bigger-120"></i>
-																		</span>
-																	</a></li>
-																</ul>
-															</div>
 														</div>
 													</td>
 												</tr>
@@ -193,111 +161,6 @@
 				</div>
 				<!-- /.col -->
 			</div>
-			<%-- 
-			<div class="row">
-				<div class="col-xs-12">
-					<!-- PAGE CONTENT BEGINS -->
-					<div class="hr hr-18 dotted hr-double"></div>
-
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="table-header">Danh sách các hoạt động quyên góp không còn hoạt động</div>
-							<!-- div.dataTables_borderWrap -->
-							<div>
-								<div id="dynamic-table_wrapper"
-									class="dataTables_wrapper form-inline no-footer">
-									<table id="dynamic-table"
-										class="table table-striped table-bordered table-hover">
-										<thead>
-											<tr>
-												<th class="center hidden"><label class="pos-rel"> <input
-														type="checkbox" class="checkall"
-														onclick="toggleChecked(this.checked)" /> <span
-														class="lbl"></span>
-												</label></th>
-												<th class="hidden">Id</th>
-												<th class="center">Status</th>
-												<th class="center">Tên đợt quyên góp</th>
-												<th class="center">Loại quyên góp</th>
-												<th class="center">Lượt quyên góp</th>
-												<th class="center">Đạt được</th>
-
-												<th class="center">Chức năng</th>
-											</tr>
-										</thead>
-
-										<tbody>
-											<c:forEach items="${listInactive}" var="o">
-												<tr class="product-brand-number">
-													<td class="center hidden"><label class="pos-rel"> <input
-															type="checkbox" class="checkbox" /> <span class="lbl"></span>
-													</label></td>
-													<td class="hidden">${o.circum_id}</td> 
-													<td class="value"><span class="label label-inverse">${o.circum_status}</span></td>
-													<td>${o.circum_name}</td>
-													<td>${o.circum_type}</td>
-													<td><fmt:formatNumber type="number"
-															value="${o.circum_donations}" /></td>
-													<td class="hidden-480"><fmt:formatNumber type="number"
-															value="${o.circum_target}" />/<fmt:formatNumber
-															type="number" value="${o.circum_raise}" /></td>
-													<td>
-														<div class="hidden-sm hidden-xs action-buttons">
-															<a class="green"> <i
-																class="ace-icon fa fa-pencil bigger-130"></i>
-															</a> <a class="red delete_single"> <i
-																class="ace-icon fa fa-trash-o bigger-130"></i>
-															</a>
-														</div>
-														<div class="hidden-md hidden-lg">
-															<div class="inline pos-rel">
-																<button
-																	class="btn btn-minier btn-yellow dropdown-toggle"
-																	data-toggle="dropdown" data-position="auto">
-																	<i
-																		class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-																</button>
-
-																<ul
-																	class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-																	<li><a href="#" class="tooltip-info"
-																		data-rel="tooltip" title="View"> <span
-																			class="blue"> <i
-																				class="ace-icon fa fa-search-plus bigger-120"></i>
-																		</span>
-																	</a></li>
-
-																	<li><a class="tooltip-success" data-rel="tooltip">
-																			<span class="green"> <i
-																				class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-																		</span>
-																	</a></li>
-
-																	<li><a class="tooltip-error" data-rel="tooltip">
-																			<span class="red"> <i
-																				class="ace-icon fa fa-trash-o bigger-120"></i>
-																		</span>
-																	</a></li>
-																</ul>
-															</div>
-														</div>
-													</td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</div>
-
-							</div>
-						</div>
-					</div>
-
-					<!-- PAGE CONTENT ENDS -->
-				</div>
-				<!-- /.col -->
-			</div>
-			<!-- /.row -->
-			--%>
 		</div>
 		<!-- /.page-content -->
 	</div>
@@ -317,14 +180,6 @@
 	$(document)
 			.ready(
 					function() {
-						<%--
-						$("#phantrang1").click(function(){
-							$("#tbody").load("/CharityApp/admin/quan-ly-quyen-gop?trang=1");
-						});
-						$("#phantrang2").click(function(){
-							$("#tbody").load("/CharityApp/admin/quan-ly-quyen-gop?trang=2");
-						});
-						--%>
 						//function is used to delete individual row
 						$('a.delete_single')
 								.on(

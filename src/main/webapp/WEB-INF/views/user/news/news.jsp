@@ -6,7 +6,7 @@
 
 <div class="section-top-border mt-4">
 	<div class="row">
-		<div class="col-lg-8 col-md-8 ">
+		<div class="col-lg-8 col-md-7 ">
 			<h2 class="deepPink">Cập nhật các tin tức quyên góp mới nhất</h2>
 			<div class="banner_news">
 				<div class="banner_items">
@@ -52,7 +52,7 @@
 			</div>
 		</div>
 
-		<div class="col-lg-4 col-md-4 mt-sm-30 sidebar_right">
+		<div class="col-lg-4 col-md-5 mt-sm-30 sidebar_right">
 
 			<div class="single-element-widget border-left">
 				<h2 class="mb-30 deepPink">Hoàn cảnh quyên góp mới nhất</h2>

@@ -6,8 +6,13 @@
 
 	<div class="card mb-4">
 		<div class="card-header">Lịch sử quyên góp</div>
+		
 		<div class="card-body p-0">
 
+		<c:if test="${listOrders.isEmpty()}">
+			<h2 class="deepPink font-larger text-center">Bạn chưa có lịch sử quyên góp !!!</h2>		
+		</c:if>
+		<c:if test="${!listOrders.isEmpty()}">
 			<div class="table-responsive table-billing-history">
 				<table class="table mb-0">
 					<thead>
@@ -24,7 +29,8 @@
 							<td>${o.circum_order_date}</td>
 							<td>${o.circum_name}</td>
 							<td>${o.circum_order_amount}</td>
-							<td><span class="badge bg-light text-dark">Đang chờ</span></td>
+							
+							<td><span class="badge bg-light text-dark"></span></td>
 						</tr>
 					</c:forEach>
 						<!--  
@@ -38,6 +44,7 @@
 					</tbody>
 				</table>
 			</div>
+		</c:if>
 		</div>
 	</div>
 </div>

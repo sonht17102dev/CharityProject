@@ -24,3 +24,23 @@
 	color: #337ab7;
 	font-weight: 700;
 }
+@media (max-width: 991px) {
+	#sidebar {
+		position: absolute;
+		top:150px;
+		z-index: 5000;
+		background-color: white;
+	}
+	#navbar #navbar-container button {
+		position: absolute;
+		top:80px;
+		
+	}
+	#navbar #navbar-container #menu-toggler > span {
+		display: none;
+	}
+	li.hover-show ul li {
+		z-index: 5000;
+		background-color: white;
+	}
+}

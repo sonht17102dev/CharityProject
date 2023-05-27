@@ -2,7 +2,6 @@ package com.sonhtFX17102.controller.admin;
 
 import java.util.List;
 
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -81,14 +80,14 @@ public class ManageAccountController extends BaseController{
 		String pass = request.getParameter("account_password");
 		String md5Pass = DigestUtils.md5Hex(pass);
 		System.out.println(pass);
-		Account account = new Account(roleS, mail, name, phone, md5Pass, "offline");
+		Account account = new Account(roleS, mail, name, phone, md5Pass, "offline",1);
 		
 		System.out.println(account.toString());
 		account = accService.checkAccountByMailExist(mail);
 		
 		if (account == null) {
 			try {
-				accService.insertAccount(roleS, mail, name, phone, md5Pass, "offline");
+				accService.insertAccount(roleS, mail, name, phone, md5Pass, "offline",1);
 				_mvShareAdmin.setViewName("admin/account/manageAccount");
 				//return "redirect:quan-ly-tai-khoan";
 			} catch (Exception e) {

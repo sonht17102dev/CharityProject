@@ -13,7 +13,7 @@ public interface IAccountService {
 	public List<Account> getPagingPage(int index);
 	public Account checkAccountByMailExist(String mail);
 	public void insertAccount(String account_role, String account_mail, String account_name,
-			String account_phone, String account_password, String account_status) ;
+			String account_phone, String account_password, String account_status, int enabled) ;
 	public Account getAccountByID(int id);
 	public void updateAccount(int account_id, String account_role, String account_mail,
 			String account_name, String account_phone);
@@ -24,7 +24,8 @@ public interface IAccountService {
 	public void updateStatusOnline(String account_name);
 	public List<Account> getAccountsByRole(String role);
 	public List<Account> getAccountsByKey(String key);
-	public void updatePasswordByEmail(String pass, String email);
+	public void updatePasswordByUsername(String pass, String username);
+	public void updatePasswordByMail(String pass, String mail);
 	public AccountDetailsDTO getAccountDetails(int id);
 	public void updateAccountDetailsByUser(
 			int account_id, String account_firstName, String account_lastName,
@@ -32,4 +33,5 @@ public interface IAccountService {
 			String account_name, String account_phone, String account_bank, String account_bankname);
 	public AccountDetailsDTO getAccountDetailsByUsername(String username);
 	public void uploadAvatar(String image, String id);
+	public Account getAccountByUsername(String username);
 }

@@ -41,7 +41,7 @@
 				<div class="row align-items-center">
 					<div class="col-xl-3 col-lg-3">
 						<div class="logo">
-							<a href="trang-chu"> <img
+							<a href="${pageContext.request.contextPath}/trang-chu"> <img
 								src="<c:url value="/resources/user/img/logo.png"/>" alt="logo">
 							</a>
 

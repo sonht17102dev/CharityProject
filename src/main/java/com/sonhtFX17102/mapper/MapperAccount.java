@@ -19,6 +19,7 @@ public class MapperAccount implements RowMapper<Account>{
 		account.setAccount_phone(rs.getString("account_phone"));
 		account.setAccount_password(rs.getString("account_password"));
 		account.setAccount_status(rs.getString("account_status"));
+		account.setEnabled(rs.getInt("enabled"));
 		return account;
 	}
 

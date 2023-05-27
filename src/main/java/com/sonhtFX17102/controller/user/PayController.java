@@ -33,7 +33,7 @@ public class PayController extends BaseController{
 	AccountImpl accountService;
 	
 	@RequestMapping(value = "quyen-gop", method = RequestMethod.GET)
-	public ModelAndView cart(@RequestParam("id") int id, Authentication authentication) {
+	public ModelAndView confirmPayment(@RequestParam("id") int id, Authentication authentication) {
 		Circum circum = circumService.getCircumById(id);
 		String logoPartner = partnerService.getPartnerById(circum.getPartner_id()).getPartner_logo();
 		if (authentication != null) {
@@ -49,7 +49,7 @@ public class PayController extends BaseController{
 		return _mvShare;
 	}
 	@RequestMapping(value = "quyen-gop", method = RequestMethod.POST)
-	public String pay(HttpServletRequest request, HttpSession session) {
+	public String doConfirmPayment(HttpServletRequest request, HttpSession session) {
 		String cIdString = request.getParameter("circum_id");
 		int cId = 0;
 		String name = request.getParameter("circum_order_name");
@@ -65,15 +65,19 @@ public class PayController extends BaseController{
 		try {
 			cId = Integer.parseInt(cIdString);
 			amount = Integer.parseInt(amountS);
-//			CircumOrder c = new CircumOrder(cId, name, mail, phone, bank, bankName, address, amount, date);
-//			System.out.println(c.toString());
 			payService.insertPayInfo(cId, name, mail, phone, bank, bankName, address, amount, date, circumName);
-			return "redirect:/";
+			return "redirect:thanh-toan";
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.setAttribute("messageDonated", "Fail");
 			return "redirect:quyen-gop?id="+cId;
 		}
+	}
+	@RequestMapping(value = "thanh-toan", method = RequestMethod.GET)
+	public ModelAndView pay() {
+		_mvShare.addObject("category", category);
+		_mvShare.setViewName("user/cart/payment");
+		return _mvShare;
 	}
 }

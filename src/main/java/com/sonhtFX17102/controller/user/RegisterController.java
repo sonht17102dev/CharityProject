@@ -30,16 +30,15 @@ public class RegisterController extends BaseController {
 		String pass = generateRandomPassword(8); // sử dụng phương thức của BaseController tạo mk random 8 kí tự
 		System.out.println(pass);
 		String md5Pass = DigestUtils.md5Hex(pass);
-		Account account = new Account("USER", mail, name, phone, md5Pass, "offline");
-		
+		Account account = new Account("USER", mail, name, phone, md5Pass, "offline", 1);
 		System.out.println(account.toString());
 		account = accService.checkAccountByMailExist(mail);
 		
 		if (account == null) {
 			try {
-				accService.insertAccount("USER", mail, name, phone, md5Pass, "offline");
+				accService.insertAccount("USER", mail, name, phone, md5Pass, "offline", 1);
 				sendEmail("sonhtfx17102@funix.edu.vn",mail, "Chúc mừng bạn đã đăng ký thành công!",
-						"Mật khẩu của bạn là " + pass + "/nVui lòng không cung cấp mật khẩu cho bất kỳ ai.");
+						"Mật khẩu của bạn là " + pass + " \n\n Vui lòng không cung cấp mật khẩu cho bất kỳ ai.");
 				_mvShare.setViewName("redirect:login");
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -48,8 +47,8 @@ public class RegisterController extends BaseController {
 			}
 
 		} else {
-			_mvShare.addObject("mess", "Tài khoản đã tồn tại, vui lòng nhập lại!!!");
-			_mvShare.setViewName("redirect:register");
+			request.setAttribute("messageRegister", "Tài khoản đã tồn tại, vui lòng nhập lại!!!");
+			_mvShare.setViewName("register/registerMain");
 		}
 		return _mvShare;
 	}

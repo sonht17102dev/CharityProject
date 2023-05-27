@@ -54,10 +54,10 @@ public class AccountImpl implements IAccountService {
 
 	@Override
 	public void insertAccount(String account_role, String account_mail, String account_name, String account_phone,
-			String account_password, String account_status) {
+			String account_password, String account_status, int enabled) {
 		// TODO Auto-generated method stub
 		accountDAO.insertAccount(account_role, account_mail, account_name, account_phone, account_password,
-				account_status);
+				account_status, enabled);
 	}
 
 	@Override
@@ -97,9 +97,9 @@ public class AccountImpl implements IAccountService {
 	}
 
 	@Override
-	public void updatePasswordByEmail(String pass, String email) {
+	public void updatePasswordByUsername(String pass, String username) {
 		// TODO Auto-generated method stub
-		accountDAO.updatePasswordByEmail(pass, email);
+		accountDAO.updatePasswordByUsername(pass, username);
 	}
 
 	@Override
@@ -127,6 +127,18 @@ public class AccountImpl implements IAccountService {
 	public void uploadAvatar(String image, String id) {
 		// TODO Auto-generated method stub
 		accountDAO.uploadAvatar(image, id);
+	}
+
+	@Override
+	public Account getAccountByUsername(String username) {
+		// TODO Auto-generated method stub
+		return accountDAO.getAccountByUsername(username);
+	}
+
+	@Override
+	public void updatePasswordByMail(String pass, String mail) {
+		// TODO Auto-generated method stub
+		accountDAO.updatePasswordByMail(pass, mail);
 	}
 
 

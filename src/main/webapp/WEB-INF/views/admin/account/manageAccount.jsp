@@ -25,7 +25,7 @@
 
 		<div class="page-content">
 			<div class="page-header">
-				<h1>Bảng thống kê các tài khoản</h1>
+				<h1 class="text-center">Bảng thống kê các tài khoản</h1>
 			</div>
 			<!-- /.page-header -->
 
@@ -117,24 +117,13 @@
 													</c:if>
 													</td>
 													<td class="center">
-														<div class="hidden-sm hidden-xs action-buttons">
+														<div class="">
 															<a class="green" title="Chỉnh sửa"> <i
 																class="ace-icon fa fa-pencil bigger-130"></i>
 															</a> 
 															<a class="red delete_single" title="Xóa"> <i
 																class="ace-icon fa fa-trash-o bigger-130"></i>
 															</a>
-														</div>
-														<div class="hidden-md hidden-lg">
-															<div class="inline pos-rel">
-																<button
-																	class="btn btn-minier btn-yellow dropdown-toggle"
-																	data-toggle="dropdown" data-position="auto">
-																	<i
-																		class="ace-icon fa fa-caret-down icon-only bigger-120"></i>
-																</button>
-
-															</div>
 														</div>
 													</td>
 												</tr>

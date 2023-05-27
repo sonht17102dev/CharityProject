@@ -43,8 +43,6 @@
 							<div class="col-sm-9">
 							<c:set var = "status" value = "${circum.circum_status}"/>
 								<select class="form-control" id="circum_status" name="circum_status">
-									
-									
 									<c:choose>
 							         <c:when test = '${status == "active"}'>
 							           <option value="active">active</option>
@@ -72,7 +70,7 @@
 							<label class="col-sm-3 control-label no-padding-right">Id
 								Đối Tác</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="parner_id"
+								<input type="text" class="form-control" id="partner_id"
 									name="partner_id" value="${circum.partner_id}" />
 							</div>
 						</div>
@@ -191,26 +189,28 @@
 
 $(document).ready(function () {
 
-	var editor = '';
+	var editorImg = '';
+	var editorContent = '';
 	$(document).ready(function() {
-		editor = CKEDITOR.replace('circum_content');
-		editor = CKEDITOR.replace('circum_image');
-		/*
+		editorImg = CKEDITOR.replace('circum_image');
+		editorContent = CKEDITOR.replace('circum_content');
+		var defaultValueImg = editorImg.config.defaultData;
+		var defaultValueContent = editorContent.config.defaultData;
 		$("#btnReset").click(function() {
-			 $("#formSubmit")[0].reset();
-			 $("#circum_type").val("Chọn thể loại");
-			 $("#parner_id").val("");
-			 $("#circum_name").val("");
-			 $("#circum_des").val("");
-			 $("#circum_donations").val("");
-			 $("#circum_target").val("");
-			 $("#circum_raise").val("");
-			 $("#circum_time_end").val("");
-			 $("#circum_start_donate").val("");
-			 CKEDITOR.instances['circum_image'].setData('');
-			 CKEDITOR.instances['circum_content'].setData('');
+			$('#circum_type').val("${circum.circum_type}");
+			$('#circum_status').val("${circum.circum_status}");
+			 $('#partner_id').val("${circum.partner_id}");
+			 $('#circum_name').val("${circum.circum_name}");
+			 $('#circum_des').val("${circum.circum_des}");
+			 $('#circum_donations').val("${circum.circum_donations}");
+			 $('#circum_target').val("${circum.circum_target}");
+			 $('#circum_raise').val("${circum.circum_raise}");
+			 $('#circum_time_end').val("${circum.circum_time_end}");
+			 $('#circum_start_donate').val("${circum.circum_start_donate}");
+			 editorImg.setData(defaultValueImg);
+			 editorContent.setData(defaultValueContent);
 		});
-		*/
+		
 		$('input.cancle').on("click", function(event) {
 			location.assign("/CharityApp/admin/quan-ly-quyen-gop");
 		});

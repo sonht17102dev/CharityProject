@@ -7,7 +7,7 @@
 
 <div class="section-top-border">
 	<div class="row">
-		<div class="col-lg-12 causes">
+		<div class="col-lg-12 col-md-12 col-12 causes">
 			<h2 class="deepPink">
 				<c:out value="${circumDetail.circum_name}" />
 			</h2>
@@ -32,7 +32,7 @@
 
 <div class="news__area section_padding">
 	<div class="container">
-		<div class="col-lg-12">
+		<div class="col-lg-12 col-md-12">
 			<div class="news_active owl-carousel" id="banner-images">
 				<c:url value="${circumDetail.circum_image}"/>
 			</div>
@@ -42,12 +42,12 @@
 <!-- bradcam_area_end -->
 <!-- popular_causes_area_start  -->
 <div class="section-top-border">
-	<div class="row">
-		<div class="col-lg-9 col-md-8 causes">
+	<div class="row" >
+		<div class="col-lg-9 col-md-12 causes">
 			<article class="content-main " id="article">
 				${circumDetail.circum_content}</article>
 			<div class="row">
-				<div class="col-12">
+				<div class="col-lg-12">
 					<div class="donate_now_btn text-center mt-4">
 						<button type="button" class="boxed-btn4" id="showMoreButton"
 							onclick="showMore()">Xem thêm >></button>
@@ -55,10 +55,10 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-3 col-md-4 mt-sm-30 sidebar_right">
-			<div class="single-element-widget ">
+		<div class="col-lg-3 col-md-12 col-12 mt-sm-30 sidebar_right" id="infoArticle">
+			<div class="single-element-widget" >
 
-				<div class="causes_content">
+				<div class="causes_content ">
 					<h2 class="mb-30">Thông tin quyên góp</h2>
 					<div
 						class="balance d-flex justify-content-between align-items-center">
@@ -101,8 +101,7 @@
 					</div>
 					<div class="">
 						<c:if test="${percent >=100}">
-							<a href="#" class="btn-Donate-sidebar">Đạt
-											mục tiêu</a>
+							<a href="#" class="btn-Donate-sidebar">Kết thúc</a>
 						</c:if>
 						<c:if test="${percent < 100}">
 							<a href="quyen-gop?id=${circumDetail.circum_id}"
@@ -149,7 +148,7 @@
 			<c:forEach items="${listTop3Circum}" var="o">
 				<c:set var="percentTop3"
 					value="${o.circum_target / o.circum_raise * 100}" />
-				<div class="single_cause box-cause">
+				<div class="col-lg-4 col-md-6 col-12 single_cause box-cause">
 					<div class="thumb" id="thumb">
 						<a href="quyen-gop?id=${o.circum_id}">${o.circum_image}</a>
 					</div>
@@ -227,11 +226,22 @@
 		}
 	})
 	var article = document.getElementById('article');
-	article.classList.add("hide-acticle") 
-	article.classList.remove("show-acticle") 
+	var infoArticle = document.getElementById("infoArticle");
+	article.classList.add("hide-acticle"); 
+	article.classList.remove("show-acticle"); 
+	
+  	var screenWidth = window.innerWidth || document.documentElement.clientWidth;
+
+  	if (screenWidth < 991) {
+	 	infoArticle.style.display = 'none';
+  	} else {
+	  	infoArticle.style.display = 'block';
+  	}
 	function showMore() {
 		article.classList.remove("hide-acticle") 
 		article.classList.add("show-acticle") 
+		infoArticle.classList.remove("hideInfoActicle");
+		infoArticle.classList.add("showInfoActicle");
 		document.getElementById('showMoreButton').style.display = 'none';  // Ẩn nút "Xem thêm"
 	}
 </script>

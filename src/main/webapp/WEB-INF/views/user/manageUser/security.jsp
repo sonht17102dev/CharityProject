@@ -14,7 +14,7 @@
 				</div>
 				<div class="card-body">
 					<form action="${pageContext.request.contextPath}/tai-khoan/bao-mat" method="post" id="formChangePass">
-						<input type="hidden" id="account_mail" name="account_mail"
+						<input type="hidden" id="account_name" name="account_name"
 						 value="<security:authentication
 											property="principal.username" />"/>
 						<div class="mb-3">

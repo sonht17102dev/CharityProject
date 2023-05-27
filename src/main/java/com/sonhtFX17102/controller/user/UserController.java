@@ -19,10 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sonhtFX17102.controller.BaseController;
 import com.sonhtFX17102.entities.Account;
-import com.sonhtFX17102.entities.Circum;
 import com.sonhtFX17102.entities.CircumOrder;
 import com.sonhtFX17102.service.impl.AccountImpl;
-import com.sonhtFX17102.service.impl.CircumImpl;
 import com.sonhtFX17102.service.impl.PayImpl;
 
 @Controller
@@ -31,8 +29,6 @@ public class UserController extends BaseController {
 	private AccountImpl accService;
 	@Autowired
 	private PayImpl payService;
-	@Autowired
-	private CircumImpl circumService;
 	
 	@RequestMapping(value = "/tai-khoan/cap-nhat", method = RequestMethod.GET)
 	public ModelAndView profile(@RequestParam("username") String username) {
@@ -81,14 +77,14 @@ public class UserController extends BaseController {
 	}
 	@RequestMapping(value = "/tai-khoan/bao-mat", method = RequestMethod.POST)
 	public ModelAndView securityChange(HttpServletRequest request) {
-		String mail = request.getParameter("account_mail");
+		String username = request.getParameter("account_name");
 		String curPass = request.getParameter("currentPassword");
 		String newPass = request.getParameter("newPassword");
 		String md5Pass = DigestUtils.md5Hex(curPass);
 		String md5NewPass = DigestUtils.md5Hex(newPass);
-		Account acc = accService.checkAccountByMailExist(mail);
+		Account acc = accService.getAccountByUsername(username);
 		if(acc.getAccount_password().equals(md5Pass)) {
-			accService.updatePasswordByEmail(md5NewPass, mail);
+			accService.updatePasswordByUsername(md5NewPass, username);
 			_mvShare.addObject("messagePass", "Mật khẩu đã được thay đổi thành công - Vui lòng đăng nhập lại hoặc tiếp tục !");
 		}
 		_mvShare.addObject("category", category);

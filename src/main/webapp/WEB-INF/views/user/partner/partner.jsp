@@ -4,16 +4,16 @@
  <!-- partner_start  -->
     <div class="section-top-border mt-4">
         <div class="row">
-            <div class="col-lg-8 col-md-8 companion_partners">
+            <div class="col-lg-8 col-md-7 col-12 companion_partners ">
                 <h2 class="text text-center deepPink" >Các đối tác đồng hành</h2>
-                <div class="row ml-4 mt-4 " id="itemsPartner">
+                <div class="row ml-4 " id="itemsPartner">
                 <c:forEach items="${listPartner}" var="o">
-                    <div class="row col-md-6  flex-md-row mr-2 mb-2" >
-                        <div class="col-md-4">
+                    <div class="row col-lg-6 col-md-12  flex-md-row mr-2 mb-2 align-items-center" >
+                        <div class="col-md-4 col-4 ">
                             <a href="doi-tac-chi-tiet?id=${o.partner_id}"><img src="${o.partner_logo}" 
-                            style="width:100%"></a>
+                            style="width: 100%;"></a>
                         </div>
-                        <div class="single-defination col-md-8">
+                        <div class="single-defination col-md-8 col-8">
                             <h4 class="mb-20 deepPink" >
                             <a href="doi-tac-chi-tiet?id=${o.partner_id}">${o.partner_name}</a></h4>
                             <p>${o.partner_slogan}</p>
@@ -23,16 +23,16 @@
                 </c:forEach>
                 </div>
                 <div class="row mt-4">
-                    <div class="col-12">
+                    <div class="col-lg-12 col-md-12 col-12">
                         <div class="donate_now_btn text-center">
                             
-                            <button type="button" class="boxed-btn4 w-25" 
+                            <button type="button" class="boxed-btn4" 
 						id="showMoreButton" onclick="showMore()">Xem thêm >></button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 mt-sm-30 sidebar_right">
+            <div class="col-lg-4 col-md-5 col-12 mt-sm-30 sidebar_right">
                 
                 <div class="single-element-widget ">
                     <h2 class="mb-30 deepPink">Hoàn cảnh quyên góp mới nhất</h2>

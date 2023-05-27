@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/user/taglib.jsp"%>
-<div class="container">
+<div class="container pt-120">
 	<div class="row">
 		<div class="col-lg-12 content_partner">
 			<div id="id-news-${news.news_id}">
 				<div class="container-news">
 					<div class="row">
-						<div class="col-lg-12 col-md-8">
+						<div class="col-lg-12 col-md-12 col-12">
 							<h2>Cập nhật các tin tức quyên góp mới nhất</h2>
 							<div class="banner_news">
 								<img src="${news.news_img_banner}">
@@ -29,7 +29,7 @@
 <div class="popular_causes_area section_padding">
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-lg-6">
+			<div class="col-lg-12 col-md-12 col-12">
 				<div class="section_title text-center mb-55">
 					<h3>
 						<span>Các hoàn cảnh Quyên góp</span>
@@ -41,7 +41,7 @@
 				<c:forEach items="${listCircum}" var="o">
 					<c:set var="percentTop3"
 						value="${o.circum_target / o.circum_raise * 100}" />
-					<div class="single_cause col-xl-4 box-height">
+					<div class="single_cause col-xl-4 col-lg-4 col-md-6 col-12 box-height">
 						<div class="thumb" id="thumb">
 							${o.circum_image}
 						</div>
