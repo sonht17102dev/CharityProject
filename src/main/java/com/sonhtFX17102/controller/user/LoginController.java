@@ -40,9 +40,10 @@ public class LoginController extends BaseController {
 	 * chuyển trạng thái status từ online -> offline
 	 */
 	@RequestMapping(value = "/logout-success", method = RequestMethod.GET)
-	public String logoutSuccess(@RequestParam("username") String username) {
+	public String logoutSuccess(@RequestParam("username") String username, HttpServletRequest request) {
 		accountService.updateStatusOffline(username);
-		return "redirect:/trang-chu";
+		request.setAttribute("messageLogout", "Đăng xuất thành công !!!");
+		return "user/index";
 	}
 	
 	@RequestMapping(value = "/login/resetPassword", method = RequestMethod.POST)

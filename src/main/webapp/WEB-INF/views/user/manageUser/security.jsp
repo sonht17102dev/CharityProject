@@ -6,7 +6,7 @@
 	<div class="row">
 		<div class="col-lg-8">
 		<c:if test="${messagePass != null}">
-			<h3 style="color: blue;">${messagePass}</h3>
+			<h3 class="deepPink">${messagePass}</h3>
 		</c:if>
 			<div class="card mb-4">
 				<div class="card-header">

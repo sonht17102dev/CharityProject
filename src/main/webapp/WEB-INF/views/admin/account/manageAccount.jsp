@@ -10,6 +10,10 @@
 					ace.settings.check('breadcrumbs', 'fixed')
 				} catch (e) {
 				}
+				<c:if test="${messageAccount!=null}">
+					alert('${messageAccount}');
+					location.assign("/CharityApp/admin/quan-ly-tai-khoan");
+				</c:if>
 			</script>
 
 			<ul class="breadcrumb">
@@ -263,6 +267,7 @@
 			$(this).attr("checked", status);
 		})
 	}
+	
 </script>
 
 

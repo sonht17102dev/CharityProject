@@ -21,10 +21,11 @@ public class CustomLogoutSuccessHandlerImpl implements LogoutSuccessHandler{
 	 * dùng để tùy chỉnh url khi 1 account logout thành công gửi theo param usermail
 	 * redirect tới url thay đổi trạng thái từ online -> offline
 	 */
+	
 	@Override
 	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
-		//System.out.println("The user " + authentication.getName() + " has logged out.");
+//		System.out.println("The user " + authentication.getName() + " has logged out.");
 		response.sendRedirect(request.getContextPath()+"/logout-success?username=" + authentication.getName());
 	}
 

@@ -3,17 +3,21 @@
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
 <%@ include file="/WEB-INF/views/user/taglib.jsp"%>
-
+<script>
+<c:if test="${messageLogout!=null}">
+	alert('${messageLogout}');
+	location.assign("/CharityApp/trang-chu");
+</c:if>
+<c:if test="${messageLogin!=null}">
+	alert('${messageLogin}');
+	location.assign("/CharityApp/trang-chu");
+</c:if>
+</script>
 
 <!-- slider_area_start -->
-<div class="slider_area">
-	<div
-		class="single_slider  d-flex align-items-center slider_bg_1 overlay2">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-9"></div>
-			</div>
-		</div>
+<div class="slider_area container">
+	<div class="single_slider  d-flex align-items-center slider_bg_1 overlay2 row">
+		<div class="col-xl-12 col-lg-12 col-md-12 col-12"></div>
 	</div>
 </div>
 <!-- slider_area_end -->
@@ -76,7 +80,7 @@
 <div class="popular_causes_area section_padding">
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-lg-6 col-md-6 ">
+			<div class="col-xl-6 col-lg-6 col-md-6 ">
 				<div class="section_title text-center mb-55">
 					<h3>
 						<span>Các hoàn cảnh Quyên góp</span>

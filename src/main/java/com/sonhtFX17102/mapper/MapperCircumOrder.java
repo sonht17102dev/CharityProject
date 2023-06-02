@@ -24,6 +24,7 @@ public class MapperCircumOrder implements RowMapper<CircumOrder>{
 		circumOrder.setCircum_order_amount(rs.getInt("circum_order_amount"));
 		circumOrder.setCircum_order_date(rs.getString("circum_order_date"));
 		circumOrder.setCircum_name(rs.getString("circum_name"));
+		circumOrder.setCircum_status(rs.getString("circum_status"));
 		return circumOrder;
 	}
 

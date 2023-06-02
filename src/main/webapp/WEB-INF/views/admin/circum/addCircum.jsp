@@ -19,7 +19,9 @@
 		<div class="page-content">
 			<div class="row">
 				<div class="col-xs-12">
-					<h1 class='${message != null ? " " : "hidden"}' style="color:red;">${message}</h1>
+					<c:if test="${messageCircum!=null}">
+						<h1 class="error" >${messageCircum}</h1>
+					</c:if>
 					<form id="formSubmit" action="them-quyen-gop" method="post">
 						<div class="form-group">
 							<label class="col-sm-3 control-label no-padding-right">Thể

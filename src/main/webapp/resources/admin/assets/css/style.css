@@ -6,7 +6,9 @@
 .text-center {
 	text-align: center;
 }
-
+.error {
+	color: red;
+}
 
 .activeAdmin {
 	background-color: green;
@@ -24,6 +26,9 @@
 	color: #337ab7;
 	font-weight: 700;
 }
+
+
+
 @media (max-width: 991px) {
 	#sidebar {
 		position: absolute;

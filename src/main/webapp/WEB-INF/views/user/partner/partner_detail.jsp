@@ -38,7 +38,7 @@
 					<h3>
 						<span>Chương trình Quyên góp</span>
 					</h3>
-					<p>Các chương trình quyên góp của Sức Mạnh 2000</p>
+					<p>Các chương trình quyên góp của ${partnerDetail.partner_name}</p>
 				</div>
 			</div>
 		</div>

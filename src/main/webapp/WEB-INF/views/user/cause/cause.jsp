@@ -18,13 +18,15 @@
 </div>
 <!-- bradcam_area_end  -->
 <!-- menu-start -->
-<div class="container mt-4">
-	<div class="menu_type">
-		<c:forEach var="c" items="${category}">
-			<div class="menu_type_items ">
-				<a href="search?type=${c}" class="deepPink">${c}</a>
-			</div>
-		</c:forEach>
+<div class="container  mt-4" id="nav-type">
+	<div class="row">
+		<div class="col-lg-12">
+			<ul class="navigation-list text-center">
+			<c:forEach var="c" items="${category}">
+				<li><a href="search?type=${c}" class="deepPink">${c}</a></li>
+			</c:forEach>
+			</ul>
+		</div>
 	</div>
 </div>
 <!-- menu-end -->
@@ -118,5 +120,30 @@
 </div>
 <!-- popular_causes_area_end  -->
 <script>
+var navigationList = document.querySelector('.navigation-list');
+var navigationWrapper = document.querySelector('.navigation-wrapper');
+var btnPrev = document.getElementById('btn-prev');
+var btnNext = document.getElementById('btn-next');
+var itemWidth = 150; // Độ rộng của mỗi phần tử điều hướng
+var containerWidth = navigationList.offsetWidth; // Độ rộng của div chứa danh sách
+var wrapperWidth = navigationWrapper.offsetWidth; // Độ rộng của wrapper
 
+btnPrev.addEventListener('click', function() {
+    var currentPosition = parseInt(navigationWrapper.style.transform.slice(11)) || 0;
+    var newPosition = currentPosition + itemWidth;
+
+    if (newPosition <= 0) {
+        navigationWrapper.style.transform = 'translateX(' + newPosition + 'px)';
+    }
+});
+
+btnNext.addEventListener('click', function() {
+    var currentPosition = parseInt(navigationWrapper.style.transform.slice(11)) || 0;
+    var newPosition = currentPosition - itemWidth;
+    var maxPosition = containerWidth - wrapperWidth;
+
+    if (newPosition >= maxPosition) {
+        navigationWrapper.style.transform = 'translateX(' + newPosition + 'px)';
+    }
+});	
 </script>

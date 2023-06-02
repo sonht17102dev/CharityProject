@@ -10,6 +10,10 @@
 					ace.settings.check('breadcrumbs', 'fixed')
 				} catch (e) {
 				}
+				<c:if test="${messageCircum!=null}">
+					alert('${messageCircum}');
+					location.assign("/CharityApp/admin/quan-ly-quyen-gop");
+				</c:if>
 			</script>
 
 			<ul class="breadcrumb">
@@ -280,6 +284,7 @@
 			$(this).attr("checked", status);
 		})
 	}
+	
 </script>
 
 

@@ -132,14 +132,17 @@
 							class="single-input col-sm-7" placeholder="Số điện thoại"
 							value="${accountDetails.account_phone}">
 					</div>
-					<input type="hidden" name="circum_order_amount"
-						id="circum_order_amount" class="single-input col-sm-7">
 	
 					<div class="mt-10 form-group">
 						<label class="col-sm-3 ">Tài khoản ngân hàng</label> <input
 							type="text" name="circum_order_bank" id="circum_order_bank"
 							class="single-input col-sm-7" placeholder="Tài khoản ngân hàng"
 							value="${accountDetails.account_bank}">
+					</div>
+					<div class="mt-10 form-group">
+						<label class="col-sm-3 ">Số tiền quyên góp (Đv: nghìn đồng)</label> 
+						<input type="number" id="circum_order_amount" class="single-input col-sm-7"
+								name="circum_order_amount"  min="1"/>
 					</div>
 					<div class="mt-10 form-group">
 						<label class="col-sm-3 ">Tên ngân hàng</label> <input type="text"
@@ -173,13 +176,14 @@
 	</div>
 </div>
 <script>
-	
+	/*
 	const inputAmount = document.getElementById('amount');
 	const inputAmountForm = document.getElementById('circum_order_amount');
 
 	inputAmount.oninput = function() {
 		inputAmountForm.value = this.value;
 	}
+	*/
 	$(document).ready(function() {
 		$("#cancel").click(function() {
 			location.assign("/CharityApp/nhung-hoan-canh");

@@ -5,7 +5,16 @@
 <div class="main-content">
 	<div class="main-content-inner">
 		<div class="breadcrumbs" id="breadcrumbs">
-
+			<script type="text/javascript">
+				try {
+					ace.settings.check('breadcrumbs', 'fixed')
+				} catch (e) {
+				}
+				<c:if test="${messageNews!=null}">
+					alert('${messageNews}');
+					location.assign("/CharityApp/admin/quan-ly-tin-tuc");
+				</c:if>
+			</script>
 			<ul class="breadcrumb">
 				<li><i class="ace-icon fa fa-home home-icon"></i> <a href="home">Home</a>
 				</li>
@@ -23,11 +32,6 @@
 					Bảng thống kê các tin tức
 				</h1>
 			</div>
-			<c:if test="${param.message == 'Cập nhật thành công !!!'}">
-			<div class="page-header" style="color:green;">
-				<h2>Cập nhật thành công !!!</h2>
-			</div>
-			</c:if>
 			<!-- /.page-header -->
 			<!-- begin row -->
 			<div class="row">
@@ -255,4 +259,5 @@ function toggleChecked(status) {
 		$(this).attr("checked", status);
 	})
 }
+
 </script>

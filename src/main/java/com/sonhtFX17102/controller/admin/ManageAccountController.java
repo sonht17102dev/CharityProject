@@ -69,7 +69,8 @@ public class ManageAccountController extends BaseController{
 		String phone = request.getParameter("account_phone");
 		int id = Integer.parseInt(idS);
 		accService.updateAccount(id, "ADMIN", mail, name, phone);
-		return "redirect:quan-ly-tai-khoan";
+		request.setAttribute("messageAccount", "Cập nhật thành công !!!");
+		return "admin/account/manageAccount";
 	}
 	@RequestMapping(value= "them-tai-khoan", method = RequestMethod.POST)
 	public ModelAndView doAddAccount(HttpServletRequest request) {
@@ -79,23 +80,19 @@ public class ManageAccountController extends BaseController{
 		String phone = request.getParameter("account_phone");
 		String pass = request.getParameter("account_password");
 		String md5Pass = DigestUtils.md5Hex(pass);
-		System.out.println(pass);
+//		System.out.println(pass);
 		Account account = new Account(roleS, mail, name, phone, md5Pass, "offline",1);
 		
-		System.out.println(account.toString());
+//		System.out.println(account.toString());
 		account = accService.checkAccountByMailExist(mail);
 		
 		if (account == null) {
-			try {
-				accService.insertAccount(roleS, mail, name, phone, md5Pass, "offline",1);
-				_mvShareAdmin.setViewName("admin/account/manageAccount");
-				//return "redirect:quan-ly-tai-khoan";
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			accService.insertAccount(roleS, mail, name, phone, md5Pass, "offline",1);
+			request.setAttribute("messageAccount", "Thêm mới thành công !!!");
+			_mvShareAdmin.setViewName("admin/account/manageAccount");
 
 		} else {
-			_mvShareAdmin.addObject("mess", "Thêm mới thất bại - Mail đã tồn tại vui lòng thử lại !!!");
+			request.setAttribute("messageAccount", "Thêm mới thất bại - Mail đã tồn tại vui lòng thử lại !!!");
 			_mvShareAdmin.setViewName("admin/account/addAccount");
 			
 		}

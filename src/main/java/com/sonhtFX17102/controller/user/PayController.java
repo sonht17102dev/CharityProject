@@ -38,9 +38,9 @@ public class PayController extends BaseController{
 		String logoPartner = partnerService.getPartnerById(circum.getPartner_id()).getPartner_logo();
 		if (authentication != null) {
 			String username = authentication.getName();
-			System.out.println(username);
-				AccountDetailsDTO account = accountService.getAccountDetailsByUsername(username);
-				_mvShare.addObject("accountDetails", account);
+//			System.out.println(username);
+			AccountDetailsDTO account = accountService.getAccountDetailsByUsername(username);
+			_mvShare.addObject("accountDetails", account);
 		}
 		_mvShare.addObject("circum", circum);
 		_mvShare.addObject("logoPartner", logoPartner);
@@ -65,7 +65,7 @@ public class PayController extends BaseController{
 		try {
 			cId = Integer.parseInt(cIdString);
 			amount = Integer.parseInt(amountS);
-			payService.insertPayInfo(cId, name, mail, phone, bank, bankName, address, amount, date, circumName);
+			payService.insertPayInfo(cId, name, mail, phone, bank, bankName, address, amount, date, circumName,"pending");
 			return "redirect:thanh-toan";
 			
 		} catch (Exception e) {

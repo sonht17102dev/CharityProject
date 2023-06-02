@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/user/taglib.jsp"%>
 <!-- header-start -->
+
 <header>
 	<div class="header-area ">
 		<div class="header-top_area">
@@ -39,7 +40,7 @@
 		<div id="sticky-header" class="main-header-area">
 			<div class="container-fluid">
 				<div class="row align-items-center">
-					<div class="col-xl-3 col-lg-3">
+					<div class="col-xl-3 col-lg-3 col-md-12 col-12">
 						<div class="logo">
 							<a href="${pageContext.request.contextPath}/trang-chu"> <img
 								src="<c:url value="/resources/user/img/logo.png"/>" alt="logo">
@@ -47,7 +48,7 @@
 
 						</div>
 					</div>
-					<div class="col-xl-9 col-lg-9">
+					<div class="col-xl-9 col-lg-12 col-md-12 col-12">
 						<div class="main-menu">
 								<ul id="navigation">
 									<li><a href="${pageContext.request.contextPath}/trang-chu">Trang

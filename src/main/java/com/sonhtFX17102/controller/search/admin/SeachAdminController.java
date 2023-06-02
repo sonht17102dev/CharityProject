@@ -15,12 +15,14 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sonhtFX17102.controller.BaseController;
 import com.sonhtFX17102.entities.Account;
 import com.sonhtFX17102.entities.Circum;
+import com.sonhtFX17102.entities.CircumOrder;
 import com.sonhtFX17102.entities.News;
 import com.sonhtFX17102.entities.Partner;
 import com.sonhtFX17102.service.impl.AccountImpl;
 import com.sonhtFX17102.service.impl.CircumImpl;
 import com.sonhtFX17102.service.impl.NewsImpl;
 import com.sonhtFX17102.service.impl.PartnerImpl;
+import com.sonhtFX17102.service.impl.PayImpl;
 
 @Controller
 @RequestMapping(value = "admin")
@@ -33,6 +35,8 @@ public class SeachAdminController extends BaseController{
 	private PartnerImpl partnerService;
 	@Autowired
 	private NewsImpl newsService;
+	@Autowired
+	private PayImpl payService;
 	
 	@RequestMapping(value = "/search-account", method = RequestMethod.GET)
 	public ModelAndView searchByRole(@RequestParam("role") String role) {
@@ -133,5 +137,26 @@ public class SeachAdminController extends BaseController{
 		_mvShareAdmin.setViewName("admin/news/manageNews");
 		return _mvShareAdmin;
 	}
-	
+	@RequestMapping(value = "/search-payment", method = RequestMethod.POST)
+	public ModelAndView findByName(HttpServletRequest request) {
+		String keyword = request.getParameter("nav-search-input");
+		List<CircumOrder> list = payService.findByName(keyword);
+		_mvShareAdmin.addObject("listTop5Payment", list);
+		_mvShareAdmin.setViewName("admin/payment/managePayment");
+		return _mvShareAdmin;
+	} 
+	@RequestMapping(value = "/searchByStatus", method = RequestMethod.GET)
+	public ModelAndView findPaymentByType(@RequestParam("type") String typeStatus) {
+//		List<CircumOrder> list = new ArrayList<>();
+//		if(type != null && type.equalsIgnoreCase(category[0].trim())) {
+//			list = circumService.findByCategory(type);
+//		}
+//		else if(type != null && type.equalsIgnoreCase(category[1].trim())) {
+//			list = circumService.findByCategory(type);
+//		}
+		List<CircumOrder> list = payService.findPaymentByType(typeStatus);
+		_mvShareAdmin.addObject("listTop5Payment", list);
+		_mvShareAdmin.setViewName("admin/payment/managePayment");
+		return _mvShareAdmin;
+	}
 }

@@ -17,11 +17,12 @@ import com.sonhtFX17102.service.impl.AccountImpl;
 public class RegisterController extends BaseController {
 	@Autowired
 	private AccountImpl accService;
-	
+
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String register() {
 		return "register/registerMain";
 	}
+
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView doRegister(HttpServletRequest request) {
 		String mail = request.getParameter("usermail").trim();
@@ -33,18 +34,13 @@ public class RegisterController extends BaseController {
 		Account account = new Account("USER", mail, name, phone, md5Pass, "offline", 1);
 		System.out.println(account.toString());
 		account = accService.checkAccountByMailExist(mail);
-		
+
 		if (account == null) {
-			try {
-				accService.insertAccount("USER", mail, name, phone, md5Pass, "offline", 1);
-				sendEmail("sonhtfx17102@funix.edu.vn",mail, "Chúc mừng bạn đã đăng ký thành công!",
-						"Mật khẩu của bạn là " + pass + " \n\n Vui lòng không cung cấp mật khẩu cho bất kỳ ai.");
-				_mvShare.setViewName("redirect:login");
-			} catch (Exception e) {
-				e.printStackTrace();
-				
-				_mvShare.setViewName("redirect:register");
-			}
+			accService.insertAccount("USER", mail, name, phone, md5Pass, "offline", 1);
+			sendEmail("sonhtfx17102@funix.edu.vn", mail, "Chúc mừng bạn đã đăng ký thành công!",
+					"Mật khẩu của bạn là " + pass + " \n\n Vui lòng không cung cấp mật khẩu cho bất kỳ ai.");
+			request.setAttribute("messageRegister", "Đăng ký thành công!!!");
+			_mvShare.setViewName("login/loginMain");
 
 		} else {
 			request.setAttribute("messageRegister", "Tài khoản đã tồn tại, vui lòng nhập lại!!!");

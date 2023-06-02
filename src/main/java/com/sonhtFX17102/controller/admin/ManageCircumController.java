@@ -43,19 +43,11 @@ public class ManageCircumController extends BaseController {
 		String id = request.getParameter("id");
 		int idd;
 		List<Circum> list = circumService.getPagingPageAdmin(index);
-//		List<Circum> list = circumService.getAllCircums();
 		if (action != null && action.equals("deleteCircum") && status.equals("active")) {
 			idd = Integer.parseInt(id);
 			circumService.updateStatus(idd, "inactive");
 		}
-		if (action != null && action.equals("deleteCircum") && status.equals("inactive")) {
-			// String id = request.getParameter("id");
-			idd = Integer.parseInt(id);
-			circumService.updateStatus(idd, "active");
-		}
 
-		List<Circum> listInactive = circumService.findCircumsInactive("inactive");
-		_mvShareAdmin.addObject("listInactive", listInactive);
 		_mvShareAdmin.addObject("listTop10Circum", list);
 		_mvShareAdmin.addObject("endPage", endPage);
 		_mvShareAdmin.addObject("tag", index);
@@ -69,7 +61,7 @@ public class ManageCircumController extends BaseController {
 		int id = Integer.parseInt(idS);
 		Circum circum = circumService.getCircumById(id);
 		String[] images = circum.getCircum_image().split(",");
-		
+
 		List<String> listImages = Arrays.asList(images);
 		_mvShareAdmin.addObject("category", category);
 		_mvShareAdmin.addObject("images", listImages);
@@ -95,21 +87,24 @@ public class ManageCircumController extends BaseController {
 		String content = request.getParameter("circum_content");
 		String status = request.getParameter("circum_status");
 //		System.out.println(splitString);
-		if(splitString.contains("[") || splitString.contains("]")) {
-			String images = splitString.substring(1, splitString.length()-1);
-			//System.out.println(images);
+		if (splitString.contains("[") || splitString.contains("]")) {
+			String images = splitString.substring(1, splitString.length() - 1);
+			// System.out.println(images);
 			circumService.upDateCircum(Integer.parseInt(id), Integer.parseInt(pId), name, type, content, images, des,
-					Integer.parseInt(donation), Long.parseLong(target), Long.parseLong(raise), Integer.parseInt(end), start,
-					status);
+					Integer.parseInt(donation), Long.parseLong(target), Long.parseLong(raise), Integer.parseInt(end),
+					start, status);
+			request.setAttribute("messageCircum", "Cập nhật thành công !!!");
+			return "admin/circum/manageCircum";
 		} else {
-			//System.out.println(splitString);
-			circumService.upDateCircum(Integer.parseInt(id), Integer.parseInt(pId), name, type, content, splitString, des,
-					Integer.parseInt(donation), Long.parseLong(target), Long.parseLong(raise), Integer.parseInt(end), start,
-					status);
-			
+			// System.out.println(splitString);
+			circumService.upDateCircum(Integer.parseInt(id), Integer.parseInt(pId), name, type, content, splitString,
+					des, Integer.parseInt(donation), Long.parseLong(target), Long.parseLong(raise),
+					Integer.parseInt(end), start, status);
+			request.setAttribute("messageCircum", "Cập nhật thất bại !!!");
+			return "admin/circum/editCircum";
+
 		}
-		
-		return "redirect:quan-ly-quyen-gop";
+
 	}
 
 	@RequestMapping(value = "them-quyen-gop", method = RequestMethod.GET)
@@ -143,17 +138,14 @@ public class ManageCircumController extends BaseController {
 		Circum circum = new Circum(idP, title, type, content, splitString, des, d, t, r, te, start_donate, "active");
 		circum = circumService.checkCircumByNameExist(title);
 		if (circum == null) {
-			try {
-				circumService.insertCircum(idP, title, type, content, splitString, des, d, t, r, te, start_donate,
-						"active");
-				_mvShareAdmin.setViewName("redirect:quan-ly-quyen-gop");
+			circumService.insertCircum(idP, title, type, content, splitString, des, d, t, r, te, start_donate,
+					"active");
+			request.setAttribute("messageCircum", "Thêm mới thành công !!!");
+			_mvShareAdmin.setViewName("admin/circum/manageCircum");
 
-			} catch (Exception e) {
-				request.setAttribute("message", "Thêm mới thất bại - Tiêu đề đã tồn tại vui lòng thử lại !!!");
-				_mvShareAdmin.setViewName("admin/circum/addCircum");
-			}
-
-		}
+		} 
+		request.setAttribute("messageCircum", "Thêm mới thất bại - Tiêu đề đã tồn tại vui lòng thử lại !!!");
+		_mvShareAdmin.setViewName("admin/circum/addCircum");
 		return _mvShareAdmin;
 	}
 }

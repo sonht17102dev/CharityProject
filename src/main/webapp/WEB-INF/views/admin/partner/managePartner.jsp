@@ -5,7 +5,16 @@
 <div class="main-content">
 	<div class="main-content-inner">
 		<div class="breadcrumbs" id="breadcrumbs">
-
+			<script type="text/javascript">
+				try {
+					ace.settings.check('breadcrumbs', 'fixed')
+				} catch (e) {
+				}
+				<c:if test="${messagePartner!=null}">
+					alert('${messagePartner}');
+					location.assign("/CharityApp/admin/quan-ly-doi-tac");
+				</c:if>
+			</script>
 			<ul class="breadcrumb">
 				<li><i class="ace-icon fa fa-home home-icon"></i> <a href="home">Home</a>
 				</li>
@@ -23,11 +32,6 @@
 					Bảng thống kê các đối tác đồng hành
 				</h1>
 			</div>
-			<c:if test="${param.message == 'Cập nhật thành công !!!'}">
-			<div class="page-header" >
-				<h1 style="color:green;">Cập nhật thành công !!!</h1>
-			</div>
-			</c:if>
 			<!-- /.page-header -->
 			<!-- begin row -->
 			<div class="row">
@@ -264,4 +268,5 @@ function toggleChecked(status) {
 		$(this).attr("checked", status);
 	})
 }
+
 </script>

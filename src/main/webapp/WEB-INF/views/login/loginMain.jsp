@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/user/taglib.jsp"%>
+<script>
+<c:if test="${messageRegister!=null}">
+	alert('${messageRegister}');
+	location.assign("/CharityApp/login");
+</c:if>
+</script>
 <div id="login-form" class="login-form">
 	<h2 class="text-center">Đăng nhập</h2>
 	<!-- Check for login error -->
@@ -153,4 +159,5 @@
 	        loginForm.style.display = "block";
 	    }
 	}
+	
 </script>

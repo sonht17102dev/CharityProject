@@ -1,5 +1,7 @@
 package com.sonhtFX17102.controller.admin;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,9 +29,10 @@ public class HomeAdminController extends BaseController{
 	 * chuyển trạng thái status từ offline -> online
 	 */
 	@RequestMapping(value= "/admin/loginSuccess", method = RequestMethod.GET)
-	public String adminLoginSuccess(@RequestParam("username") String username) {
+	public String adminLoginSuccess(@RequestParam("username") String username, HttpServletRequest request) {
 		// thay đổi field account_status trong database từ offline -> online
 		accountService.updateStatusOnline(username);
-		return "redirect:/admin/";
+		request.setAttribute("messageLogin", "Đăng nhập thành công !!!");
+		return "admin/indexAd";
 	}
 }

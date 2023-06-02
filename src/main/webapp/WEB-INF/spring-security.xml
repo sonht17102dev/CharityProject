@@ -40,7 +40,7 @@
 		<logout logout-url="/logout"
 			success-handler-ref="customLogoutSuccessHandler"
 			delete-cookies="JSESSIONID" invalidate-session="true" />
-
+			
 	</http>
 
 	<authentication-manager>

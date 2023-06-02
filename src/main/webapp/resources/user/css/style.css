@@ -82,6 +82,17 @@ body {
 	flex: 1 0 auto;
 }
 
+
+.navigation-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navigation-list li {
+    margin-right: 10px;
+}
 .deepPink {
 	color: deeppink;
 }
@@ -359,11 +370,7 @@ body {
   text-align: center;
   color: #ef3686;
 }
-.soju_prose p {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-size: larger;
-}
+
 .background_news p{
   background-color: whitesmoke;
   padding-left: 15px;
@@ -477,7 +484,7 @@ td.primary {
 	width: 100%;
 }
     /* Full-width input fields */
-    input[type=text], input[type=password], input[type=email] {
+    input[type=text], input[type=password], input[type=email], input[type=number] {
       width: 100%;
       padding: 12px 20px;
       margin: 8px 0;
@@ -884,6 +891,9 @@ h3 {
   .pt-120 {
     padding-top: 60px;
   }
+  #nav-type {
+  	display: none;
+  }
   .header-area .main-header-area .logo img {
     width: 100px;
   }
@@ -948,6 +958,9 @@ h3 {
   /* line 2, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_voolenteer.scss */
   .pt-120 {
     padding-top: 100px;
+  }
+   #nav-type {
+  	display: none;
   }
   .our_volunteer_area .single_volenteer {
     margin-bottom: 30px;

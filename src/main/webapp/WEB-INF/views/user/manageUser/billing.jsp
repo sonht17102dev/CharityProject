@@ -29,18 +29,14 @@
 							<td>${o.circum_order_date}</td>
 							<td>${o.circum_name}</td>
 							<td>${o.circum_order_amount}</td>
-							
-							<td><span class="badge bg-light text-dark"></span></td>
+							<c:if test="${o.circum_status == 'pending'}">
+								<td><span class="badge bg-light text-dark">Đang chờ</span></td>
+							</c:if>
+							<c:if test="${o.circum_status == 'paid'}">
+								<td><span class="badge bg-success">Đã nhận</span></td>
+							</c:if>
 						</tr>
 					</c:forEach>
-						<!--  
-						<tr>
-							<td>#38594</td>
-							<td>05/15/2021</td>
-							<td>$29.99</td>
-							<td><span class="badge bg-success">Đã nhận</span></td>
-						</tr>
-						-->
 					</tbody>
 				</table>
 			</div>

@@ -19,31 +19,32 @@
 		<div class="page-content">
 			<div class="row">
 				<div class="col-xs-12">
-
-					<h1 class='${message != null ? " " : "hidden"}' style="color:red;">${message}</h1>
-					<form id="formSubmit" action="them-tin-tuc" method="post">
+					<c:if test="${messageNews!=null}">
+						<h1 class="error">${messageNews}</h1>
+					</c:if>
+					<form:form id="formSubmit" action="them-tin-tuc" method="post" modelAttribute="news">
 						<div class="form-group">
 							<label class="col-sm-3 control-label no-padding-right">Tiêu đề tin tức
 							</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="news_description"
-									name="news_description" value="" />
+								<form:input type="text" class="form-control" id="news_description"
+									name="news_description" path="news_description" value="" />
 							</div>
 						</div>
 						<br /> <br />
 						<div class="form-group">
 							<label class="col-sm-3 control-label no-padding-right">Hình banner</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="news_img_banner"
-									name="news_img_banner" value="" />
+								<form:input type="text" class="form-control" id="news_img_banner"
+									name="news_img_banner" path="news_img_banner" value="" />
 							</div>
 						</div>
 						<br /> <br />
 						<div class="form-group">
 							<label class="col-sm-3 control-label no-padding-right">Ngày đăng bài</label>
 							<div class="col-sm-9">
-								<input type="text" class="form-control" id="news_post_date"
-									name="news_post_date" value="" />
+								<form:input type="text" class="form-control" id="news_post_date"
+									name="news_post_date" path="news_post_date" value="" />
 							</div>
 						</div>
 						<br /> <br />
@@ -51,8 +52,8 @@
 							<label class="col-sm-3 control-label no-padding-right">Nội
 								dung bài viết</label>
 							<div class="col-sm-9">
-								<textarea rows="" cols="" id="news_content"
-									name="news_content" style="width: 820px; height: 175px"></textarea>
+								<form:textarea rows="" cols="" id="news_content"
+									name="news_content" path="news_content" style="width: 820px; height: 175px"/>
 							</div>
 						</div>
 						<br /> <br />
@@ -67,7 +68,7 @@
 									class="btn btn-white btn-warning btn-bold cancle" value="Hủy"/>
 							</div>
 						</div>
-					</form>
+					</form:form>
 				</div>
 			</div>
 		</div>

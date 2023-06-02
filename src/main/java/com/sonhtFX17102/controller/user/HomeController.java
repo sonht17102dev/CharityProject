@@ -2,6 +2,7 @@ package com.sonhtFX17102.controller.user;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,9 +52,10 @@ public class HomeController extends BaseController {
 	 * chuyển trạng thái status từ offline -> online
 	 */
 	@RequestMapping(value = "/trang-chu/loginSuccess", method = RequestMethod.GET)
-	public String loginSuccess(@RequestParam("username") String username) {
+	public String loginSuccess(@RequestParam("username") String username, HttpServletRequest request) {
 		accountService.updateStatusOnline(username);
-		return "redirect:/trang-chu";
+		request.setAttribute("messageLogin", "Đăng nhập thành công !!!");
+		return "user/index";
 	}
 	
 }

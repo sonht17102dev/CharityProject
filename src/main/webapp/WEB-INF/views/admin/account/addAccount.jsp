@@ -19,7 +19,9 @@
 		<div class="page-content">
 			<div class="row">
 				<div class="col-xs-12">
-					<h1 style="color:red;">${mess}</h1>
+					<c:if test="${messageAccount!=null}">
+						<h1 class="error">${messageAccount}</h1>
+					</c:if>
 					<form id="formSubmit" action="them-tai-khoan" method="post">
 						<div class="form-group">
 							<label class="col-sm-3 control-label no-padding-right">Chức danh</label>

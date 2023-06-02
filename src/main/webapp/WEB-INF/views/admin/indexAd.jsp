@@ -12,6 +12,10 @@
 					ace.settings.check('breadcrumbs', 'fixed')
 				} catch (e) {
 				}
+				<c:if test="${messageLogin!=null}">
+					alert('${messageLogin}');
+					location.assign("/CharityApp/admin/");
+				</c:if>
 			</script>
 
 			<ul class="breadcrumb">

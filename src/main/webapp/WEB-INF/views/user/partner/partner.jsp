@@ -10,14 +10,28 @@
                 <c:forEach items="${listPartner}" var="o">
                     <div class="row col-lg-6 col-md-12  flex-md-row mr-2 mb-2 align-items-center" >
                         <div class="col-md-4 col-4 ">
+                        	<c:if test="${o.partner_id > 12}">
+                            <a ><img src="${o.partner_logo}" 
+                            style="width: 100%;"></a>
+                        	</c:if>
+                        	<c:if test="${o.partner_id <= 12}">
                             <a href="doi-tac-chi-tiet?id=${o.partner_id}"><img src="${o.partner_logo}" 
                             style="width: 100%;"></a>
+                            </c:if>
                         </div>
                         <div class="single-defination col-md-8 col-8">
+                            <c:if test="${o.partner_id > 12}">
+	                            <h4 class="mb-20 deepPink" >
+	                            <a >${o.partner_name}</a></h4>
+	                            <p>${o.partner_slogan}</p>
+	                            <p><a >Xem chi tiết >></a></p>
+                            </c:if>
+                            <c:if test="${o.partner_id <= 12}">
                             <h4 class="mb-20 deepPink" >
                             <a href="doi-tac-chi-tiet?id=${o.partner_id}">${o.partner_name}</a></h4>
                             <p>${o.partner_slogan}</p>
                             <p><a href="doi-tac-chi-tiet?id=${o.partner_id}">Xem chi tiết >></a></p>
+                            </c:if>
                         </div>
                     </div>
                 </c:forEach>

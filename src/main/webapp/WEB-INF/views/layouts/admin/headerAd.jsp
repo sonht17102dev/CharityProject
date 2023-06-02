@@ -95,6 +95,9 @@
 				<li class=""><a href="quan-ly-tai-khoan"> <i
 						class="menu-icon fa fa-caret-right"></i> Quản lý tài khoản
 				</a> <b class="arrow"></b></li>
+				<li class=""><a href="quan-ly-thanh-toan"> <i
+						class="menu-icon fa fa-caret-right"></i> Quản lý thanh toán
+				</a> <b class="arrow"></b></li>
 
 			</ul></li>
 
