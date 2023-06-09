@@ -2,6 +2,11 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/user/taglib.jsp"%>
 
+<c:if test = "${messageDonated!=null}">
+<script>
+	alert('${messageDonated}');
+</script>
+</c:if>
 <div class="container pt-120 mb-4">
 	<div class="mb-4">
 	<h2 class="deepPink">Ủng hộ</h2>

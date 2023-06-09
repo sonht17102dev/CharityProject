@@ -11,12 +11,14 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sonhtFX17102.DTO.AccountDetailsDTO;
 import com.sonhtFX17102.controller.BaseController;
 import com.sonhtFX17102.entities.Account;
 import com.sonhtFX17102.entities.CircumOrder;
@@ -31,32 +33,21 @@ public class UserController extends BaseController {
 	private PayImpl payService;
 	
 	@RequestMapping(value = "/tai-khoan/cap-nhat", method = RequestMethod.GET)
-	public ModelAndView profile(@RequestParam("username") String username) {
-		_mvShare.addObject("info", accService.getAccountDetailsByUsername(username));
+	public ModelAndView profile(@RequestParam("username") String username, Model model) {
+		model.addAttribute("info", accService.getAccountDetailsByUsername(username));
 		_mvShare.addObject("category", category);
 		_mvShare.setViewName("user/manageUser/profile");
 		_mvShare.addObject("category", category);
 		return _mvShare;
 	}
 	@RequestMapping(value = "/tai-khoan/cap-nhat", method = RequestMethod.POST)
-	public ModelAndView updateProfile(HttpServletRequest request) {
-		String username = request.getParameter("username");
-		String firstName = request.getParameter("firstName");
-		String lastName = request.getParameter("lastName");
-		String orgName = request.getParameter("orgName");
-		String address = request.getParameter("address");
-		String phone = request.getParameter("phone");
-		String birthday = request.getParameter("birthday");
-		String mail = request.getParameter("email");
-		String bank = request.getParameter("bank");
-		String bankname = request.getParameter("bankname");
-		String idS = request.getParameter("id");
-		
-		int id = Integer.parseInt(idS);
-		accService.updateAccountDetailsByUser(id, firstName, lastName, address,
-					birthday, orgName, username, phone, bank, bankname);
-		_mvShare.addObject("messageUser", "Thay đổi thành công !!!");
-		_mvShare.setViewName("redirect:cap-nhat?username="+username);
+	public ModelAndView updateProfile(HttpServletRequest request, @ModelAttribute("info") AccountDetailsDTO aDetailsDTO) {
+		accService.updateAccountDetailsByUser(aDetailsDTO.getAccount_id(), aDetailsDTO.getAccount_firstName(),
+				aDetailsDTO.getAccount_lastName(), aDetailsDTO.getAccount_address(), aDetailsDTO.getAccount_birthday(),
+				aDetailsDTO.getAccount_organization(), aDetailsDTO.getAccount_name(), aDetailsDTO.getAccount_phone(),
+				aDetailsDTO.getAccount_bank(), aDetailsDTO.getAccount_bankname());
+		_mvShare.addObject("messageUser", "Cập nhật thành công !!!");
+		_mvShare.setViewName("redirect:cap-nhat?username="+aDetailsDTO.getAccount_name());
 		return _mvShare;
 	}
 	@RequestMapping(value = "/tai-khoan/thanh-toan", method = RequestMethod.GET)

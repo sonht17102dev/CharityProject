@@ -1,7 +1,6 @@
 package com.sonhtFX17102.controller.user;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -13,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sonhtFX17102.DTO.AccountDetailsDTO;
 import com.sonhtFX17102.controller.BaseController;
-import com.sonhtFX17102.entities.Account;
 import com.sonhtFX17102.entities.Circum;
 import com.sonhtFX17102.service.impl.AccountImpl;
 import com.sonhtFX17102.service.impl.CircumImpl;
@@ -49,7 +47,7 @@ public class PayController extends BaseController{
 		return _mvShare;
 	}
 	@RequestMapping(value = "quyen-gop", method = RequestMethod.POST)
-	public String doConfirmPayment(HttpServletRequest request, HttpSession session) {
+	public String doConfirmPayment(HttpServletRequest request) {
 		String cIdString = request.getParameter("circum_id");
 		int cId = 0;
 		String name = request.getParameter("circum_order_name");
@@ -66,11 +64,12 @@ public class PayController extends BaseController{
 			cId = Integer.parseInt(cIdString);
 			amount = Integer.parseInt(amountS);
 			payService.insertPayInfo(cId, name, mail, phone, bank, bankName, address, amount, date, circumName,"pending");
-			return "redirect:thanh-toan";
+			request.setAttribute("messageDonated", 
+					"Cảm ơn bạn đã quyên góp!!\n Mọi đóng góp dù nhỏ cũng là một niềm động viên rất lớn!!!");
+			return "user/cart/payment";
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			session.setAttribute("messageDonated", "Fail");
 			return "redirect:quyen-gop?id="+cId;
 		}
 	}

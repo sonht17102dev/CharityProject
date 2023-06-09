@@ -97,87 +97,85 @@
 				</table>
 				</div>
 				<div class="card-body " >
-					<form id="formInfo" method="post" class="hidden "
+					<form:form id="formInfo" method="post" class="hidden " modelAttribute="info"
 						action="${pageContext.request.contextPath}/tai-khoan/cap-nhat">
-						<input type="hidden" name="id" value="${info.account_id}">
+						<form:input type="hidden" name="id" value="${info.account_id}"  path="account_id"/>
 						<div class="mb-3">
 							<label class="mb-1" for="inputUsername">Username (tên của
 								bạn sẽ hiển thị như thế nào với những người dùng khác trên trang
-								web)</label> <input class="form-control" id="username" name="username"
-								type="text" placeholder="Nhập username của bạn"
-								value="${info.account_name}">
+								web)</label> <form:input class="form-control" id="username" name="username"
+								type="text" placeholder="Nhập username của bạn" path="account_name"
+								value="${info.account_name}"/>
 						</div>
 
 						<div class="row gx-3 mb-3">
 
 							<div class="col-md-6">
-								<label class="mb-1" for="inputFirstName">Tên</label> <input
+								<label class="mb-1" for="inputFirstName">Tên</label> <form:input
 									class="form-control" id="firstName" name="firstName"
-									type="text" placeholder="Nhập tên của bạn"
-									value="${info.account_firstName}">
+									type="text" placeholder="Nhập tên của bạn" path="account_firstName"
+									value="${info.account_firstName}"/>
 							</div>
 
 							<div class="col-md-6">
-								<label class="mb-1" for="inputLastName">Họ</label> <input
+								<label class="mb-1" for="inputLastName">Họ</label> <form:input
 									class="form-control" id="lastName" name="lastName" type="text"
-									placeholder="Nhập họ của bạn" value="${info.account_lastName}">
+									placeholder="Nhập họ của bạn" path="account_lastName"
+									value="${info.account_lastName}"/>
 							</div>
 						</div>
 
 						<div class="row gx-3 mb-3">
 
 							<div class="col-md-6">
-								<label class="mb-1" for="inputOrgName">Tên tổ chức</label> <input
+								<label class="mb-1" for="inputOrgName">Tên tổ chức</label> <form:input
 									class="form-control" id="orgName" name="orgName" type="text"
-									placeholder="Nhập tên tổ chức của bạn"
-									value="${info.account_organization}">
+									placeholder="Nhập tên tổ chức của bạn" path="account_organization"
+									value="${info.account_organization}"/>
 							</div>
 
 							<div class="col-md-6">
-								<label class="mb-1" for="inputLocation">Địa chỉ</label> <input
+								<label class="mb-1" for="inputLocation">Địa chỉ</label> <form:input
 									class="form-control" id="address" name="address" type="text"
-									placeholder="Nhập địa chỉ của bạn"
-									value="${info.account_address}">
+									placeholder="Nhập địa chỉ của bạn" path="account_address"
+									value="${info.account_address}"/>
 							</div>
 						</div>
 
-						<div class="mb-3">
-							<label class="mb-1" for="inputEmailAddress">Địa chỉ Email</label>
-							<input class="form-control" id="email" name="email" type="email"
-								placeholder="Nhập địa chỉ email của bạn"
-								value="${info.account_mail}" readonly>
-						</div>
+						<form:input class="form-control" id="email" name="email" type="hidden"
+								placeholder="Nhập địa chỉ email của bạn" path="account_mail"
+								value="${info.account_mail}" readonly="true" />
 
 						<div class="row gx-3 mb-3">
 
 							<div class="col-md-6">
-								<label class="mb-1" for="inputPhone">Số điện thoại</label> <input
+								<label class="mb-1" for="inputPhone">Số điện thoại</label> <form:input
 									class="form-control" id="phone" name="phone" type="text"
-									placeholder="Nhập số điện thoại của bạn"
-									value="${info.account_phone}">
+									placeholder="Nhập số điện thoại của bạn" path="account_phone"
+									value="${info.account_phone}"/>
 							</div>
 
 							<div class="col-md-6">
-								<label class="mb-1" for="inputBirthday">Ngày sinh</label> <input
+								<label class="mb-1" for="inputBirthday">Ngày sinh</label> <form:input
 									class="form-control" id="birthday" type="text" name="birthday"
-									placeholder="Nhập ngày sinh của bạn"
-									value="${info.account_birthday}">
+									placeholder="Nhập ngày sinh của bạn" path="account_birthday"
+									value="${info.account_birthday}"/>
 							</div>
 						</div>
 						<div class="row gx-3 mb-3">
 
 							<div class="col-md-6">
-								<label class="mb-1" for="inputBank">Số tài khoản</label> <input
+								<label class="mb-1" for="inputBank">Số tài khoản</label> <form:input
 									class="form-control" id="bank" name="bank" type="text"
-									placeholder="Nhập số tài khoản của bạn"
-									value="${info.account_bank}">
+									placeholder="Nhập số tài khoản của bạn" path="account_bank"
+									value="${info.account_bank}"/>
 							</div>
 
 							<div class="col-md-6">
-								<label class="mb-1" for="inputBankname">Ngân hàng</label> <input
+								<label class="mb-1" for="inputBankname">Ngân hàng</label> <form:input
 									class="form-control" id="bankname" type="text" name="bankname"
-									placeholder="Nhập tên ngân hàng của bạn"
-									value="${info.account_bankname}">
+									placeholder="Nhập tên ngân hàng của bạn" path="account_bankname"
+									value="${info.account_bankname}"/>
 							</div>
 						</div>
 						<div class="row justify-content-center">
@@ -191,7 +189,7 @@
 							type="button">Hủy cập nhật</button>
 							</div>
 						</div>
-					</form>
+					</form:form>
 				</div>
 			</div>
 		</div>

@@ -33,7 +33,6 @@
 							<th>Tên quyên góp</th>
 							<th>Đối tác</th>
 							<th>Loại hoàn cảnh</th>
-							<th>Số tiền quyên góp (đv: nghìn đồng)</th>
 							<th>Ngày quyên góp</th>
 						</tr>
 					</thead>
@@ -46,8 +45,6 @@
 									alt="logo Partner">
 							</a></td>
 							<td>${circum.circum_type}</td>
-							<td><label>Số tiền : </label> <input type="number"
-								name="amount" style="width: 40%;" id="amount" min="1"></td>
 							<td><fmt:formatDate type="date" dateStyle="short"
 									value="${now}" /></td>
 						</tr>
@@ -101,6 +98,11 @@
 						<label class="col-sm-3 ">Tài khoản ngân hàng</label> <input
 							type="text" name="circum_order_bank" id="circum_order_bank"
 							class="single-input col-sm-7" placeholder="Tài khoản ngân hàng">
+					</div>
+					<div class="mt-10 form-group">
+						<label class="col-sm-3 ">Số tiền quyên góp (Đv: nghìn đồng)</label> 
+						<input type="number" id="circum_order_amount" class="single-input col-sm-7"
+								name="circum_order_amount"  min="1"/>
 					</div>
 					<div class="mt-10 form-group">
 						<label class="col-sm-3 ">Tên ngân hàng</label> <input type="text"
@@ -253,7 +255,4 @@
 			}
 		});
 	});
-	<c:if test="${message == 'Fail'}">
-		alert('Hãy nhập số tiền trước khi xác nhận quyên góp!');
-	</c:if>
 </script>
