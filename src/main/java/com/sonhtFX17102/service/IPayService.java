@@ -15,4 +15,6 @@ public interface IPayService {
 	public void updateStatusById(String type, int id);
 	public List<CircumOrder> findByName(String keyword);
 	public List<CircumOrder> findPaymentByType(String typeStatus) ;
+	public void updateStatus(int id, String status);
+	public List<CircumOrder> findOrderInactive(String status);
 }

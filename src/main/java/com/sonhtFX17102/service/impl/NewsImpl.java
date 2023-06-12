@@ -81,4 +81,10 @@ public class NewsImpl implements INewsService{
 		// TODO Auto-generated method stub
 		return newsDAO.getNewsByKey(key);
 	}
+
+	@Override
+	public List<News> findNewsInactive(String status) {
+		// TODO Auto-generated method stub
+		return newsDAO.findNewsInactive(status);
+	}
 }

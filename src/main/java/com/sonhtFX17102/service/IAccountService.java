@@ -19,6 +19,7 @@ public interface IAccountService {
 			String account_name, String account_phone);
 	public void updateRole(int id, String role);
 	public List<Account> getAccountEnabled(int enabled);
+	public void updateEnabled(String id) ;
 	public void deleteAccountById(int id);
 	public void updateStatusOffline(String account_name);
 	public void updateStatusOnline(String account_name);

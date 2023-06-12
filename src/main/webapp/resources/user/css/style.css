@@ -886,6 +886,9 @@ h3 {
 .banner-partner img {
 	max-width: 100%;
 }
+.news-content p > img {
+	max-width: 100%;
+}
 @media (max-width: 767px) {
   /* line 213, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_theme-default.scss */
   .pt-120 {

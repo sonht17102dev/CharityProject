@@ -97,13 +97,17 @@
 
 										<tbody id="tbody">
 											<c:forEach items="${listTop10Circum}" var="o">
-												<c:if test='${o.circum_status == "active"}'>
 												<tr class="product-brand-number">
 													<td class="center"><label class="pos-rel"> <input
 															type="checkbox" class="checkbox" /> <span class="lbl"></span>
 													</label></td>
 													<td class="hidden">${o.circum_id}</td> 
-													<td class="center"><span class="label label-success arrowed">${o.circum_status}</span></td>
+													<td class="center">
+													<span class="label ${o.circum_status == 'active' ?
+													 'label-success arrowed' : 'label-danger arrowed-in'}">
+													 ${o.circum_status}
+													 </span>
+													 </td>
 													<td>${o.circum_name}</td>
 													<td class="center">${o.circum_type}</td>
 													<td class="center"><fmt:formatNumber type="number"
@@ -116,13 +120,14 @@
 															<a class="green" title="Chỉnh sửa"> <i
 																class="ace-icon fa fa-pencil bigger-130"></i>
 															</a> 
-															<a class="red delete_single" title="Xóa"> <i
-																class="ace-icon fa fa-trash-o bigger-130"></i>
-															</a>
+															<c:if test="${o.circum_status =='active' }">
+																<a class="red delete_single" title="Xóa"> <i
+																	class="ace-icon fa fa-trash-o bigger-130"></i>
+																</a>
+															</c:if>
 														</div>
 													</td>
 												</tr>
-													 </c:if>
 											</c:forEach>
 										</tbody>
 									</table>
@@ -132,6 +137,9 @@
 												title="dynamic-table">Xóa đã chọn</button>
 											<button class="btn btn-primary addCircum"
 												title="Thêm quyên góp">Thêm quyên góp</button>
+											<button class="btn btn-warning" 
+												id = "btn-inactive-circum"
+												title="Xem danh sách đã xóa">Xem danh sách đã xóa</button>
 
 										</div>
 										<div class="col-xs-6">
@@ -169,122 +177,8 @@
 		<!-- /.page-content -->
 	</div>
 </div>
-<script type="text/javascript">
-	$('button.addCircum').on("click", function(event) {
-		location.assign("/CharityApp/admin/them-quyen-gop");
-	});
-	$('a.green').on(
-			"click",
-			function(event) {
-				var idValue = this.parentNode.parentNode.parentNode
-						.getElementsByTagName('td')[1].textContent;
-				location.assign("/CharityApp/admin/cap-nhat-quyen-gop?id="
-						+ idValue);
-			});
-	$(document)
-			.ready(
-					function() {
-						//function is used to delete individual row
-						$('a.delete_single')
-								.on(
-										"click",
-										function(event) {
-											var $this = $(this);
-											var idValue = this.parentNode.parentNode.parentNode
-													.getElementsByTagName('td')[1].textContent;
-											var status = this.parentNode.parentNode.parentNode
-											.getElementsByTagName('td')[2].textContent;
-											//console.log(status);
-											var c = confirm('Bạn muốn xóa dòng này chứ?\nClick Ok để tiếp tục\nClick cancle nếu bạn chưa muốn xóa !!!');
-											if (c) {
-												$
-														.ajax({
-															url : "/CharityApp/admin/quan-ly-quyen-gop",
-															type : 'GET',
-															data : {
-																id : idValue,
-																action : 'deleteCircum',
-																status : status
-															},
-															success : function(
-																	response) {
-																alert('Xóa Thành Công!');
-															},
-															error : function() {
-																alert('Xóa Thất Bại');
-															}
-														});
-												$this.parents('tr').fadeOut(
-														function() {
-															$this.remove(); //remove row when animation is finished
-														});
-											} else {
-												alert('Xóa Thất Bại');
-											}
-											return false;
-										});
-
-						//function is used to delete selected row
-						$('button.deleteall')
-								.on(
-										"click",
-										function(event) {
-											var tb = $(this).attr('title');
-											var sel = false;
-											var ch = $('#' + tb)
-													.find(
-															'tbody input[type=checkbox]');
-											var c = confirm('Bạn muốn xóa những dòng này chứ?\nClick Ok để tiếp tục!!!\nClick cancle nếu bạn chưa muốn xóa !!!');
-											if (c) {
-												ch
-														.each(function() {
-															var $this = $(this);
-															var idValue = this.parentNode.parentNode.parentNode
-																	.getElementsByTagName('td')[1].textContent;
-															var status = this.parentNode.parentNode.parentNode
-															.getElementsByTagName('td')[2].textContent;
-															//console.log(status);
-															if ($this
-																	.is(':checked')) {
-																sel = true; //set to true if there is/are selected row
-																$
-																		.ajax({
-																			url : "/CharityApp/admin/quan-ly-quyen-gop",
-																			type : 'GET',
-																			data : {
-																				id : idValue,
-																				action : 'deleteCircum',
-																				status : status
-																			},
-																			success : function(
-																					response) {
-																			}
-																		});
-																$this
-																		.parents(
-																				'tr')
-																		.fadeOut(
-																				function() {
-																					$this
-																							.remove(); //remove row when animation is finished
-																				});
-															}
-														});
-												if (sel)
-													alert("Xóa Thành Công!");
-												if (!sel)
-													alert('Xóa Thất Bại - Không có trường nào được chọn');
-											}
-											return false;
-										});
-					});
-
-	function toggleChecked(status) {
-		$(".checkbox").each(function() {
-			$(this).attr("checked", status);
-		})
-	}
+<script src="<c:url value="/resources/admin/assets/js/manageCircum.js"/>"></script>
 	
-</script>
+	
 
 

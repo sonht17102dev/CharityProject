@@ -34,10 +34,11 @@ public class ManagePaymentController extends BaseController{
 			id = Integer.parseInt(idS);
 			payService.updateStatusById("paid",id);
 		}
+		
 		request.setAttribute("messagePayment", "Cập nhật trạng thái thành công!!!");
 		return "admin/payment/managePayment";
 	}
-	@RequestMapping(value = "quan-ly-thanh-toan", method = RequestMethod.GET)
+	@RequestMapping(value = "quan-ly-thanh-toan",produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
 	public ModelAndView managePayment(HttpServletRequest request) {
 		_mvShareAdmin.setViewName("admin/payment/managePayment");
 		String indexPage = request.getParameter("trang");
@@ -50,7 +51,14 @@ public class ManagePaymentController extends BaseController{
 		if (countPage % 5 != 0) {
 			endPage++;
 		}
-		
+		String action = request.getParameter("action");
+		String status = request.getParameter("status");
+		String id = request.getParameter("id");
+		int idd;
+		if (action != null && action.equals("deleteCircum")) {
+			idd = Integer.parseInt(id);
+			payService.updateStatus(idd, "inactive");
+		}
 		_mvShareAdmin.addObject("listTop5Payment", payService.getPagingPage(index));
 		_mvShareAdmin.addObject("endPage", endPage);
 		_mvShareAdmin.addObject("tag", index);

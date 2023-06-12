@@ -27,5 +27,5 @@ public interface IPartnerService {
 	public void updatePartnerById(int partner_id, String partner_name, String partner_slogan, String partner_logo,
 			String partner_banner, int partner_number_donate, int partner_total_money, String partner_introduce,
 			String partner_content, String partner_status);
-	
+	public List<Partner> findPartnersInactive(String status);
 }

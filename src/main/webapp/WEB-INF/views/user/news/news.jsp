@@ -120,19 +120,19 @@
 		var itemLength = document.getElementsByClassName('news_st').length;
 		var row = document.getElementById("content");
 		var loadBtn = document.getElementById("loadmoreBtn");
-		console.log(itemLength);
+		//console.log(itemLength);
 		$.ajax({
 			url : "/CharityApp/loadmore",
 			type : "get", //send it through get method
 			data : {
 				existItems : itemLength
 			},
+			
 			success : function(data) {
-				
+				//console.log(data);
 				row.innerHTML += data;
 			},
 			error : function(xhr) {
-				//Do Something to handle error
 			}
 		});
 		if(itemLength >= ${size}){

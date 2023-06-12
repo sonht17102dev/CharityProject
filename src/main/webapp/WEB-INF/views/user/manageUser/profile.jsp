@@ -179,14 +179,13 @@
 							</div>
 						</div>
 						<div class="row justify-content-center">
-							<div class="col-lg-6 btn-form-info" >
-							<button class="btn btn-primary " id="btn-submit" type="submit">Lưu thay
-								đổi</button>
-							</div>
-							<div class="col-lg-6 btn-form-info" >
-							<button class="btn btn-primary" id="btn-cancle" 
-							onclick = "hideFormInfo()"
-							type="button">Hủy cập nhật</button>
+							<div class="col-lg-6 col-md-6 col-6 btn-form-info" >
+								<button class="btn btn-primary " id="btn-submit" type="submit">Lưu</button>
+								</div>
+							<div class="col-lg-6 col-md-6 col-6 btn-form-info" >
+								<button class="btn btn-warning" id="btn-cancle" 
+								onclick = "hideFormInfo()"
+								type="button">Hủy</button>
 							</div>
 						</div>
 					</form:form>
@@ -197,79 +196,6 @@
 	</div>
 </div>
 
-<script>
-	var btnEdit = document.getElementById('btn-Edit');
-	var btnCancle = document.getElementById('btn-cancle');
-	var formInfo = document.getElementById('formInfo');
-	var tableInfo = document.getElementById('table-info');
-	function hideFormInfo() {
-		formInfo.classList.add("hidden");
-		tableInfo.classList.remove("hidden");
-	}
-	function showFormInfo () {
-		formInfo.classList.remove("hidden");
-		tableInfo.classList.add("hidden");
-	}
-	$(document).ready(function() {
-		$("#formInfo").validate({
-			rules : {
-				"username" : {
-					required : true
-				},
-				"firstName" : {
-					required : true
-				},
-				"lastName" : {
-					required : true
-				},
-				"orgName" : {
-					required : true
-				},
-				"address" : {
-					required : true
-				},
-				"phone" : {
-					required : true
-				},
-				"birthday" : {
-					required : true
-				},
-				"bank" : {
-					required : true
-				},
-				"bankname" : {
-					required : true
-				}
-			},
-			messages : {
-				"username" : {
-					required : "Vui lòng nhập username của bạn !!!"
-				},
-				"firstName" : {
-					required : "Vui lòng nhập tên của bạn !!!"
-				},
-				"lastName" : {
-					required : "Vui lòng nhập họ của bạn !!!"
-				},
-				"orgName" : {
-					required : "Vui lòng nhập tên công ty của bạn !!!"
-				},
-				"address" : {
-					required : "Vui lòng nhập địa chỉ của bạn !!!"
-				},
-				"phone" : {
-					required : "Vui lòng nhập số điện thoại của bạn !!!"
-				},
-				"birthday" : {
-					required : "Vui lòng nhập ngày sinh của bạn !!!"
-				},
-				"bank" : {
-					required : "Vui lòng nhập số tài khoản của bạn !!!"
-				},
-				"bankname" : {
-					required : "Vui lòng nhập tên ngân hàng của bạn !!!"
-				}
-			}
-		});
-	});
+<script src="<c:url value="/resources/user/js/profile.js"/>">
+	
 </script>

@@ -67,7 +67,7 @@ public class NewsController extends BaseController{
 		_mvShare.setViewName("user/news/news_detail");
 		return _mvShare; 
 	}
-	@RequestMapping(value = "/loadmore", method = RequestMethod.GET)
+	@RequestMapping(value = "/loadmore", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
 	@ResponseBody
 	public String loadMore(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		request.setCharacterEncoding("UTF-8");

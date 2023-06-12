@@ -10,6 +10,13 @@ public class Account {
 	private String account_status;
 	private int enabled;
 	
+	@Override
+	public String toString() {
+		return "Account [account_id=" + account_id + ", account_role=" + account_role + ", account_mail=" + account_mail
+				+ ", account_name=" + account_name + ", account_phone=" + account_phone + ", account_password="
+				+ account_password + ", account_status=" + account_status + ", enabled=" + enabled + "]";
+	}
+
 	public Account() {
 		super();
 	}

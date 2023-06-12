@@ -97,4 +97,10 @@ public class PartnerImpl implements IPartnerService {
 				partner_number_donate, partner_total_money, partner_introduce, partner_content, partner_status);
 	}
 
+	@Override
+	public List<Partner> findPartnersInactive(String status) {
+		// TODO Auto-generated method stub
+		return partnerDAO.findPartnersInactive(status);
+	}
+
 }

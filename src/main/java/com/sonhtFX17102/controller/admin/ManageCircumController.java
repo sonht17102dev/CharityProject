@@ -38,11 +38,11 @@ public class ManageCircumController extends BaseController {
 		if (countPage % 10 != 0) {
 			endPage++;
 		}
+		List<Circum> list = circumService.getPagingPageAdmin(index);
 		String action = request.getParameter("action");
 		String status = request.getParameter("status");
 		String id = request.getParameter("id");
 		int idd;
-		List<Circum> list = circumService.getPagingPageAdmin(index);
 		if (action != null && action.equals("deleteCircum") && status.equals("active")) {
 			idd = Integer.parseInt(id);
 			circumService.updateStatus(idd, "inactive");

@@ -2,11 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/user/taglib.jsp"%>
 
-<c:if test = "${messageDonated!=null}">
 <script>
-	alert('${messageDonated}');
+	alert('Cảm ơn bạn đã quyên góp!!\n Mọi đóng góp dù nhỏ cũng là một niềm động viên rất lớn!!!');
 </script>
-</c:if>
 <div class="container pt-120 mb-4">
 	<div class="mb-4">
 	<h2 class="deepPink">Ủng hộ</h2>
@@ -277,19 +275,6 @@
 		</div>
 	</div>
 </div>
-<script>
-	var boxBank = document.getElementById('box-bank');
-	var boxOffice = document.getElementById('box-office');
-	var bankInfo = document.getElementById('bank-info');
-	var officeInfo = document.getElementById('office-info');
-
-	boxBank.addEventListener('click', function() {
-		bankInfo.classList.remove('hidden');
-		officeInfo.classList.add('hidden');
-	});
-
-	boxOffice.addEventListener('click', function() {
-		bankInfo.classList.add('hidden');
-		officeInfo.classList.remove('hidden');
-	});
+<script src="<c:url value="/resources/user/js/payment.js"/>">
+	
 </script>

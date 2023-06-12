@@ -49,7 +49,8 @@ public class AccountImpl implements IAccountService {
 	public void updateAccount(int account_id, String account_role, String account_mail, String account_name,
 			String account_phone) {
 		// TODO Auto-generated method stub
-		accountDAO.updateAccount(account_id, account_role, account_mail, account_name, account_phone);
+		accountDAO.updateAccount(account_id, account_role, account_mail, account_name,
+				account_phone);
 	}
 
 	@Override
@@ -141,5 +142,10 @@ public class AccountImpl implements IAccountService {
 		accountDAO.updatePasswordByMail(pass, mail);
 	}
 
+	@Override
+	public void updateEnabled(String id) {
+		// TODO Auto-generated method stub
+		accountDAO.updateEnabled(id);
+	}
 
 }

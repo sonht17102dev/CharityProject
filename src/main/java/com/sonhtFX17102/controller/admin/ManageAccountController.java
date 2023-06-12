@@ -1,7 +1,5 @@
 package com.sonhtFX17102.controller.admin;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -46,8 +44,6 @@ public class ManageAccountController extends BaseController{
 				accService.deleteAccountById(id);
 			}
 		}
-		List<Account> listBanned = accService.getAccountEnabled(0);
-		_mvShareAdmin.addObject("listBanned", listBanned);
 		_mvShareAdmin.addObject("listTop5Account", accService.getPagingPage(index));
 		_mvShareAdmin.addObject("endPage", endPage);
 		_mvShareAdmin.addObject("tag", index);
@@ -57,6 +53,7 @@ public class ManageAccountController extends BaseController{
 	@RequestMapping(value= "cap-nhat-tai-khoan", method = RequestMethod.GET)
 	public ModelAndView editAccount(@RequestParam(value="id", required = false) int id) {
 		Account acc = accService.getAccountByID(id);
+//		System.out.println(acc.toString());
 		_mvShareAdmin.addObject("accountByID", acc);
 		_mvShareAdmin.setViewName("admin/account/editAccount");
 		return _mvShareAdmin;
@@ -69,6 +66,12 @@ public class ManageAccountController extends BaseController{
 		String phone = request.getParameter("account_phone");
 		int id = Integer.parseInt(idS);
 		accService.updateAccount(id, "ADMIN", mail, name, phone);
+		request.setAttribute("messageAccount", "Cập nhật thành công !!!");
+		return "admin/account/manageAccount";
+	}
+	@RequestMapping(value="reactivate", method = RequestMethod.GET)
+	public String reactivate (@RequestParam("id") String id, HttpServletRequest request) {
+		accService.updateEnabled(id);
 		request.setAttribute("messageAccount", "Cập nhật thành công !!!");
 		return "admin/account/manageAccount";
 	}

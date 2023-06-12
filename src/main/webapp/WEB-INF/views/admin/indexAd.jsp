@@ -31,11 +31,11 @@
 					webside Charity</h1>
 			</div>
 			<!-- /.page-header -->
-
 			<div class="row">
 				<div class="col-xs-12">
 					<!-- PAGE CONTENT BEGINS -->
-					
+					<img src="<c:url value="/resources/admin/assets/images/gallery/banner-index.jpg"/>"
+						style="width:100%"/>
 
 					<!-- PAGE CONTENT ENDS -->
 				</div>

@@ -65,4 +65,16 @@ public class PayImpl implements IPayService {
 		return payDAO.findPaymentByType(typeStatus);
 	}
 
+	@Override
+	public void updateStatus(int id, String status) {
+		// TODO Auto-generated method stub
+		payDAO.updateStatus(id, status);
+	}
+
+	@Override
+	public List<CircumOrder> findOrderInactive(String status) {
+		// TODO Auto-generated method stub
+		return payDAO.findOrderInactive(status);
+	}
+
 }

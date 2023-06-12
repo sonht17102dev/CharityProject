@@ -71,11 +71,9 @@
 									<li><a href="${pageContext.request.contextPath}/tin-tuc">Tin
 											tức</a></li>
 									<security:authorize access="isAuthenticated()">
-										<security:authorize access="hasRole('USER')">
-											<li><a
-												href="${pageContext.request.contextPath}/tai-khoan/cap-nhat?username=<security:authentication property="principal.username" />">
-													Thông Tin Tài khoản</a></li>
-										</security:authorize>
+										<li><a
+											href="${pageContext.request.contextPath}/tai-khoan/cap-nhat?username=<security:authentication property="principal.username" />">
+												Thông Tin Tài khoản</a></li>
 									</security:authorize>
 
 									<security:authorize access="!isAuthenticated()">
@@ -87,13 +85,8 @@
 												Đăng ký</a></li>
 									</security:authorize>
 									<security:authorize access="hasRole('ADMIN')">
-										<li>
-											<!-- Add a link to point to /systems ... this is for the admins -->
-											<p>
-												<a href="${pageContext.request.contextPath}/admin/">Về
-													trang ADMIN</a>
-											</p>
-										</li>
+										<li><a href="${pageContext.request.contextPath}/admin/">Về
+											trang ADMIN</a></li>
 									</security:authorize>
 									<security:authorize access="isAuthenticated()">
 										<li><a href="${pageContext.request.contextPath}/logout">

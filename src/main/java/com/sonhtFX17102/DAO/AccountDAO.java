@@ -75,7 +75,7 @@ public class AccountDAO extends BaseDao {
 	 * method getAccountByID tìm kiếm 1 item account trong database dựa trên id
 	 */
 	public Account getAccountByID(int id) {
-		String sql = "Select * from account where account_id = " + id + " and enabled = 1;";
+		String sql = "Select * from account where account_id = " + id +";";
 		List<Account> list = _jdbcTemplate.query(sql, new MapperAccount());
 		return list.get(0);
 	}
@@ -87,7 +87,8 @@ public class AccountDAO extends BaseDao {
 			String account_phone) {
 		String sql = "UPDATE ACCOUNT\r\n" + "SET\r\n" + "account_role = '" + account_role + "',\r\n"
 				+ "account_mail = N'" + account_mail + "',\r\n" + "account_name = N'" + account_name + "',\r\n"
-				+ "account_phone = N'" + account_phone + "' " + "WHERE\r\n" + "account_id = " + account_id + ";";
+				+ "account_phone = N'" + account_phone + "' "
+				+ " WHERE\r\n" + "account_id = " + account_id + ";";
 		_jdbcTemplate.update(sql);
 	}
 
@@ -109,7 +110,11 @@ public class AccountDAO extends BaseDao {
 		List<Account> list = _jdbcTemplate.query(sql, new MapperAccount());
 		return list;
 	}
-
+	
+	public void updateEnabled(String id) {
+		String sql = "Update account " + "set enabled = 1 where account_id = "+id + " ;";
+		_jdbcTemplate.update(sql);
+	}
 	/*
 	 * method deleteAccountById thay đổi trường enabled từ 0 -> 1 ngăn account có
 	 * trường enabled = 0 truy cập vào hệ thống dựa trên id
@@ -134,6 +139,11 @@ public class AccountDAO extends BaseDao {
 	public void updateStatusOnline(String account_name) {
 		String sql = "update account " + "set account_status = 'online' " + "where account_name = '" + account_name
 				+ "';";
+		_jdbcTemplate.update(sql);
+	}
+	public void updateStatusBan(String account_id) {
+		String sql = "update account " + "set account_status = 'ban' " + "where account_id = " + account_id
+				+ ";";
 		_jdbcTemplate.update(sql);
 	}
 

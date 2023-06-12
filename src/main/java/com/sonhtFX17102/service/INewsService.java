@@ -23,4 +23,5 @@ public interface INewsService {
 			String date, String content, String status);
 	public List<News> getNewsByYear(String year);
 	public List<News> getNewsByKey(String key);
+	public List<News> findNewsInactive(String status);
 }

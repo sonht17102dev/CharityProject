@@ -50,7 +50,7 @@ public class UserController extends BaseController {
 		_mvShare.setViewName("redirect:cap-nhat?username="+aDetailsDTO.getAccount_name());
 		return _mvShare;
 	}
-	@RequestMapping(value = "/tai-khoan/thanh-toan", method = RequestMethod.GET)
+	@RequestMapping(value = "/tai-khoan/thanh-toan", produces = "text/plain;charset=UTF-8", method = RequestMethod.GET)
 	public ModelAndView billing(@RequestParam("username") String name) {
 		List<CircumOrder> listOrders = payService.getCircumOrderByUsername(name);
 		_mvShare.addObject("listOrders", listOrders);

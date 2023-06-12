@@ -18,7 +18,7 @@
 		<intercept-url pattern="/login" access="permitAll()" />
 		<intercept-url pattern="/logout" access="permitAll()" />
 		<intercept-url pattern="/tai-khoan/**"
-			access="hasRole('ROLE_USER')" />
+			access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')" />
 
 
 		<intercept-url pattern="/admin/**"

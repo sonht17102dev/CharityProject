@@ -76,7 +76,7 @@ public class NewsDAO extends BaseDao {
 		_jdbcTemplate.update(sql);
 	}
 	public News getNewsById(int id) {
-		String sql = "select * from news where news_id = " + id + " and news_status='active' ;" ;
+		String sql = "select * from news where news_id = " + id + " ;" ;
 		List<News> list = _jdbcTemplate.query(sql, new MapperNews());
 		return list.size()== 0 ? null : list.get(0);
 	}
@@ -100,6 +100,11 @@ public class NewsDAO extends BaseDao {
 	}
 	public List<News> getNewsByKey(String key) {
 		String sql = "select * from news where news_description like N'%" + key + "%' and news_status='active' ;" ;
+		List<News> list = _jdbcTemplate.query(sql, new MapperNews());
+		return list;
+	}
+	public List<News> findNewsInactive(String status) {
+		String sql = "select * from news where news_status='inactive' ;" ;
 		List<News> list = _jdbcTemplate.query(sql, new MapperNews());
 		return list;
 	}

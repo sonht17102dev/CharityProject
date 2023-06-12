@@ -133,4 +133,9 @@ public class PartnerDAO extends BaseDao{
 				+ " where partner_id = " + partner_id + " ;" ;
 		_jdbcTemplate.update(sql);
 	}
+	public List<Partner> findPartnersInactive(String status) {
+		String sql = "Select * from partner where partner_status = 'inactive'";
+		List<Partner> list = _jdbcTemplate.query(sql, new MapperPartner());
+		return list;
+	}
 }

@@ -119,31 +119,3 @@
 	</div>
 </div>
 <!-- popular_causes_area_end  -->
-<script>
-var navigationList = document.querySelector('.navigation-list');
-var navigationWrapper = document.querySelector('.navigation-wrapper');
-var btnPrev = document.getElementById('btn-prev');
-var btnNext = document.getElementById('btn-next');
-var itemWidth = 150; // Độ rộng của mỗi phần tử điều hướng
-var containerWidth = navigationList.offsetWidth; // Độ rộng của div chứa danh sách
-var wrapperWidth = navigationWrapper.offsetWidth; // Độ rộng của wrapper
-
-btnPrev.addEventListener('click', function() {
-    var currentPosition = parseInt(navigationWrapper.style.transform.slice(11)) || 0;
-    var newPosition = currentPosition + itemWidth;
-
-    if (newPosition <= 0) {
-        navigationWrapper.style.transform = 'translateX(' + newPosition + 'px)';
-    }
-});
-
-btnNext.addEventListener('click', function() {
-    var currentPosition = parseInt(navigationWrapper.style.transform.slice(11)) || 0;
-    var newPosition = currentPosition - itemWidth;
-    var maxPosition = containerWidth - wrapperWidth;
-
-    if (newPosition >= maxPosition) {
-        navigationWrapper.style.transform = 'translateX(' + newPosition + 'px)';
-    }
-});	
-</script>

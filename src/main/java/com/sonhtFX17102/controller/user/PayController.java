@@ -1,5 +1,7 @@
 package com.sonhtFX17102.controller.user;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +49,8 @@ public class PayController extends BaseController{
 		return _mvShare;
 	}
 	@RequestMapping(value = "quyen-gop", method = RequestMethod.POST)
-	public String doConfirmPayment(HttpServletRequest request) {
+	public String doConfirmPayment(HttpServletRequest request) throws UnsupportedEncodingException {
+		request.setCharacterEncoding("UTF-8");
 		String cIdString = request.getParameter("circum_id");
 		int cId = 0;
 		String name = request.getParameter("circum_order_name");
@@ -60,18 +63,12 @@ public class PayController extends BaseController{
 		String address = request.getParameter("circum_order_address");
 		String date = request.getParameter("circum_order_date");
 		String circumName = request.getParameter("circum_name");
-		try {
-			cId = Integer.parseInt(cIdString);
-			amount = Integer.parseInt(amountS);
-			payService.insertPayInfo(cId, name, mail, phone, bank, bankName, address, amount, date, circumName,"pending");
-			request.setAttribute("messageDonated", 
-					"Cảm ơn bạn đã quyên góp!!\n Mọi đóng góp dù nhỏ cũng là một niềm động viên rất lớn!!!");
-			return "user/cart/payment";
+		cId = Integer.parseInt(cIdString);
+		amount = Integer.parseInt(amountS); 
+		payService.insertPayInfo(cId, name, mail, phone, bank, bankName,
+				address, amount, date, circumName, "pending");
+		return "redirect:thanh-toan";
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "redirect:quyen-gop?id="+cId;
-		}
 	}
 	@RequestMapping(value = "thanh-toan", method = RequestMethod.GET)
 	public ModelAndView pay() {

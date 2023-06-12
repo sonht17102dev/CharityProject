@@ -102,6 +102,11 @@
 															type="checkbox" class="checkbox" /> <span class="lbl"></span>
 													</label></td>
 													<td class="hidden">${o.circum_order_id}</td> 
+													<c:if test="${o.circum_status == 'inactive'}">
+													<td class="center">
+													<span class="label label-xlg label-danger arrowed-in">Inactive</span>
+													</td>
+													</c:if>
 													<c:if test="${o.circum_status == 'pending'}">
 													<td class="center">
 													<span class="label label-xlg label-primary arrowed-in-right arrowed-in">Đang chờ</span>
@@ -143,7 +148,13 @@
 									</table>
 									<div class="row">
 										<div class="col-xs-6">
-
+											<c:if test = "${param.status != 'inactive'}">
+											<button class="deleteall btn btn-danger"
+												title="dynamic-table">Xóa đã chọn</button>
+											<button class="btn btn-warning" 
+												id = "btn-inactive-order"
+												title="Xem danh sách đã xóa">Xem danh sách đã xóa</button>
+											</c:if>
 										</div>
 										<div class="col-xs-6">
 											<div class="dataTables_paginate paging_simple_numbers"
@@ -180,29 +191,9 @@
 		<!-- /.page-content -->
 	</div>
 </div>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('a.pending').on("click",function(event) {
-			var idValue = this.parentNode.parentNode.parentNode.parentNode.parentNode
-				.getElementsByTagName('td')[1].textContent;
-			console.log(idValue);
-			location.assign("/CharityApp/admin/payment?type=pending&id="+ idValue);
-		});
-		$('a.paid').on("click",function(event) {
-			var idValue = this.parentNode.parentNode.parentNode.parentNode.parentNode
-				.getElementsByTagName('td')[1].textContent;
-			console.log(idValue);
-			location.assign("/CharityApp/admin/payment?type=paid&id="+ idValue);
-		});
+<script type="text/javascript"
+src="<c:url value="/resources/admin/assets/js/managePayment.js"/>" >
 
-	});
-
-	function toggleChecked(status) {
-		$(".checkbox").each(function() {
-			$(this).attr("checked", status);
-		})
-	}
-	
 </script>
 
 

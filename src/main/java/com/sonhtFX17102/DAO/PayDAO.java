@@ -39,13 +39,14 @@ public class PayDAO extends BaseDao{
 		return list;
 	}
 	public int getCountAllPayment() {
-		String sql = "select * from circum_order ";
+		String sql = "select * from circum_order where circum_status != 'inactive'";
 		List<CircumOrder> list = _jdbcTemplate.query(sql, new MapperCircumOrder());
 		return list.size();
 	}
 	public List<CircumOrder> getPagingPage(int index) {
 		index = (index - 1) * 5;
 		String sql = "select * from circum_order "
+				+ " where circum_status != 'inactive' "
 				+ " order by circum_order_id " + "OFFSET " + index
 				+ " ROWS FETCH NEXT 5 ROWS ONLY";
 		List<CircumOrder> list = _jdbcTemplate.query(sql, new MapperCircumOrder());
@@ -68,5 +69,15 @@ public class PayDAO extends BaseDao{
 		List<CircumOrder> list = _jdbcTemplate.query(sql, new MapperCircumOrder());
 		return list;
 	}
-	
+	public void updateStatus(int id, String status) {
+		String sql = "Update CIRCUM_ORDER "
+				+ "SET circum_status = '" + status +"' "
+				+ "WHERE circum_order_id = " + id + " ;";
+		_jdbcTemplate.update(sql);
+	}
+	public List<CircumOrder> findOrderInactive(String status) {
+		String sql = "Select * from circum_order where circum_status = '"+ status +"' ;";
+		List<CircumOrder> list = _jdbcTemplate.query(sql, new MapperCircumOrder());
+		return list;
+	}
 }

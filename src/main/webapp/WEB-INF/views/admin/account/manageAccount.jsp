@@ -99,35 +99,63 @@
 											<c:forEach var="o" items="${listTop5Account}">
 												<tr class="product-brand-number">
 													<td class="center"><label class="pos-rel"> <input
-															type="checkbox" class="checkbox" /> <span class="lbl"></span>
+															type="checkbox" class="checkbox" /> 
+															<span class="lbl"></span>
 													</label></td>
 
 													<td class="hidden">${o.account_id}</td>
 													<c:if test="${o.account_role == 'ADMIN'}">
-													<td class="center"><span class="label label-xlg label-primary arrowed-in-right arrowed-in">ADMIN</span></td>
+														<td class="center">
+															<span class="label label-xlg label-primary arrowed-in-right
+															 arrowed-in">ADMIN</span></td>
 													</c:if>
 													<c:if test="${o.account_role == 'USER'}">
-													<td class="center"><span class="label label-xlg label-success arrowed-in-right arrowed-in">USER</span></td>
+														<td class="center">
+															<span class="label label-xlg label-success
+															 arrowed-in-right arrowed-in">USER</span></td>
 													</c:if>
 													<td class="center">${o.account_mail}</td>
 													<td class="center">${o.account_name}</td>
 													<td class="center">${o.account_phone}</td>
 													<td class="center">
-													<c:if test="${o.account_status == 'online'}">
-													<span class="label label-success arrowed">Online</span>
+													<c:if test = "${o.enabled == 1}">
+														<c:if test="${o.account_status == 'online'}">
+														<span class="label label-success arrowed">Online</span>
+														</c:if>
+														<c:if test="${o.account_status == 'offline'}">
+														<span class="label label-inverse">Offline</span>
+														</c:if>
 													</c:if>
-													<c:if test="${o.account_status == 'offline'}">
-													<span class="label label-inverse">Offline</span>
+													<c:if test = "${o.enabled == 0}">
+														<span class="label label-danger arrowed-in">Bị Cấm</span>
 													</c:if>
 													</td>
 													<td class="center">
 														<div class="">
+															<c:if test = "${o.enabled == 1}">
 															<a class="green" title="Chỉnh sửa"> <i
 																class="ace-icon fa fa-pencil bigger-130"></i>
 															</a> 
 															<a class="red delete_single" title="Xóa"> <i
 																class="ace-icon fa fa-trash-o bigger-130"></i>
 															</a>
+															</c:if>
+															<c:if test = "${o.enabled == 0}">
+															<div class="btn-group ">
+																<button data-toggle="dropdown" 
+																class="btn btn-success dropdown-toggle" 
+																aria-expanded="false">Chuyển trạng thái
+																	<span class="ace-icon fa fa-caret-down
+																	 icon-on-right"></span>
+																</button>
+																<ul class="dropdown-menu dropdown-success
+																 dropdown-menu-right">
+																	<li>
+																		<a class="reactivate">Được hoạt động</a>
+																	</li>
+																</ul>
+															</div>
+															</c:if>
 														</div>
 													</td>
 												</tr>
@@ -138,7 +166,9 @@
 										<div class="col-xs-6">
 											<button class="btn btn-primary addAccount"
 												title="Thêm tài khoản">Thêm tài khoản</button>
-
+											<button class="btn btn-warning" 
+												id = "btn-inactive-account"
+												title="Xem danh sách đã xóa">Xem danh sách đã xóa</button>	
 										</div>
 										<div class="col-xs-6">
 											<div class="dataTables_paginate paging_simple_numbers"
@@ -174,100 +204,8 @@
 		<!-- /.page-content -->
 	</div>
 </div>
-<script type="text/javascript">
-	$('button.addAccount').on("click", function(event) {
-		location.assign("/CharityApp/admin/them-tai-khoan");
-	});
-	$('a.green').on("click",function(event) {
-		var idValue = this.parentNode.parentNode.parentNode
-			.getElementsByTagName('td')[1].textContent;
-		location.assign("/CharityApp/admin/cap-nhat-tai-khoan?id="+ idValue);
-	});
-	$(document).ready(function() {
-
-		//function is used to delete individual row
-		$('a.delete_single').on("click",function(event) {
-			var $this = $(this);
-			var roleValue = this.parentNode.parentNode.parentNode
-				.getElementsByTagName('td')[2].textContent;
-			var idValue = this.parentNode.parentNode.parentNode
-				.getElementsByTagName('td')[1].textContent;
-			var status = this.parentNode.parentNode.parentNode
-				.getElementsByTagName('td')[6].textContent;
-			
-			//console.log(status);
-			if(roleValue === 'ADMIN') {
-					alert('Không được xóa admin!!!');
-			} else {
-				var c = confirm('Bạn muốn xóa dòng này chứ?\nClick Ok để tiếp tục\nClick cancle nếu bạn chưa muốn xóa !!!');
-				if (c) {
-					$.ajax({
-						url : "/CharityApp/admin/quan-ly-tai-khoan",
-						type : 'GET',
-						data : {
-							id : idValue,
-							action : 'deleteAccount',
-							role : roleValue
-						},
-						success : function(response) {
-							alert('Xóa thành công !!!');
-							location.assign("/CharityApp/admin/quan-ly-tai-khoan");
-						}
-					});
-													
-				} else {
-					alert('Xóa Thất Bại !!!');
-				}
-				return false;
-			}
-		});
-
-		//function is used to delete selected row
-		$('button.deleteall').on("click",function(event) {
-			var tb = $(this).attr('title');
-			var sel = false;
-			var ch = $('#' + tb).find('tbody input[type=checkbox]');
-			var c = confirm('Bạn muốn xóa những dòng này chứ?\nClick Ok để tiếp tục!!!\nClick cancle nếu bạn chưa muốn xóa !!!');
-			if (c) {
-				ch.each(function() {
-					var $this = $(this);
-					var idValue = this.parentNode.parentNode.parentNode
-							.getElementsByTagName('td')[1].textContent;
-					var role = this.parentNode.parentNode.parentNode
-							.getElementsByTagName('td')[2].textContent;
-					if ($this.is(':checked')) {
-						sel = true; //set to true if there is/are selected row
-						$.ajax({
-							url : "/CharityApp/admin/quan-ly-tai-khoan",
-							type : 'GET',
-							data : {
-								id : idValue,
-								action : 'deleteAccount',
-								role : role
-							},
-							success : function(response) {
-							}
-					});
-					$this.parents('tr').fadeOut(function() {
-						$this.remove(); //remove row when animation is finished
-					});
-					}
-				});
-				if (sel)
-					alert("Xóa Thành Công!");
-				if (!sel)
-					alert('Xóa Thất Bại - Không có trường nào được chọn');
-			}
-			return false;
-		});
-	});
-
-	function toggleChecked(status) {
-		$(".checkbox").each(function() {
-			$(this).attr("checked", status);
-		})
-	}
-	
+<script type="text/javascript" 
+src="<c:url value="/resources/admin/assets/js/manageAccount.js"/>">
 </script>
 
 

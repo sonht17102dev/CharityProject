@@ -16,7 +16,8 @@
 
 <!-- slider_area_start -->
 <div class="slider_area container">
-	<div class="single_slider  d-flex align-items-center slider_bg_1 overlay2 row">
+	<div
+		class="single_slider  d-flex align-items-center slider_bg_1 overlay2 row">
 		<div class="col-xl-12 col-lg-12 col-md-12 col-12"></div>
 	</div>
 </div>
@@ -92,8 +93,11 @@
 			<c:forEach items="${list6Circum}" var="o">
 				<c:set var="percent"
 					value="${o.circum_target / o.circum_raise * 100}" />
-				<div class="col-xl-4 col-lg-4 col-md-6 col-12 single_cause box-cause">
-					<div class="thumb" id="thumb"><a href="quyen-gop?id=${o.circum_id}">${o.circum_image}</a></div>
+				<div
+					class="col-xl-4 col-lg-4 col-md-6 col-12 single_cause box-cause">
+					<div class="thumb" id="thumb">
+						<a href="quyen-gop?id=${o.circum_id}">${o.circum_image}</a>
+					</div>
 					<div class="causes_content">
 						<div class="custom_progress_bar">
 							<div class="progress">
@@ -151,13 +155,13 @@
 			</c:forEach>
 		</div>
 		<div class="row">
-				<div class="col-12 mt-4">
-					<div class="donate_now_btn text-center">
+			<div class="col-12 mt-4">
+				<div class="donate_now_btn text-center">
 
-						<a href="nhung-hoan-canh" class="boxed-btn4">Xem thêm >></a>
-					</div>
+					<a href="nhung-hoan-canh" class="boxed-btn4">Xem thêm >></a>
 				</div>
 			</div>
+		</div>
 	</div>
 </div>
 <!-- popular_causes_area_end  -->
@@ -238,12 +242,13 @@
 				<c:forEach items="${list6Partner}" var="p">
 					<div class="col-lg-4 col-md-6 our-partner">
 						<div class="mr-2">
-							<a href="doi-tac-chi-tiet?id=${p.partner_id}">
-							<img src="<c:url value="${p.partner_logo}"/>"></a>
+							<a href="doi-tac-chi-tiet?id=${p.partner_id}"> <img
+								src="<c:url value="${p.partner_logo}"/>"></a>
 						</div>
 						<div class="single-defination">
 							<h4 class="mb-20 deepPink">
-							<a href="doi-tac-chi-tiet?id=${p.partner_id}">${p.partner_name}</a></h4>
+								<a href="doi-tac-chi-tiet?id=${p.partner_id}">${p.partner_name}</a>
+							</h4>
 							<p>${p.partner_slogan}</p>
 							<p>
 								<a href="doi-tac-chi-tiet?id=${p.partner_id}">Xem chi tiết
@@ -281,31 +286,31 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-12">
-				<div class="news_active owl-carousel">
-					<c:forEach items="${list2News}" var="n">
+			<c:forEach items="${list2News}" var="n">
+				<div class="col-lg-6">
+					<div class="news_active">
 						<div class="single__blog d-flex align-items-center">
 							<div class="thum">
 								<img src="<c:url value="${n.news_img_banner}"/>" alt="">
 							</div>
 							<div class="newsinfo">
-								<span>${n.news_post_date}</span> 
+								<span>${n.news_post_date}</span>
 								<h3>
 									<a href="tin-tuc-chi-tiet?id=${n.news_id}">${n.news_description}</a>
 								</h3>
-								 <a class="read_more" href="tin-tuc-chi-tiet?id=${n.news_id}">>>Xem
+								<a class="read_more" href="tin-tuc-chi-tiet?id=${n.news_id}">>>Xem
 									chi tiết</a>
 							</div>
 						</div>
-					</c:forEach>
-				</div>
-				<div class="row">
-					<div class="col-12 mt-4">
-						<div class="donate_now_btn text-center">
-
-							<a href="tin-tuc" class="boxed-btn4">Xem thêm >></a>
-						</div>
 					</div>
+				</div>
+			</c:forEach>
+		</div>
+		<div class="row">
+			<div class="col-12 mt-4">
+				<div class="donate_now_btn text-center">
+
+					<a href="tin-tuc" class="boxed-btn4">Xem thêm >></a>
 				</div>
 			</div>
 		</div>
@@ -323,15 +328,14 @@
 		<div class="col-xl-8 questions_container pb-4">
 			<div class="question_items">
 				<div class="question">
-						<a class="" data-toggle="collapse" href="#collapseExample1"
-							role="button" aria-expanded="false"
-							aria-controls="#collapseExample1"> Charifit là gì? 
-							</a>
-						<a class="" data-toggle="collapse" href="#collapseExample1"
-							role="button" aria-expanded="false"
-							aria-controls="#collapseExample1"> <i class="ti-angle-down"></i>
-							</a>
-						
+					<a class="" data-toggle="collapse" href="#collapseExample1"
+						role="button" aria-expanded="false"
+						aria-controls="#collapseExample1"> Charifit là gì? </a> <a
+						class="" data-toggle="collapse" href="#collapseExample1"
+						role="button" aria-expanded="false"
+						aria-controls="#collapseExample1"> <i class="ti-angle-down"></i>
+					</a>
+
 				</div>
 				<div class="collapse answer" id="collapseExample1">
 					<div class="card card-body">Charifit là tính năng gây quỹ từ
@@ -342,14 +346,14 @@
 			</div>
 			<div class="question_items">
 				<div class="question">
-						<a class="" data-toggle="collapse" href="#collapseExample2"
-							role="button" aria-expanded="false"
-							aria-controls="#collapseExample2"> Charifit có thu lợi nhuận
-							từ việc gây quỹ không? </a>
-						<a class="" data-toggle="collapse" href="#collapseExample2"
-							role="button" aria-expanded="false"
-							aria-controls="#collapseExample2"> <i class="ti-angle-down"></i> </a>
-						
+					<a class="" data-toggle="collapse" href="#collapseExample2"
+						role="button" aria-expanded="false"
+						aria-controls="#collapseExample2"> Charifit có thu lợi nhuận
+						từ việc gây quỹ không? </a> <a class="" data-toggle="collapse"
+						href="#collapseExample2" role="button" aria-expanded="false"
+						aria-controls="#collapseExample2"> <i class="ti-angle-down"></i>
+					</a>
+
 				</div>
 				<div class="collapse answer" id="collapseExample2">
 					<div class="card card-body">Charifit hoàn toàn không thu lợi
@@ -359,14 +363,15 @@
 			</div>
 			<div class="question_items">
 				<div class="question">
-						<a class="" data-toggle="collapse" href="#collapseExample3"
-							role="button" aria-expanded="false"
-							aria-controls="collapseExample3"> Sau bao lâu từ khi quyên
-							góp, tiền sẽ được chuyển đến tay hoàn cảnh? </a>
-						<a class="" data-toggle="collapse" href="#collapseExample3"
-							role="button" aria-expanded="false"
-							aria-controls="collapseExample3"> <i class="ti-angle-down"></i> </a>
-							
+					<a class="" data-toggle="collapse" href="#collapseExample3"
+						role="button" aria-expanded="false"
+						aria-controls="collapseExample3"> Sau bao lâu từ khi quyên
+						góp, tiền sẽ được chuyển đến tay hoàn cảnh? </a> <a class=""
+						data-toggle="collapse" href="#collapseExample3" role="button"
+						aria-expanded="false" aria-controls="collapseExample3"> <i
+						class="ti-angle-down"></i>
+					</a>
+
 				</div>
 				<div class="collapse answer" id="collapseExample3">
 					<div class="card card-body">Trong vòng 1 tuấn kể từ khi dự án
@@ -376,14 +381,14 @@
 			</div>
 			<div class="question_items">
 				<div class="question">
-						<a class="" data-toggle="collapse" href="#collapseExample4"
-							role="button" aria-expanded="false"
-							aria-controls="collapseExample4"> Ai có thể gây quỹ trên
-							Charifit? </a>
-						<a class="" data-toggle="collapse" href="#collapseExample4"
-							role="button" aria-expanded="false"
-							aria-controls="collapseExample4"> <i class="ti-angle-down"></i> </a>
-						
+					<a class="" data-toggle="collapse" href="#collapseExample4"
+						role="button" aria-expanded="false"
+						aria-controls="collapseExample4"> Ai có thể gây quỹ trên
+						Charifit? </a> <a class="" data-toggle="collapse"
+						href="#collapseExample4" role="button" aria-expanded="false"
+						aria-controls="collapseExample4"> <i class="ti-angle-down"></i>
+					</a>
+
 				</div>
 				<div class="collapse answer" id="collapseExample4">
 					<div class="card card-body">Để có thể gây quỹ trên Charifit,
@@ -394,13 +399,13 @@
 			</div>
 			<div class="question_items">
 				<div class="question">
-						<a class="" data-toggle="collapse" href="#collapseExample5"
-							role="button" aria-expanded="false"
-							aria-controls="collapseExample5"> Nếu hoàn cảnh gây quỹ không
-							thành công thì sao? </a>
-						<a class="" data-toggle="collapse" href="#collapseExample5"
-							role="button" aria-expanded="false"
-							aria-controls="collapseExample5"> <i class="ti-angle-down"></i> </a>
+					<a class="" data-toggle="collapse" href="#collapseExample5"
+						role="button" aria-expanded="false"
+						aria-controls="collapseExample5"> Nếu hoàn cảnh gây quỹ không
+						thành công thì sao? </a> <a class="" data-toggle="collapse"
+						href="#collapseExample5" role="button" aria-expanded="false"
+						aria-controls="collapseExample5"> <i class="ti-angle-down"></i>
+					</a>
 				</div>
 				<div class="collapse answer" id="collapseExample5">
 					<div class="card card-body">Nhà tài trợ vẫn sẽ chuyển số tiền
@@ -410,13 +415,13 @@
 			</div>
 			<div class="question_items">
 				<div class="question">
-						<a class="" data-toggle="collapse" href="#collapseExample6"
-							role="button" aria-expanded="false"
-							aria-controls="collapseExample6"> Làm thế nào để liên hệ và
-							gửi hoàn cảnh tới Charifit? </a>
-						<a class="" data-toggle="collapse" href="#collapseExample6"
-							role="button" aria-expanded="false"
-							aria-controls="collapseExample6"> <i class="ti-angle-down"></i> </a>
+					<a class="" data-toggle="collapse" href="#collapseExample6"
+						role="button" aria-expanded="false"
+						aria-controls="collapseExample6"> Làm thế nào để liên hệ và
+						gửi hoàn cảnh tới Charifit? </a> <a class="" data-toggle="collapse"
+						href="#collapseExample6" role="button" aria-expanded="false"
+						aria-controls="collapseExample6"> <i class="ti-angle-down"></i>
+					</a>
 				</div>
 				<div class="collapse answer" id="collapseExample6">
 					<div class="card card-body">Tổ chức đủ điều kiện vui lòng gửi
