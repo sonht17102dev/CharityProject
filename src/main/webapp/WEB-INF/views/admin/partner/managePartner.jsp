@@ -111,14 +111,14 @@
 													<td class="center"><img src="${o.partner_logo}" width="70" height="30"></td>
 													
 													<c:if test="${money <= 1000}">
-													<td class="center">${money} </td>
+													<td class="center">${money==0?"Đang cập nhật": money} </td>
 													</c:if>
 													<c:if test="${money > 1000}">
 													<td class="center">
 													<fmt:formatNumber type = "number" 
-         										pattern = "###,###" value = "${money}" /> </td>
+         										pattern = "###,###" value = "${money==0?'Đang cập nhật': money}" /> </td>
 													</c:if>
-													<td class="center">${o.partner_number_donate} </td>
+													<td class="center">${o.partner_number_donate==0?"Đang cập nhật":o.partner_number_donate} </td>
 													<td class="center">
 														<div class="">
 															<a class="green" title="Chỉnh sửa"> <i

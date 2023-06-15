@@ -83,7 +83,7 @@ public class ManageAccountController extends BaseController{
 		String phone = request.getParameter("account_phone");
 		String pass = request.getParameter("account_password");
 		String md5Pass = DigestUtils.md5Hex(pass);
-//		System.out.println(pass);
+		System.out.println(pass);
 		Account account = new Account(roleS, mail, name, phone, md5Pass, "offline",1);
 		
 //		System.out.println(account.toString());

@@ -23,8 +23,9 @@ $('button#btn-inactive-circum').on("click", function(event) {
 											var $this = $(this);
 											var idValue = this.parentNode.parentNode.parentNode
 													.getElementsByTagName('td')[1].textContent;
+													//console.log(idValue)
 											var status = this.parentNode.parentNode.parentNode
-											.getElementsByTagName('td')[2].textContent;
+											.getElementsByTagName('td')[2].textContent.trim();
 											//console.log(status);
 											var c = confirm('Bạn muốn xóa dòng này chứ?\nClick Ok để tiếp tục\nClick cancle nếu bạn chưa muốn xóa !!!');
 											if (c) {
@@ -73,7 +74,7 @@ $('button#btn-inactive-circum').on("click", function(event) {
 															var idValue = this.parentNode.parentNode.parentNode
 																	.getElementsByTagName('td')[1].textContent;
 															var status = this.parentNode.parentNode.parentNode
-															.getElementsByTagName('td')[2].textContent;
+															.getElementsByTagName('td')[2].textContent.trim();
 															//console.log(status);
 															if ($this
 																	.is(':checked')) {

@@ -33,9 +33,8 @@ public class RegisterController extends BaseController {
 		String md5Pass = DigestUtils.md5Hex(pass);
 		Account account = new Account("USER", mail, name, phone, md5Pass, "offline", 1);
 		System.out.println(account.toString());
-		account = accService.checkAccountByMailExist(mail);
-
-		if (account == null) {
+		if (accService.getAccountByUsername(name)== null && accService.checkAccountByMailExist(mail)== null) {
+			
 			accService.insertAccount("USER", mail, name, phone, md5Pass, "offline", 1);
 			sendEmail("sonhtfx17102@funix.edu.vn", mail, "Chúc mừng bạn đã đăng ký thành công!",
 					"Mật khẩu của bạn là " + pass + " \n\n Vui lòng không cung cấp mật khẩu cho bất kỳ ai.");

@@ -56,7 +56,7 @@ public class LoginController extends BaseController {
 			Account account = accountService.checkAccountByMailExist(mail);
 			if(account != null) {
 				accountService.updatePasswordByMail(md5Pass, mail);
-				sendEmail("sonhtfx17102@funix.edu.vn", mail, "Reset mật khẩu !!!", "Mật khẩu của bạn là " + passRandom + " . Vui lòng không cung cấp mật khẩu cho bất kỳ ai.");
+				sendEmail("sonhtfx17102@funix.edu.vn", mail, "Reset mật khẩu !!!", "Mật khẩu của bạn là " + passRandom + " . \n\nVui lòng không cung cấp mật khẩu cho bất kỳ ai.");
 				_mvShare.addObject("resetMessage", "Mật khẩu của bạn đã được reset - Truy cập email để kiểm tra");
 				_mvShare.setViewName("login/loginMain");
 			} else {

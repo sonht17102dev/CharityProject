@@ -63,6 +63,7 @@ public class CircumController extends BaseController {
 		
 		_mvShare.addObject("listTop3Circum", list);
 		_mvShare.addObject("circumDetail", circumDetail);
+		_mvShare.addObject("category", category);
 		_mvShare.setViewName("user/cause/cause_detail");
 		return _mvShare;
 	}

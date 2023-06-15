@@ -20,7 +20,7 @@ $(document).ready(function () {
         onclick: false,
         ignore: [],
         rules: {
-            "news_descritption": {
+            "news_description": {
               required: true
             },
             "news_img_banner": {
@@ -39,7 +39,7 @@ $(document).ready(function () {
           },
           messages: {
         	
-        	"news_descritption": {
+        	"news_description": {
         		required: "Hãy nhập tiêu đề tin tức !"
         	},
             "news_img_banner": {

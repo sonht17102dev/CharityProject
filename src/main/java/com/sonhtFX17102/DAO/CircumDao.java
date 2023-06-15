@@ -35,7 +35,7 @@ public class CircumDao extends BaseDao {
 	public List<Circum> getPagingPage(int index) {
 		index = (index - 1) * 6;
 		String sql = "select * from circum "
-				+ "where circum_status='active' " 
+				
 				+ " order by circum_id desc\r\n" + "OFFSET " + index
 				+ " ROWS FETCH NEXT 6 ROWS ONLY";
 
@@ -50,7 +50,9 @@ public class CircumDao extends BaseDao {
 
 	public List<Circum> getPagingPageAdmin(int index) {
 		index = (index - 1) * 10;
-		String sql = "select * from circum\r\n" + "order by circum_id\r\n" + "OFFSET " + index
+		String sql = "select * from circum\r\n " 
+				+ "where circum_status='active' " 
+				+ "order by circum_id\r\n" + "OFFSET " + index
 				+ " ROWS FETCH NEXT 10 ROWS ONLY";
 
 		List<Circum> list = _jdbcTemplate.query(sql, new MapperCircum());
@@ -187,7 +189,7 @@ public class CircumDao extends BaseDao {
 	public void updateStatus(int id, String status){
 		String sql = "UPDATE CIRCUM "
 				+ "SET circum_status = '"+ status +"'"
-						+ " WHERE circum_id = "+ id +";";
+				+ " WHERE circum_id = "+ id +";";
 		_jdbcTemplate.update(sql);
 	}
 	

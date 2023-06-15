@@ -148,4 +148,15 @@ public class AccountImpl implements IAccountService {
 		accountDAO.updateEnabled(id);
 	}
 
+	@Override
+	public void addAccountDetailsByUser(int account_id, String account_firstName, String account_lastName,
+			String account_image, String account_address, String account_birthday, String account_organization,
+			int total_donated, String account_bank, String account_bankname) {
+		// TODO Auto-generated method stub
+		accountDAO.addAccountDetailsByUser(account_id, account_firstName, account_lastName, account_image,
+				account_address, account_birthday, account_organization, total_donated,
+				account_bank, account_bankname);
+	}
+
+
 }

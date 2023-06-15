@@ -51,7 +51,7 @@ public class AccountDAO extends BaseDao {
 	 * db ko
 	 */
 	public Account getAccountByUsername(String username) {
-		String sql = "select * from account where account_name = '" + username + "'";
+		String sql = "select * from account where account_name = N'" + username + "'";
 		List<Account> list = _jdbcTemplate.query(sql, new MapperAccount());
 		if (list.size() == 0)
 			return null;
@@ -64,7 +64,7 @@ public class AccountDAO extends BaseDao {
 	 */
 	public void insertAccount(String account_role, String account_mail, String account_name, String account_phone,
 			String account_password, String account_status, int enabled) {
-		String sql = "INSERT INTO Account([account_role],[account_mail],[account_name],[account_phone],[account_password],[account_status]) "
+		String sql = "INSERT INTO Account([account_role],[account_mail],[account_name],[account_phone],[account_password],[account_status], [enabled]) "
 				+ "VALUES ('" + account_role + "'," + " N'" + account_mail + "'," + " N'" + account_name + "'," + " '"
 				+ account_phone + "'," + "'" + account_password + "'," + "'" + account_status + "', " + " " + enabled
 				+ " " + ");";
@@ -180,7 +180,12 @@ public class AccountDAO extends BaseDao {
 				+ " inner join ACCOUNTDETAILS ad\r\n " + " on a.account_id = ad.account_id\r\n "
 				+ " where account_name = '" + name + "';";
 		List<AccountDetailsDTO> list = _jdbcTemplate.query(sql, new MapperAccountDetailsDTO());
-		return list.get(0);
+		if (list.size()==0) {
+			return new AccountDetailsDTO();
+		}
+		else {
+			return list.get(0);
+		}
 	}
 
 	public void uploadAvatar(String image, String id) {
@@ -205,7 +210,34 @@ public class AccountDAO extends BaseDao {
 		_jdbcTemplate.update(sqlAddAccountDetail);
 
 	}
-
+	public void addAccountDetailsByUser(int account_id, String account_firstName, String account_lastName,
+			String account_image, String account_address, String account_birthday, String account_organization,
+			int total_donated, String account_bank, String account_bankname) {
+		String sql = "INSERT INTO ACCOUNTDETAILS ("
+				+ "[account_id], "
+				+ "[account_firstName], "
+				+ "[account_lastName], "
+				+ "[account_image], "
+				+ "[account_address], "
+				+ "[account_birthday], "
+				+ "[account_organization], "
+				+ "[total_donated], "
+				+ "[account_bank], "
+				+ "[account_bankname] "
+				+ ") values ( "
+				+ account_id + ", "
+				+ " N'" + account_firstName + "', "
+				+ " N'" + account_lastName + "', "
+				+ " N'" + account_image + "', "
+				+ " N'" + account_address + "', "
+				+ " '" + account_birthday + "', "
+				+ " N'" + account_organization + "', "
+				+ total_donated + ", "
+				+ " N'" + account_bank + "', "
+				+ " N'" + account_bankname + "' "
+				+ " )";
+		_jdbcTemplate.update(sql);
+	}
 	public AccountDetailsDTO getAccountDetails(int id) {
 		String sql = "select * from accountdetails where account_id = " + id + ";";
 		List<AccountDetailsDTO> list = _jdbcTemplate.query(sql, new MapperAccountDetailsDTO());

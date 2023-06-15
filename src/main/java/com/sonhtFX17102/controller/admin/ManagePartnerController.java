@@ -69,7 +69,7 @@ public class ManagePartnerController extends BaseController {
 
 	@RequestMapping(value = "cap-nhat-doi-tac", method = RequestMethod.POST)
 	public String doEditPartner(HttpServletRequest request, @ModelAttribute("partner") Partner p) {
-		System.out.println(p.toString());
+//		System.out.println(p.toString());
 		partnerService.updatePartnerById(p.getPartner_id(), p.getPartner_name(), p.getPartner_slogan(),
 				p.getPartner_logo(), p.getPartner_banner(), p.getPartner_number_donate(),
 				p.getPartner_total_money(), p.getPartner_introduce(), p.getPartner_content(), p.getPartner_status());

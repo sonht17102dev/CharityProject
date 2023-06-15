@@ -32,6 +32,9 @@ public interface IAccountService {
 			int account_id, String account_firstName, String account_lastName,
 			String account_address, String account_birthday, String account_organization,
 			String account_name, String account_phone, String account_bank, String account_bankname);
+	public void addAccountDetailsByUser(int account_id, String account_firstName, String account_lastName,
+			String account_image, String account_address, String account_birthday, String account_organization,
+			int total_donated, String account_bank, String account_bankname);
 	public AccountDetailsDTO getAccountDetailsByUsername(String username);
 	public void uploadAvatar(String image, String id);
 	public Account getAccountByUsername(String username);

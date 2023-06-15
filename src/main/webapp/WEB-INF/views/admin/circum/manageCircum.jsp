@@ -108,6 +108,7 @@
 													 ${o.circum_status}
 													 </span>
 													 </td>
+													 
 													<td>${o.circum_name}</td>
 													<td class="center">${o.circum_type}</td>
 													<td class="center"><fmt:formatNumber type="number"

@@ -53,6 +53,7 @@ public class PartnerController extends BaseController{
 			circum.setCircum_image(imgNotStyle);
 		}
 		_mvShare.addObject("listCircumOfPartner", listCircumOfPartner);
+		_mvShare.addObject("category", category);
 		_mvShare.setViewName("user/partner/partner_detail");
 		return _mvShare;
 	}

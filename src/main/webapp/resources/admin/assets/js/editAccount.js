@@ -15,11 +15,7 @@ $(document).ready(function () {
 	
 	
 	
-	$("#btnReset").click(function() {
-		 $("#mySelect").val("${accountByID.account_role}");
-		 $("#account_name").val("${accountByID.account_name}");
-		 $("#account_phone").val("${accountByID.account_phone}");
-	});
+	
 	
 	$("#formSubmit").validate({
         onfocusout: false,

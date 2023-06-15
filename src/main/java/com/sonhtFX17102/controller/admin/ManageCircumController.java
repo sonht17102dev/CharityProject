@@ -143,9 +143,10 @@ public class ManageCircumController extends BaseController {
 			request.setAttribute("messageCircum", "Thêm mới thành công !!!");
 			_mvShareAdmin.setViewName("admin/circum/manageCircum");
 
-		} 
-		request.setAttribute("messageCircum", "Thêm mới thất bại - Tiêu đề đã tồn tại vui lòng thử lại !!!");
-		_mvShareAdmin.setViewName("admin/circum/addCircum");
+		} else {
+			request.setAttribute("messageCircum", "Thêm mới thất bại - Tiêu đề đã tồn tại vui lòng thử lại !!!");
+			_mvShareAdmin.setViewName("admin/circum/addCircum");
+		}
 		return _mvShareAdmin;
 	}
 }

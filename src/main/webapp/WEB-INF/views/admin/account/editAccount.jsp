@@ -82,7 +82,7 @@
 						</div>
 						<br /> <br />
 						<c:set var = "stt" value = "${accountByID.account_status}"/>
-						<div class="form-group">
+						<div class="form-group ${role=='ADMIN' ? 'hidden' : ''}">
 							<label class="col-sm-3 control-label no-padding-right">Trạng thái</label>
 							<div class="col-sm-9">
 								
@@ -124,4 +124,11 @@
 	</div>
 	<!-- /.page-content -->
 </div>
+<script>
+$("#btnReset").click(function() {
+	 $("#mySelect").val("${accountByID.account_role}");
+	 $("#account_name").val("${accountByID.account_name}");
+	 $("#account_phone").val("${accountByID.account_phone}");
+});
+</script>
 <script src="<c:url value="/resources/admin/assets/js/editAccount.js"/>"></script>

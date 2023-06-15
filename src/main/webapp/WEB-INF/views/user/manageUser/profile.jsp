@@ -7,31 +7,38 @@
 	<%@ include file="/WEB-INF/views/user/manageUser/menu.jsp"%>
 	<div class="row">
 		<div class="col-xl-4">
-
+			
+			
 			<div class="card mb-4 mb-xl-0">
 				<div class="card-header deepPink text-center font-larger">Hình đại diện</div>
 				<div class="card-body text-center ">
-
-					<img class="img-account-profile rounded-circle mb-2"
-						src="<c:url value="/resources/image/${info.account_image}"/>"
-						alt="Hình đại diện">
-
+					<c:if test="${info.account_image != null}">
+						<img class="img-account-profile rounded-circle mb-2"
+							src="<c:url value="/resources/image/${info.account_image}"/>"
+							alt="Hình đại diện">
+					</c:if>
+					<c:if test="${info.account_image == null}">
+						<img class="img-account-profile rounded-circle mb-2"
+							src="<c:url value="/resources/user/img/no-image.jpg"/>"
+							alt="Hình đại diện">
+					</c:if>
+					
 					<div class="small font-italic text-muted mb-4">JPG hay PNG
 						không vượt quá 5 MB</div>
-					<form
-						action="${pageContext.request.contextPath}/tai-khoan/uploadfile"
-						method="post" enctype="multipart/form-data">
-						<input type="hidden" id="username" name="username"
-							value="${info.account_name}" readonly> <input
-							type="hidden" name="id" value="${info.account_id}">
-						<div class="form-group">
-							<label for="formFile" class="form-label">Upload Your file</label>
-							<input name="thisfile" class="form-control" type="file"
-								id="formFile">
-						</div>
-						<button class="btn btn-primary">Tải ảnh mới</button>
-					</form>
-					
+						<form
+							action="${pageContext.request.contextPath}/tai-khoan/uploadfile"
+							method="post" enctype="multipart/form-data">
+							<input type="hidden" id="username" name="username"
+								value="${info.account_name}" readonly> <input
+								type="hidden" name="id" value="${info.account_id}">
+								
+							<div class="form-group">
+								<label for="formFile" class="form-label">Cập nhật ảnh đại diện</label>
+								<input name="thisfile" class="form-control" type="file"
+									id="formFile">
+							</div>
+							<button class="btn btn-primary">Tải ảnh mới</button>
+						</form>
 				</div>
 			</div>
 			<div class="card mb-4 mb-xl-0">
@@ -46,7 +53,7 @@
 			<div class="card mb-4">
 				<div class="card-header deepPink font-larger">
 					Thông tin tài khoản
-					<c:if test="${param.messageUser == 'Thay đổi thành công !!!'}">
+					<c:if test="${param.messageUser == 'Cập nhật thành công !!!'}">
 						<span style="color: green; float: right;">Cập nhật thành
 							công !!</span>
 					</c:if>
@@ -61,34 +68,40 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td scope="row" class="primary">
-								<ul class="info-table-row">
-									<li>Username</li>
-									<li>Tên</li>
-									<li>Họ</li>
-									<li>Địa chỉ Email</li>
-									<li>Tên tổ chức</li>
-									<li>Địa chỉ</li>
-									<li>Số điện thoại</li>
-									<li>Ngày sinh</li>
-									<li>Số tài khoản</li>
-									<li>Ngân hàng</li>
-								</ul>
-							</td>
-							<td scope="row">
-								<ul class="info-table-row">
-									<li>${info.account_name}</li>
-									<li>${info.account_firstName}</li>
-									<li>${info.account_lastName}</li>									
-									<li>${info.account_mail}</li>
-									<li>${info.account_organization}</li>
-									<li>${info.account_address}</li>
-									<li>${info.account_phone}</li>
-									<li>${info.account_birthday}</li>
-									<li>${info.account_bank}</li>
-									<li>${info.account_bankname}</li>
-								</ul>
-							</td>
+							<c:if test='${info.account_firstName!=null}'>
+								<td scope="row" class="primary">
+									<ul class="info-table-row">
+										<li>Username</li>
+										<li>Tên</li>
+										<li>Họ</li>
+										<li>Địa chỉ Email</li>
+										<li>Tên tổ chức</li>
+										<li>Địa chỉ</li>
+										<li>Số điện thoại</li>
+										<li>Ngày sinh</li>
+										<li>Số tài khoản</li>
+										<li>Ngân hàng</li>
+									</ul>
+								</td>
+								<td scope="row">
+									<ul class="info-table-row">
+										<li>${info.account_name}</li>
+										<li>${info.account_firstName}</li>
+										<li>${info.account_lastName}</li>									
+										<li>${info.account_mail}</li>
+										<li>${info.account_organization}</li>
+										<li>${info.account_address}</li>
+										<li>${info.account_phone}</li>
+										<li>${info.account_birthday}</li>
+										<li>${info.account_bank}</li>
+										<li>${info.account_bankname}</li>
+									</ul>
+								</td>
+							</c:if>
+							<c:if test='${info.account_firstName == null}'>
+								<td scope="row" colspan="2" class="primary text-center">
+								Vui lòng cập nhật thông tin cá nhân!</td>
+							</c:if>
 							<td scope="row" class="btnEdit"> <button class="btn btn-primary" 
 							id="btn-Edit" onclick="showFormInfo()">Cập nhật</button></td>
 						</tr>

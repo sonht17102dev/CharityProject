@@ -72,7 +72,8 @@
 											tức</a></li>
 									<security:authorize access="isAuthenticated()">
 										<li><a
-											href="${pageContext.request.contextPath}/tai-khoan/cap-nhat?username=<security:authentication property="principal.username" />">
+											href="${pageContext.request.contextPath}/tai-khoan/cap-nhat?username=<security:authentication 
+											property="principal.username" />">
 												Thông Tin Tài khoản</a></li>
 									</security:authorize>
 
